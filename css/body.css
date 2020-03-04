@@ -1,0 +1,42 @@
+body {
+    background-color: #F7FFF7;
+}
+
+@import url(../fonts/vazir-fonts/fonts.css);
+
+* {
+    font-family: Vazir;
+}
+
+:root {
+    --eng-green : #1A535C;
+    --med-torq : #4ECDC4;
+    --mint-cream : #F7FFF7;
+    --pastel-red : #FF6B6B;
+    --maize : #FFE66D;
+}
+
+.eng-green {
+    background-color: var(--eng-green);
+}
+
+.med-torq {
+    background-color: var(--med-torq);
+}
+
+.mint-cream {
+    background-color: var(--mint-cream);
+}
+
+.pastel-red {
+    background-color: var(--pastel-red);
+}
+
+.maize {
+    background-color: var(--maize);
+}
+
+body {
+    padding-top: 40px;
+}
+

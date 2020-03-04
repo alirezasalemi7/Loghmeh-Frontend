@@ -1,0 +1,20 @@
+@import url(./body.css);
+
+.navbar {
+    height: 40px;
+}
+
+.exit-btn {
+    color: var(--pastel-red);
+}
+
+
+#cart-badge {
+    position: relative;
+    left: -10px;
+    top: -15px;
+}
+
+nav .btn:active {
+    border-color: var(--med-torq);
+}
