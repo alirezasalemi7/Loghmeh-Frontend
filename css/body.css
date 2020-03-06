@@ -38,5 +38,6 @@ body {
 
 body {
     padding-top: 40px;
+    background-color: var(--mint-cream);
 }
 

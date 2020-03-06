@@ -25,15 +25,15 @@
 [class^="flaticon-"]:before, [class*=" flaticon-"]:before,
 [class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
   font-family: Flaticon;
-        font-size: 20px;
-font-style: normal;
-margin-left: 20px;
+  font-size: 20px;
+  font-style: normal;
 }
 
-.flaticon-plus:before { content: "\f100"; }
-.flaticon-minus:before { content: "\f101"; }
-.flaticon-account:before { content: "\f102"; }
-.flaticon-smart-cart:before { content: "\f103"; }
-.flaticon-card:before { content: "\f104"; }
-.flaticon-mail:before { content: "\f105"; }
-.flaticon-phone:before { content: "\f106"; }
+.flaticon-star:before { content: "\f100"; }
+.flaticon-plus:before { content: "\f101"; }
+.flaticon-minus:before { content: "\f102"; }
+.flaticon-account:before { content: "\f103"; }
+.flaticon-smart-cart:before { content: "\f104"; }
+.flaticon-card:before { content: "\f105"; }
+.flaticon-mail:before { content: "\f106"; }
+.flaticon-phone:before { content: "\f107"; }

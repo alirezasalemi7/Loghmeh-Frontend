@@ -1,0 +1,55 @@
+@import url(./body.css);
+@import url(./flaticon.css);
+
+.food-card {
+    width: 16%;
+    border-radius: 8px;
+    background-color: var(--mint-cream);
+}
+
+.food-card-body{
+    padding: 7%;
+}
+
+.food-card-pic {
+    width: 55%;
+    border-radius: 8px;
+}
+
+.food-card-star-text {
+    font-size: 1.4vw;
+    margin-right: 5%;
+    color: rgb(153, 149, 149);
+}
+
+.food-card-price {
+    font-size: 1.3vw;
+    margin-right: 5%;
+    color: rgb(153, 149, 149);
+}
+
+.food-card-star{
+    margin-left: 0px;
+    padding: 0px;
+}
+
+.food-card-star::before{
+    color: rgb(240, 156, 0);
+    font-size: 1.4vw;
+}
+
+.food-card-name {
+    font-size: 1.4vw;
+    font-weight: bold;
+}
+
+.food-card-btn {
+    font-size: 1.2vw;
+    width: 85%;
+    background-color: var(--maize);
+    margin-top: 5%;
+    padding: 4%;
+    color: grey;
+    font-weight: bold;
+    border-radius: 5px;
+}
