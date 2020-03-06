@@ -12,16 +12,16 @@
 }
 
 .cart {
-    width: 23%;
     border-radius: 8px;
-    background-color: var(--mint-cream);
+    background-color: white;
+    box-shadow: 0px 0px 2px grey;
 }
 
 .cart-body {
     padding: 5%;
 }
 
-hr {
+.cart hr {
     height: 0px;
     border-top: 1px solid;
     border-color:  rgb(219, 215, 215);

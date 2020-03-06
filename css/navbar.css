@@ -1,7 +1,13 @@
 @import url(./body.css);
 
+
+#loghmeh-logo {
+    max-width: 35px;
+}
+
 .navbar {
     height: 40px;
+    background-color: white;
 }
 
 .exit-btn {
@@ -9,7 +15,7 @@
 }
 
 
-#cart-badge {
+#navbar-cart-badge {
     position: relative;
     left: -10px;
     top: -15px;
