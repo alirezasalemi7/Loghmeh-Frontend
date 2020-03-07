@@ -50,6 +50,7 @@
 .food-card-row {
     padding-left: 2%;
     padding-right: 2%;
+    justify-content: right;
 }
 
 .food-card-row .col-sm-4 {

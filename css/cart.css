@@ -1,5 +1,4 @@
 @import url(./body.css);
-@import url(./flaticon.css);
 
 .cart-title {
     box-shadow: inset 0px -2px 0px rgb(211, 203, 203);
@@ -83,4 +82,6 @@
     border-radius: 7px;
     width: 60%;
     height: 80%;
+    font-size: 1.8vw;
+    font-weight: bolder;
 }
