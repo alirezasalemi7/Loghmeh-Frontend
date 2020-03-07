@@ -1,0 +1,10 @@
+@import url(./body.css);
+
+.footer {
+    background-color: var(--eng-green);
+    height: 100%;
+    color: white;
+}
+.footer-copy-right {
+    padding: 2%;
+}

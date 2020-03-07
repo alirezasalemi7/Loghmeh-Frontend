@@ -40,9 +40,11 @@ body {
 
 .component-title {
     box-shadow: inset 0px -2px 0px var(--eng-green);
+    font-size: 3vw;
     padding: 5px;
     display: table;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 7px;
+    margin-bottom: 2%;
+    color: var(--eng-green);
 }

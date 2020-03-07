@@ -2,9 +2,9 @@
 @import url(./flaticon.css);
 
 .food-card {
-    width: 16%;
     border-radius: 8px;
-    background-color: var(--mint-cream);
+    background-color: white;
+    box-shadow: 0px 0px 2px grey;
 }
 
 .food-card-body{
@@ -52,4 +52,10 @@
     color: grey;
     font-weight: bold;
     border-radius: 5px;
+}
+
+.food-card-btn-disable {
+    background-color: rgb(214, 210, 210);
+    color: black;
+    width: 50%;
 }

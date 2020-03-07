@@ -5,7 +5,9 @@
         <link rel="stylesheet" type="text/css" href="../css/RestaurantPage.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="../css/flaticon.css">
-        <link rel="stylesheet" type="text/css" href="../css/cart.css"
+        <link rel="stylesheet" type="text/css" href="../css/cart.css">
+        <link rel="stylesheet" type="text/css" href="../css/food-card.css">
+        <link rel="stylesheet" type="text/css" href="../css/footer.css">
     </head>
 
     <body>
@@ -39,43 +41,269 @@
                 </div>
             </div>
             <!--menu-->
-            <div class="row">
+            <div class="row" id="middle-row">
                 <div class="col-sm-8">
                     <div class="row text-center">
                         <div class="col-sm-12">
                             <h5 class="component-title">منوی غذا</h5>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row food-card-row">
                         <div class="col-sm-4">
-                            
+                            <div class="card food-card">
+                                <div class="card-body food-card-body">
+                                    <div class="row text-center">
+                                        <div class="col-sm-12 mx-auto">
+                                            <img class="food-card-pic" src="../assets/restaurant/food-pic.jpg" >
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="flaticon-star food-card-star"></span>
+                                            <span class="food-card-star-text">۵</span>
+                                            <span class="food-card-name">پیتزا اعلا</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="food-card-price" dir="rtl">۳۹۰۰۰ تومان</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <button class="btn food-card-btn text-center" type="button" >افزودن به سبد خرید</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-sm-4">
-
+                            <div class="card food-card">
+                                <div class="card-body food-card-body">
+                                    <div class="row text-center">
+                                        <div class="col-sm-12 mx-auto">
+                                            <img class="food-card-pic" src="../assets/restaurant/food-pic.jpg" >
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="flaticon-star food-card-star"></span>
+                                            <span class="food-card-star-text">۴</span>
+                                            <span class="food-card-name">پیتزا نیمه اعلا</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="food-card-price" dir="rtl">۲۹۰۰۰ تومان</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <button class="btn food-card-btn text-center disabled food-card-btn-disable" type="button" >ناموجود</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-sm-4">
-
+                            <div class="card food-card">
+                                <div class="card-body food-card-body">
+                                    <div class="row text-center">
+                                        <div class="col-sm-12 mx-auto">
+                                            <img class="food-card-pic" src="../assets/restaurant/food-pic.jpg" >
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="flaticon-star food-card-star"></span>
+                                            <span class="food-card-star-text">۵</span>
+                                            <span class="food-card-name">پیتزا اعلا</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="food-card-price" dir="rtl">۳۹۰۰۰ تومان</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <button class="btn food-card-btn text-center" type="button" >افزودن به سبد خرید</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row food-card-row">
                         <div class="col-sm-4">
-
+                            <div class="card food-card">
+                                <div class="card-body food-card-body">
+                                    <div class="row text-center">
+                                        <div class="col-sm-12 mx-auto">
+                                            <img class="food-card-pic" src="../assets/restaurant/food-pic.jpg" >
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="flaticon-star food-card-star"></span>
+                                            <span class="food-card-star-text">۵</span>
+                                            <span class="food-card-name">پیتزا اعلا</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="food-card-price" dir="rtl">۳۹۰۰۰ تومان</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <button class="btn food-card-btn text-center" type="button" >افزودن به سبد خرید</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-sm-4">
-
+                            <div class="card food-card">
+                                <div class="card-body food-card-body">
+                                    <div class="row text-center">
+                                        <div class="col-sm-12 mx-auto">
+                                            <img class="food-card-pic" src="../assets/restaurant/food-pic.jpg" >
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="flaticon-star food-card-star"></span>
+                                            <span class="food-card-star-text">۵</span>
+                                            <span class="food-card-name">پیتزا اعلا</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="food-card-price" dir="rtl">۳۹۰۰۰ تومان</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <button class="btn food-card-btn text-center" type="button" >افزودن به سبد خرید</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-sm-4">
-
+                            <div class="card food-card">
+                                <div class="card-body food-card-body">
+                                    <div class="row text-center">
+                                        <div class="col-sm-12 mx-auto">
+                                            <img class="food-card-pic" src="../assets/restaurant/food-pic.jpg" >
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="flaticon-star food-card-star"></span>
+                                            <span class="food-card-star-text">۵</span>
+                                            <span class="food-card-name">پیتزا اعلا</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="food-card-price" dir="rtl">۳۹۰۰۰ تومان</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <button class="btn food-card-btn text-center" type="button" >افزودن به سبد خرید</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div><div class="row">
+                    </div>
+                    <div class="row food-card-row">
                         <div class="col-sm-4">
-
+                            <div class="card food-card">
+                                <div class="card-body food-card-body">
+                                    <div class="row text-center">
+                                        <div class="col-sm-12 mx-auto">
+                                            <img class="food-card-pic" src="../assets/restaurant/food-pic.jpg" >
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="flaticon-star food-card-star"></span>
+                                            <span class="food-card-star-text">۵</span>
+                                            <span class="food-card-name">پیتزا اعلا</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="food-card-price" dir="rtl">۳۹۰۰۰ تومان</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <button class="btn food-card-btn text-center" type="button" >افزودن به سبد خرید</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-sm-4">
-
+                            <div class="card food-card">
+                                <div class="card-body food-card-body">
+                                    <div class="row text-center">
+                                        <div class="col-sm-12 mx-auto">
+                                            <img class="food-card-pic" src="../assets/restaurant/food-pic.jpg" >
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="flaticon-star food-card-star"></span>
+                                            <span class="food-card-star-text">۵</span>
+                                            <span class="food-card-name">پیتزا اعلا</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="food-card-price" dir="rtl">۳۹۰۰۰ تومان</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <button class="btn food-card-btn text-center" type="button" >افزودن به سبد خرید</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-sm-4">
-
+                            <div class="card food-card">
+                                <div class="card-body food-card-body">
+                                    <div class="row text-center">
+                                        <div class="col-sm-12 mx-auto">
+                                            <img class="food-card-pic" src="../assets/restaurant/food-pic.jpg" >
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="flaticon-star food-card-star"></span>
+                                            <span class="food-card-star-text">۵</span>
+                                            <span class="food-card-name">پیتزا اعلا</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <span class="food-card-price" dir="rtl">۳۹۰۰۰ تومان</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <button class="btn food-card-btn text-center" type="button" >افزودن به سبد خرید</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -144,9 +372,13 @@
                     </div>
                 </div>
             </div>
-            <!--footer-->
-            <div class="footer">
-                <p class="text-center">footer</p>
+        </div>
+        <!--footer-->
+        <div class="container-fluid footer text-center" dir="rtl">
+            <div class="row h-100">
+                <div class="col-sm-12 my-auto">
+                    <div class="text-center footer-copy-right">© تمامی حقوق متعلق به لقمه است.</div>
+                </div>
             </div>
         </div>
     </body>
