@@ -48,3 +48,7 @@ body {
     margin-bottom: 2%;
     color: var(--eng-green);
 }
+
+.modal {
+    display: block;
+}
