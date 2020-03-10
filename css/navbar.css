@@ -8,6 +8,8 @@
 .navbar {
     height: 4%;
     background-color: white;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .exit-btn {

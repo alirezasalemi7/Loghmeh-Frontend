@@ -2,6 +2,7 @@
 
 #body-container {
     background-size: 100%;
+    padding: 0px;
 }
 
 #data-column-left {
@@ -11,7 +12,7 @@
 
 #data-column {
     height: 100%;
-    background-color: var(--pastel-red);
+    background-color: var(--pastel-red-opc);
     z-index: -2px;
 }
 
@@ -26,7 +27,8 @@
 }
 
 .data-column-info {
-    margin-top: 15%;
+    margin-top: 12vw;
+    color: white;
 }
 
 #to-login-card {
@@ -57,8 +59,14 @@
 
 #login-card {
     margin-top: 1%;
-    margin-bottom: 1%;
+    margin-bottom: 4%;
     padding-bottom: 4%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+#login-card .card-header {
+    padding-top: 5%;
 }
 
 #login-card-logo{

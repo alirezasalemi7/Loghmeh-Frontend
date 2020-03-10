@@ -3,7 +3,10 @@
 .footer {
     background-color: var(--eng-green);
     height: 100%;
+    width: 100%;
     color: white;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 .footer-copy-right {
     padding: 2%;
