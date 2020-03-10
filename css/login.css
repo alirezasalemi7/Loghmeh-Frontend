@@ -1,0 +1,73 @@
+@import url(./body.css);
+
+#body-container {
+    background-size: 100%;
+}
+
+#data-column-left {
+    background-image: url(../assets/login/Cover\ Photo.jpg);
+    background-size: 100%;
+}
+
+#data-column {
+    height: 100%;
+    background-color: var(--pastel-red);
+    z-index: -2px;
+}
+
+#data-column-logo {
+    margin-top: 5%;
+    width: 50%;
+}
+
+#data-column-title {
+    color: white;
+    font-size: 2vw;
+}
+
+.data-column-info {
+    margin-top: 15%;
+}
+
+#to-login-card {
+    border-radius: 100px;
+    height: 9vw;
+    width: 9vw;
+    background-color: var(--med-torq);
+    color: white;
+    margin-bottom: 5%;
+    font-size: 1.2vw;
+}
+
+#login-card {
+    background-color: var(--mint-cream);
+}
+
+#data-column-introduction {
+    margin-bottom: 15%;
+}
+
+.data-column-info-header {
+    font-size: 2vw;
+}
+
+.data-column-info-text {
+    font-size: 1.2vw;
+}
+
+#login-card {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+#login-card-logo{
+    width: 15%;
+    margin-bottom: 1%;
+}
+
+#login-card-btn {
+    width: 40%;
+    border-radius: 15px;
+    background-color: var(--maize);
+    margin-bottom: 2%;
+}
