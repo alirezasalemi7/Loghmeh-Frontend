@@ -58,6 +58,7 @@
 #login-card {
     margin-top: 1%;
     margin-bottom: 1%;
+    padding-bottom: 4%;
 }
 
 #login-card-logo{
@@ -70,4 +71,8 @@
     border-radius: 15px;
     background-color: var(--maize);
     margin-bottom: 2%;
+}
+
+input {
+    text-align: center;
 }
