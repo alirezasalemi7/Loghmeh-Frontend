@@ -23,93 +23,109 @@
             </div>
         </nav>
         <!-- main -->
-        <div class="container-fluid">
-            <div class="pastel-red row mb-5">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="text-white col-10">۰۹۱۲۳۴۵۶۷۸۹</div>
-                        <div class="text-white col-2 flaticon-phone"></div>
+        <div class="container-fluid px-0">
+            <!-- user info -->
+            <div class="pastel-red header-info row mb-5 justify-content-between">
+                <div class="col-4 align-self-center">
+                    <div class="row info-row-hieght">
+                        <div class="text-white col-10 text-right info-text-size">۰۹۱۲۳۴۵۶۷۸۹</div>
+                        <div class="text-white col-2 flaticon-phone pl-0"></div>
                         
                     </div>
-                    <div class="row">
-                        <div class="text-white col-10">ekhamespanah@yahoo.com</div>
-                        <div class="text-white col-2 flaticon-mail"></div>
+                    <div class="row info-row-hieght">
+                        <div class="text-white col-10 text-right info-text-size">ekhamespanah@yahoo.com</div>
+                        <div class="text-white col-2 flaticon-mail pl-0"></div>
                         
                     </div>
-                    <div class="row">
-                        <div class="text-white col-10" dir="rtl">۱۰۰۰۰۰ تومان</div>
-                        <div class="text-white col-2 flaticon-card"></div>
+                    <div class="row info-row-hieght">
+                        <div class="text-white col-10 text-right info-text-size" dir="rtl">۱۰۰۰۰۰ تومان</div>
+                        <div class="text-white col-2 flaticon-card pl-0"></div>
                         
                     </div>
                 </div>
-                <div class="col-6 row text-center text-white">
-                    <h4 class="col-10">احسان خامس‌پناه</h4>
-                    <div class="col-2 flaticon-account"></div>
+                <div class="col-6 row text-center text-white align-self-center px-0">
+                    <div class="col-9 text-right account-name align-self-center">احسان خامس‌پناه</div>
+                    <div class="col-3 flaticon-account pl-0 text-left"></div>
                 </div>
             </div>
+            <!-- orders' status -->
             <div>
-                <div class="d-flex border mx-auto row">
-                    <div class="border border-right-0 col-6 text-center bg-white">افزایش اعتبار</div>
-                    <div class="border col-6 pastel-red text-white text-center">سفارش‌ها</div>
+                <div class="d-flex mx-auto rounded align-items-center head-button button-shadow">
+                    <button class="border col-6 h-100 text-dark bg-white text-center rounded-left">افزایش اعتبار</button>
+                    <button class="border-0 col-6 h-100 pastel-red text-white text-center rounded-right">سفارش‌ها</button>
                 </div>
-                <div class="border rounded mb-5 ml-5 mr-5 p-5 bg-white">
-                    <div class="row m-3 mint-cream border rounded">
-                        <span class="col-5 text-center border-right rounded-left">
-                            <a href="#" type="button" class="btn round text-dark shadow m-2 px-4 bg-success">پیک در مسیر</a>
+                <div class="border mx-auto p-4 pt-5 bg-white order-container">
+                    <div class="row m-3 mint-cream align-items-center order-list-item border text-center">
+                        <span class="col-5">
+                            <div class="rounded px-1 mx-auto delivering order-status-font">پیک در مسیر</div>
                         </span>
-                        <span class="col-6 text-center">رستوران خامس</span>
-                        <span class="col-1 text-center border-left rounded-right">۱</span>
+                        <span class="col-6 border-right border-left h-100">
+                            <div class="m-2 restauratn-name">رستوران خامس</div>
+                        </span>
+                        <span class="col-1">۱</span>
                     </div>
-                    <div class="row m-3 mint-cream">
-                        <span class="col-5 text-center border border-right-0 rounded-left">
-                            <a href="#" type="button" class="btn round text-dark shadow m-2 px-4 med-torq">در جست‌وجوی پیک</a>
+                    <div class="row m-3 mint-cream align-items-center order-list-item border text-center">
+                        <span class="col-5">
+                            <button class="rounded border-0 px-1 mx-auto finding-delivery order-status-font">در جست‌وجوی پیک</button>
                         </span>
-                        <span class="col-6 text-center border">رستوران خامس</span>
-                        <span class="col-1 text-center border border-left-0 rounded-right">۲</span>
+                        <span class="col-6 border-right border-left h-100">
+                            <div class="m-2 restauratn-name">رستوران خامس</div>
+                        </span>
+                        <span class="col-1">۲</span>
                     </div>
-                    <div class="row m-3 mint-cream">
-                        <span class="col-5 text-center border border-right-0 rounded-left">
-                            <a href="#" type="button" class="btn round text-dark shadow m-2 px-4 maize">مشاهده فاکتور</a>
+                    <div class="row m-3 mint-cream align-items-center order-list-item border text-center">
+                        <span class="col-5">
+                            <button class="rounded border-0 mx-auto px-1 order-detail-button order-status-font">مشاهده فاکتور</button>
                         </span>
-                        <span class="col-6 text-center border">رستوران خامس</span>
-                        <span class="col-1 text-center border border-left-0 rounded-right">۳</span>
+                        <span class="col-6 border-right border-left h-100">
+                            <div class="m-2 restauratn-name">رستوران خامس</div>
+                        </span>
+                        <span class="col-1">۳</span>
                     </div>
-                    <div class="row m-3 mint-cream">
-                        <span class="col-5 text-center border border-right-0 rounded-left">
-                            <a href="#" type="button" class="btn round text-dark shadow m-2 px-4 maize">مشاهده فاکتور</a>
+                    <div class="row m-3 mint-cream align-items-center order-list-item border text-center">
+                        <span class="col-5">
+                            <button class="rounded border-0 mx-auto px-1 order-detail-button order-status-font">مشاهده فاکتور</button>
                         </span>
-                        <span class="col-6 text-center border">رستوران خامس</span>
-                        <span class="col-1 text-center border border-left-0 rounded-right">۴</span>
+                        <span class="col-6 border-right border-left h-100">
+                            <div class="m-2 restauratn-name">رستوران خامس</div>
+                        </span>
+                        <span class="col-1">۴</span>
                     </div>
-                    <div class="row m-3 mint-cream">
-                        <span class="col-5 text-center border border-right-0 rounded-left">
-                            <a href="#" type="button" class="btn round text-dark shadow m-2 px-4 maize">مشاهده فاکتور</a>
+                    <div class="row m-3 mint-cream align-items-center order-list-item border text-center">
+                        <span class="col-5">
+                            <button class="rounded border-0 mx-auto px-1 order-detail-button order-status-font">مشاهده فاکتور</button>
                         </span>
-                        <span class="col-6 text-center border">رستوران خامس</span>
-                        <span class="col-1 text-center border border-left-0 rounded-right">۵</span>
+                        <span class="col-6 border-right border-left h-100">
+                            <div class="m-2 restauratn-name">رستوران خامس</div>
+                        </span>
+                        <span class="col-1">۵</span>
                     </div>
-                    <div class="row m-3 mint-cream">
-                        <span class="col-5 text-center border border-right-0 rounded-left">
-                            <a href="#" type="button" class="btn round text-dark shadow m-2 px-4 maize">مشاهده فاکتور</a>
+                    <div class="row m-3 mint-cream align-items-center order-list-item border text-center">
+                        <span class="col-5">
+                            <button class="rounded border-0 mx-auto px-1 order-detail-button order-status-font">مشاهده فاکتور</button>
                         </span>
-                        <span class="col-6 text-center border">رستوران خامس</span>
-                        <span class="col-1 text-center border border-left-0 rounded-right">۶</span>
+                        <span class="col-6 border-right border-left h-100">
+                            <div class="m-2 restauratn-name">رستوران خامس</div>
+                        </span>
+                        <span class="col-1">۶</span>
                     </div>
-                    <div class="row m-3 mint-cream">
-                        <span class="col-5 text-center border border-right-0 rounded-left">
-                            <a href="#" type="button" class="btn round text-dark shadow m-2 px-4 maize">مشاهده فاکتور</a>
+                    <div class="row m-3 mint-cream align-items-center order-list-item border text-center">
+                        <span class="col-5">
+                            <button class="rounded border-0 mx-auto px-1 order-detail-button order-status-font">مشاهده فاکتور</button>
                         </span>
-                        <span class="col-6 text-center border">رستوران خامس</span>
-                        <span class="col-1 text-center border border-left-0 rounded-right">۷</span>
+                        <span class="col-6 border-right border-left h-100">
+                            <div class="m-2 restauratn-name">رستوران خامس</div>
+                        </span>
+                        <span class="col-1">۷</span>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- footer -->
-        <div class="footer text-center text-light eng-green" dir="rtl">
-            <div class="row h-100">
-                <div class="col-sm-12 my-auto">
-                    <div class="text-center footer-copy-right">© تمامی حقوق متعلق به لقمه است.</div>
+            <!-- footer -->
+            <div class="footer text-center text-light eng-green" dir="rtl">
+                <div class="row h-100">
+                    <div class="col-sm-12 my-auto">
+                        <div class="text-center footer-copy-right">© تمامی حقوق متعلق به لقمه است.</div>
+                    </div>
                 </div>
             </div>
         </div>
