@@ -1,2 +1,116 @@
 @import url(./body.css);
 @import url(./navbar.css);
+
+
+.head-button {
+    width: 55%;
+    height: 3em;
+    margin-bottom: -1.5em;
+    z-index: 2;
+    font-size: 1em;
+}
+
+.button-shadow {
+    position: relative; 
+    box-shadow: 0 2px 2px 0 rgb(165, 165, 165);
+    z-index: 1;
+}
+
+#header-button {
+    height: 100%;
+}
+
+.header-info {
+    height: 7em;
+}
+
+.account-name {
+    font-size: 1.5em;
+}
+
+[class^="flaticon-account"], [class*=" flaticon-account"]:before, [class^="flaticon-account"]:after, [class*=" flaticon-account"]:after {
+    font-size: 3em;
+}
+
+.info-text-size {
+    font-size: 0.8em;
+}
+
+[class^="flaticon-card"], [class*=" flaticon-card"]:before, [class^="flaticon-card"]:after, [class*=" flaticon-card"]:after {
+    font-size: 0.9em;
+}
+
+[class^="flaticon-mail"], [class*=" flaticon-mail"]:before, [class^="flaticon-mail"]:after, [class*=" flaticon-mail"]:after {
+    font-size: 0.9em;
+}
+
+[class^="flaticon-phone"], [class*=" flaticon-phone"]:before, [class^="flaticon-phone"]:after, [class*=" flaticon-phone"]:after {
+    font-size: 0.9em;
+}
+
+.info-row-hieght {
+    height: 1.2em;
+}
+
+.order-container {
+    width: 80%;
+    border-radius: 1.5em;
+    margin-bottom: 10em;
+}
+
+.order-list-item {
+    height: 2.4em;
+    border-radius: 0.4em;
+}
+.restauratn-name {
+    font-size: 0.8em;
+}
+
+.delivering {
+    background-color: #CCFFC7;
+    color: #205E1A;
+}
+
+.order-status-font {
+    overflow: hidden;
+    font-size: 0.65em;
+}
+
+.finding-delivery {
+    background-color: #D2FFFC;
+    color: #30706B;
+    height: 2em;
+    width: 60%;
+}
+
+.order-detail-button {
+    background-color: var(--maize);
+    box-shadow: 0 1px 1px 0 rgb(165, 165, 165);
+}
+
+.order-detail-button, .delivering {
+    width: 50%;
+    height: 2em;
+}
+
+.credit-box {
+    height: 2.2em;
+    width: 80%;
+}
+
+.credit-container {
+    margin-bottom: 32em;
+}
+
+.credit-input {
+    background-color: #F1F1F1;
+    width: 62.5%;
+}
+
+.credit-button {
+    width: 32.5%;
+}
+
+.credit-button,.credit-input {
+    border-radius: 0.4em;   
+}
