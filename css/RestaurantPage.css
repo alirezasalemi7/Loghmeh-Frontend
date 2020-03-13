@@ -11,16 +11,16 @@
 
 #upper-row {
     background : linear-gradient(180deg,var(--pastel-red) 50% , var(--mint-cream) 50%);
-    margin-bottom: 5%;
+    margin-bottom: 2.7em;
 }
 
 #restaurant-logo {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
-    width: 25%;
-    height: 30%;
+    margin-top: 3em;
+    width: 10em;
+    height: 10em;
     position: relative;
     border-radius: 20px;
     z-index: 5px;
@@ -28,32 +28,32 @@
 }
 
 #restaurant-name {
-    font-size: 3vw;
+    font-size: 1.6em;
     margin: 15px;
     font-weight: bold;
 }
 
 #cart-col {
-    margin-top: 8%;
-    margin-bottom: 2%;
-    padding-left: 3%;
-    padding-right: 3%;
+    margin-top: 4em;
+    margin-bottom: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
     border-left: dashed 2px;
     border-color: rgb(221, 218, 218);
 }
 
 #middle-row{
-    margin-left: 5%;
-    margin-bottom: 1%;
+    margin-left: 2.5vw;
+    margin-bottom: 1em;
 }
 
 .food-card-row {
-    padding-left: 2%;
-    padding-right: 2%;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
     justify-content: right;
 }
 
 .food-card-row .col-sm-4 {
-    padding: 3%;
+    padding: 0.7em;
 }
 
