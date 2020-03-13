@@ -1,14 +1,6 @@
 @import url(./body.css);
 @import url(./navbar.css);
-
-
-.head-button {
-    width: 55%;
-    height: 3em;
-    margin-bottom: -1.5em;
-    z-index: 2;
-    font-size: 1em;
-}
+@import url(./footer.css);
 
 .button-shadow {
     position: relative; 
@@ -16,101 +8,202 @@
     z-index: 1;
 }
 
-#header-button {
-    height: 100%;
+@media (max-width: 900px){
+    .head-button {
+        width: 55%;
+        height: 3em;
+        margin-bottom: -1.5em;
+        z-index: 2;
+        font-size: 1em;
+    }
+
+    .header-info {
+        height: 7em;
+    }
+
+    .account-name {
+        font-size: 1.5em;
+    }
+
+    [class^="flaticon-account"], [class*=" flaticon-account"]:before, [class^="flaticon-account"]:after, [class*=" flaticon-account"]:after {
+        font-size: 3em;
+    }
+
+    .info-text-size {
+        font-size: 0.8em;
+    }
+
+    [class^="flaticon-card"], [class*=" flaticon-card"]:before, [class^="flaticon-card"]:after, [class*=" flaticon-card"]:after,
+    [class^="flaticon-mail"], [class*=" flaticon-mail"]:before, [class^="flaticon-mail"]:after, [class*=" flaticon-mail"]:after,
+    [class^="flaticon-phone"], [class*=" flaticon-phone"]:before, [class^="flaticon-phone"]:after, [class*=" flaticon-phone"]:after {
+        font-size: 0.9em;
+    }
+
+    .info-row-hieght {
+        height: 1.2em;
+    }
+
+    .order-container {
+        width: 80%;
+        border-radius: 1.5em;
+        margin-bottom: 10em;
+    }
+
+    .order-list-item {
+        height: 2.4em;
+        border-radius: 0.4em;
+    }
+    .restauratn-name {
+        font-size: 0.8em;
+    }
+
+    .delivering {
+        background-color: #CCFFC7;
+        color: #205E1A;
+    }
+
+    .order-status-font {
+        overflow: hidden;
+        font-size: 0.65em;
+    }
+
+    .finding-delivery {
+        background-color: #D2FFFC;
+        color: #30706B;
+        height: 2em;
+        width: 60%;
+    }
+
+    .order-detail-button {
+        background-color: var(--maize);
+        box-shadow: 0 1px 1px 0 rgb(165, 165, 165);
+    }
+
+    .order-detail-button, .delivering {
+        width: 50%;
+        height: 2em;
+    }
+
+    .credit-box {
+        height: 2.2em;
+        width: 80%;
+    }
+
+    .credit-container {
+        margin-bottom: 32em;
+    }
+
+    .credit-input {
+        background-color: #F1F1F1;
+        width: 62.5%;
+    }
+
+    .credit-button {
+        width: 32.5%;
+    }
+
+    .credit-button,.credit-input {
+        border-radius: 0.4em;   
+    }
 }
 
-.header-info {
-    height: 7em;
-}
+@media (min-width: 901px) {
+    .head-button {
+        width: 550px;
+        height: 3.5em;
+        margin-bottom: -1.75em;
+        z-index: 2;
+        font-size: 1.2em;
+    }
 
-.account-name {
-    font-size: 1.5em;
-}
+    .header-info {
+        height: 9em;
+    }
 
-[class^="flaticon-account"], [class*=" flaticon-account"]:before, [class^="flaticon-account"]:after, [class*=" flaticon-account"]:after {
-    font-size: 3em;
-}
+    .account-name {
+        font-size: 2em;
+    }
 
-.info-text-size {
-    font-size: 0.8em;
-}
+    [class^="flaticon-account"], [class*=" flaticon-account"]:before, [class^="flaticon-account"]:after, [class*=" flaticon-account"]:after {
+        font-size: 4em;
+    }
 
-[class^="flaticon-card"], [class*=" flaticon-card"]:before, [class^="flaticon-card"]:after, [class*=" flaticon-card"]:after {
-    font-size: 0.9em;
-}
+    .info-text-size {
+        font-size: 1.2em;
+    }
 
-[class^="flaticon-mail"], [class*=" flaticon-mail"]:before, [class^="flaticon-mail"]:after, [class*=" flaticon-mail"]:after {
-    font-size: 0.9em;
-}
+    [class^="flaticon-card"], [class*=" flaticon-card"]:before, [class^="flaticon-card"]:after, [class*=" flaticon-card"]:after,
+    [class^="flaticon-mail"], [class*=" flaticon-mail"]:before, [class^="flaticon-mail"]:after, [class*=" flaticon-mail"]:after,
+    [class^="flaticon-phone"], [class*=" flaticon-phone"]:before, [class^="flaticon-phone"]:after, [class*=" flaticon-phone"]:after {
+        font-size: 1.4em;
+    }
 
-[class^="flaticon-phone"], [class*=" flaticon-phone"]:before, [class^="flaticon-phone"]:after, [class*=" flaticon-phone"]:after {
-    font-size: 0.9em;
-}
+    .info-row-hieght {
+        height: 1.7em;
+    }
 
-.info-row-hieght {
-    height: 1.2em;
-}
+    .order-container {
+        width: 850px;
+        border-radius: 2em;
+        margin-bottom: 5em;
+    }
 
-.order-container {
-    width: 80%;
-    border-radius: 1.5em;
-    margin-bottom: 10em;
-}
+    .order-list-item {
+        height: 3.7em;
+        border-radius: 0.9em;
+    }
+    .restauratn-name {
+        font-size: 1.3em;
+    }
 
-.order-list-item {
-    height: 2.4em;
-    border-radius: 0.4em;
-}
-.restauratn-name {
-    font-size: 0.8em;
-}
+    .delivering {
+        background-color: #CCFFC7;
+        color: #205E1A;
+    }
 
-.delivering {
-    background-color: #CCFFC7;
-    color: #205E1A;
-}
+    .order-status-font {
+        overflow: hidden;
+        font-size: 1em;
+    }
 
-.order-status-font {
-    overflow: hidden;
-    font-size: 0.65em;
-}
+    .finding-delivery {
+        background-color: #D2FFFC;
+        color: #30706B;
+        height: 2.1em;
+        width: 60%;
+    }
 
-.finding-delivery {
-    background-color: #D2FFFC;
-    color: #30706B;
-    height: 2em;
-    width: 60%;
-}
+    .order-detail-button {
+        background-color: var(--maize);
+        box-shadow: 0 1px 1px 0 rgb(165, 165, 165);
+    }
 
-.order-detail-button {
-    background-color: var(--maize);
-    box-shadow: 0 1px 1px 0 rgb(165, 165, 165);
-}
+    .order-detail-button, .delivering {
+        width: 50%;
+        height: 2em;
+    }
 
-.order-detail-button, .delivering {
-    width: 50%;
-    height: 2em;
-}
+    .credit-box {
+        height: 3em;
+        width: 80%;
+    }
 
-.credit-box {
-    height: 2.2em;
-    width: 80%;
-}
+    .credit-container {
+        margin-bottom: 32em;
+    }
 
-.credit-container {
-    margin-bottom: 32em;
-}
+    .credit-input {
+        background-color: #F1F1F1;
+        width: 62.5%;
+        font-size: 1.5em;
+    }
 
-.credit-input {
-    background-color: #F1F1F1;
-    width: 62.5%;
-}
+    .credit-button {
+        width: 32.5%;
+        font-size: 1.5em;
+    }
 
-.credit-button {
-    width: 32.5%;
-}
-
-.credit-button,.credit-input {
-    border-radius: 0.4em;   
+    .credit-button, .credit-input {
+        border-radius: 0.5em;   
+    }
 }
