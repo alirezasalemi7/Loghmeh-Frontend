@@ -15,47 +15,97 @@
     height: 100%;
 }
 
-#upper-row-img {
-    margin-top: 2%;
-    width: 10%;
-}
-
-#upper-row-title {
-    color: white;
-    font-size: 2vw;
-}
 
 #body-container {
     padding: 0px;
 }
 
-
-#login-card {
-    background-color: var(--mint-cream);
+.card-body {
+    padding-bottom: 0px;
 }
 
-.data-column-info-text {
-    font-size: 1.2vw;
-}
-
-#signup-card {
-    margin-top: 1%;
-    margin-bottom: 1%;
-    /* padding-bottom: 4%; */
-}
-
-#signup-card-logo{
-    width: 15%;
-    margin-bottom: 1%;
-}
-
-#signup-card-btn {
-    width: 40%;
-    border-radius: 15px;
-    background-color: var(--maize);
-    margin-bottom: 2%;
-}
 
 input {
     text-align: center;
+}
+
+
+@media (min-width:901px){
+
+    #upper-row-img {
+        margin-top: 0.6em;
+        width: 16em;
+    }
+    
+    #upper-row-title {
+        color: white;
+        font-size: 1.5em;
+    }    
+
+    .form-control {
+        border-radius: 20px;
+        height: 2.7em;
+    }
+
+    .data-column-info-text {
+        font-size: 1em;
+    }
+    
+    .data-column-text {
+        font-size: 1em;
+    }
+    
+    #signup-card {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+    }    
+
+    #signup-card-btn {
+        width: 13.5em;
+        border-radius: 15px;
+        background-color: var(--maize);
+        margin-bottom: 0.4em;
+    }    
+}
+
+@media (max-width:900px){
+
+    #upper-row-img {
+        margin-top: 0.5em;
+        width: 14em;
+    }
+    
+    #upper-row-title {
+        color: white;
+        font-size: 1em;
+    }    
+
+    .form-control {
+        border-radius: 20px;
+        height: 2.5em;
+    }
+
+    .data-column-info-text {
+        font-size: 0.8em;
+    }
+    
+    .data-column-text {
+        font-size: 0.8em;
+    }
+    
+    #signup-card {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+    }    
+
+    #signup-card-btn {
+        width: 6.5em;
+        border-radius: 15px;
+        background-color: var(--maize);
+        margin-bottom: 0.4em;
+    }    
 }

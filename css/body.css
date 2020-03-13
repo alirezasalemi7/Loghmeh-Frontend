@@ -11,7 +11,8 @@
     --mint-cream : #F7FFF7;
     --pastel-red : #FF6B6B;
     --maize : #FFE66D;
-    --pastel-red-opc : rgba(255,107,107,0.7)
+    --pastel-red-opc : rgba(255,107,107,0.7);
+    --maize-opc : rgba(255,230,109,0.9);
 }
 
 .eng-green {
@@ -34,9 +35,11 @@
     background-color: var(--maize);
 }
 
+
 body {
     padding-top: 40px;
     background-color: var(--mint-cream);
+    overflow-x: hidden;
 }
 
 .component-title {
@@ -48,4 +51,9 @@ body {
     margin-right: auto;
     margin-bottom: 2%;
     color: var(--eng-green);
+}
+
+.form-control:focus {
+    border-color: var(--maize);
+    box-shadow: inset 0 1px 1px var(--maize-opc), 0 0 8px var(--eng-green);
 }
