@@ -38,17 +38,33 @@ body {
     background-color: var(--mint-cream);
 }
 
-.component-title {
-    box-shadow: inset 0px -2px 0px var(--eng-green);
-    font-size: 1.4em;
-    padding: 5px;
-    display: table;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0.5em;
-    color: var(--eng-green);
-}
-
 .modal {
     display: block;
 }
+
+@media (min-width : 901px){
+    .component-title {
+        box-shadow: inset 0px -2px 0px var(--eng-green);
+        font-size: 1.8em;
+        padding: 5px;
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0.7em;
+        color: var(--eng-green);
+    }
+}
+
+@media (max-width : 900px){
+    .component-title {
+        box-shadow: inset 0px -2px 0px var(--eng-green);
+        font-size: 1.4em;
+        padding: 5px;
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0.5em;
+        color: var(--eng-green);
+    }
+}
+
