@@ -15,6 +15,10 @@
     padding: 0px;
 }
 
+.row {
+    margin-right: 0px;
+}
+
 @media (max-width: 1025px){
     .head-button {
         width: 55%;
