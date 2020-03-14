@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="../css/food-card.css">
         <link rel="stylesheet" type="text/css" href="../css/footer.css">
         <link rel="stylesheet" type="text/css" href="../css/cart.css">
+        <link rel="stylesheet" type="text/css" href="../css/food-detail.css">
     </head>
 
     <body>
@@ -42,14 +43,14 @@
             </div>
             <!--menu-->
             <div class="row" id="middle-row">
-                <div class="col-sm-8 text-center">
+                <div class="col-sm-8">
                     <div class="row text-center">
                         <div class="col-sm-12">
                             <h5 class="component-title">منوی غذا</h5>
                         </div>
                     </div>
                     <div class="row food-card-row">
-                        <div class="col-sm-4 mx-auto text-center">
+                        <div class="col-sm-4">
                             <div class="card food-card">
                                 <div class="card-body food-card-body">
                                     <div class="row text-center">
@@ -77,7 +78,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4 text-center">
+                        <div class="col-sm-4">
                             <div class="card food-card">
                                 <div class="card-body food-card-body">
                                     <div class="row text-center">
@@ -105,7 +106,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4 text-center">
+                        <div class="col-sm-4">
                             <div class="card food-card">
                                 <div class="card-body food-card-body">
                                     <div class="row text-center">
@@ -135,7 +136,7 @@
                         </div>
                     </div>
                     <div class="row food-card-row">
-                        <div class="col-sm-4 text-center">
+                        <div class="col-sm-4">
                             <div class="card food-card">
                                 <div class="card-body food-card-body">
                                     <div class="row text-center">
@@ -163,7 +164,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4 text-center">
+                        <div class="col-sm-4">
                             <div class="card food-card">
                                 <div class="card-body food-card-body">
                                     <div class="row text-center">
@@ -191,7 +192,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4 text-center">
+                        <div class="col-sm-4">
                             <div class="card food-card">
                                 <div class="card-body food-card-body">
                                     <div class="row text-center">
@@ -221,8 +222,8 @@
                         </div>
                     </div>
                     <div class="row food-card-row">
-                        <div class="col-sm-4 text-center"></div>
-                        <div class="col-sm-4 text-center">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
                             <div class="card food-card">
                                 <div class="card-body food-card-body">
                                     <div class="row text-center">
@@ -250,7 +251,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4 text-center">
+                        <div class="col-sm-4">
                             <div class="card food-card">
                                 <div class="card-body food-card-body">
                                     <div class="row text-center">
@@ -283,14 +284,10 @@
                 <!--cart-in-page-->
                 <!--cart-in-page-->
                 <!--cart-in-page-->
-                <div class="col-sm-4 text-center" id="cart-col">
-                    <div class="card text-center cart"> 
-                        <div class="card-body text-center cart-body">
-                            <div class="row">
-                                <div class="col-sm-12 text-center">
-                                    <h4 class="cart-title">سبد خرید</h4>
-                                </div>
-                            </div>
+                <div class="col-sm-4" id="cart-col">
+                    <div class="card cart">
+                        <div class="card-body cart-body">
+                            <h4 class="text-center cart-title">سبد خرید</h4>
                             <div class="cart-list">
                                 <div class="row">
                                     <div class="col-sm-12 cart-item">
@@ -303,12 +300,12 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-8 text-center my-auto">
-                                                <div dir="rtl" class="cart-item-text">پیتزا اعلا</div>
+                                                <div class="cart-item-text">پیتزا اعلا</div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-6 text-center">
-                                                <div dir="rtl" class="cart-item-price">۷۸۰۰۰ تومان</div>
+                                                <div class="cart-item-price">۷۸۰۰۰ تومان</div>
                                             </div>
                                         </div>
                                         <hr>
@@ -325,12 +322,12 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-8 text-center my-auto">
-                                                <div dir="rtl" class="cart-item-text">پیتزا نیمه اعلا</div>
+                                                <div class="cart-item-text">پیتزا نیمه اعلا</div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-6 text-center">
-                                                <div dir="rtl" class="cart-item-price">۲۹۰۰۰ تومان</div>
+                                                <div class="cart-item-price">۲۹۰۰۰ تومان</div>
                                             </div>
                                         </div>
                                         <hr>
@@ -339,7 +336,7 @@
                             </div>
                             <div class="row mx-auto ">
                                 <div class="col-sm-12">
-                                    <p dir="rtl" class="text-center cart-total">جمع کل: <b>۱۰۷۰۰۰ تومان</b></p>
+                                    <p class="text-center cart-total">جمع کل: <b>۱۰۷۰۰۰ تومان</b></p>
                                 </div>
                             </div>
                             <div class="row">
@@ -349,15 +346,58 @@
                     </div>
                 </div>
             </div>
-            <!--footer-->
-            <div class="container-fluid footer text-center" dir="rtl">
-                <div class="row h-100">
-                    <div class="col-sm-12 my-auto">
-                        <div class="text-center footer-copy-right">© تمامی حقوق متعلق به لقمه است.</div>
-                    </div>
+        </div>
+        <!--footer-->
+        <div class="container-fluid footer text-center" dir="rtl">
+            <div class="row h-100">
+                <div class="col-sm-12 my-auto">
+                    <div class="text-center footer-copy-right">© تمامی حقوق متعلق به لقمه است.</div>
                 </div>
             </div>
         </div>
-        
+        <!--modal-food-detail-->
+        <div class="modal-backdrop show"></div>
+        <div class="modal" id="food-detail-modal" tabindex="-1">
+            <div class="modal-dialog food-detail-modal-dialog">
+                <div class="modal-content food-detail-modal-content">
+                    <div class="card food-detail">
+                        <div class="card-body food-detail-body">
+                            <p class="text-center food-detail-restaurant">رستوران خامس</p>
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <div class="row" dir="rtl">
+                                                <p class="food-detail-name">پیتزا اعلا</p>
+                                                <span class="flaticon-star food-detail-star"></span>
+                                                <span class="food-detail-star-text">۵</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" dir="rtl">
+                                        <p class="food-detail-description">پخته شده با مرغوب ترین موارد اولیه</p>
+                                    </div>
+                                    <div class="row food-detail-price" dir="rtl">
+                                        ۳۹۰۰۰ تومان
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <img class="food-detail-img" src="../assets/restaurant/food-pic.jpg">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn food-detail-btn text-center" type="button" >اضافه کردن به سبد خرید</button>
+                                <span class="flaticon-minus btn food-detail-dec-btn"></span>
+                                <span class="text-center btn disabled food-detail-count">۲</span>
+                                <span class="flaticon-plus btn food-detail-inc-btn"></span>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
     </body>
 </html>
