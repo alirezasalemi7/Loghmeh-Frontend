@@ -2,6 +2,7 @@
 
 
 #loghmeh-logo {
+    padding: 0px;
     max-width: 35px;
     max-height: 35px;
 }
@@ -17,6 +18,7 @@
 
 @media (max-width : 1025px){
     .navbar {
+        padding: 0px;
         height: 2.5em;
         background-color: white;
         padding-left: 0px;

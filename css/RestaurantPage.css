@@ -12,7 +12,7 @@
     
     #upper-row {
         background : linear-gradient(180deg,var(--pastel-red) 50% , var(--mint-cream) 50%);
-        margin-bottom: 2.7em;
+        margin-bottom: 2.6em;
     }
     
     #restaurant-logo {
@@ -39,12 +39,12 @@
         margin-bottom: 1em;
         padding-left: 1em;
         padding-right: 1em;
-        border-left: dashed 2px;
+        border-left: dashed 3px;
         border-color: rgb(221, 218, 218);
     }
     
     #middle-row{
-        margin-left: 2.5em;
+        margin-left: 4.5em;
         margin-bottom: 1em;
     }
     
