@@ -50,7 +50,7 @@ body {
     border-color: var(--maize);
     box-shadow: inset 0 1px 1px var(--maize-opc), 0 0 8px var(--eng-green);
 }
-@media (min-width : 901px){
+@media (min-width : 1026px){
     .component-title {
         box-shadow: inset 0px -2px 0px var(--eng-green);
         font-size: 1.8em;
@@ -63,7 +63,7 @@ body {
     }
 }
 
-@media (max-width : 900px){
+@media (max-width : 1025px){
     .component-title {
         box-shadow: inset 0px -2px 0px var(--eng-green);
         font-size: 1.4em;
