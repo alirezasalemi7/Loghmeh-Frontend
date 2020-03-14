@@ -15,6 +15,9 @@
     height: 100%;
 }
 
+#signup-card-col{
+    padding: 0px;
+}
 
 #body-container {
     padding: 0px;
@@ -58,7 +61,7 @@ input {
     #signup-card {
         margin-top: 0.5em;
         margin-bottom: 0.5em;
-        margin-left: 0.5em;
+        margin-left: 1.5em;
         margin-right: 0.5em;
     }    
 
