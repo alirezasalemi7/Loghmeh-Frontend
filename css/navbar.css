@@ -6,12 +6,24 @@
     max-height: 35px;
 }
 
-.navbar {
-    height: 4%;
-    background-color: white;
-    padding-left: 0px;
-    padding-right: 0px;
+@media (min-width : 1026px){
+    .navbar {
+        height: 3em;
+        background-color: white;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 }
+
+@media (max-width : 1025px){
+    .navbar {
+        height: 2.5em;
+        background-color: white;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
 
 .exit-btn {
     color: var(--pastel-red);

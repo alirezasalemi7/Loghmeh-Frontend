@@ -1,6 +1,6 @@
 @import url(./body.css);
 
-@media (max-width:900px){
+@media (max-width:1025px){
     .cart-title {
         box-shadow: inset 0px -2px 0px rgb(211, 203, 203);
         padding-bottom: 7px;
@@ -107,7 +107,7 @@
     
 }
 
-@media (min-width:901px){
+@media (min-width:1026px){
     .cart-title {
         box-shadow: inset 0px -2px 0px rgb(211, 203, 203);
         padding-bottom: 7px;

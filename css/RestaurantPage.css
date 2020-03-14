@@ -8,7 +8,7 @@
     padding: 0px;
 }
 
-@media (max-width: 900px){
+@media (max-width: 1025px){
     
     #upper-row {
         background : linear-gradient(180deg,var(--pastel-red) 50% , var(--mint-cream) 50%);
@@ -44,7 +44,7 @@
     }
     
     #middle-row{
-        margin-left: 2.5vw;
+        margin-left: 2.5em;
         margin-bottom: 1em;
     }
     
@@ -59,7 +59,7 @@
     }
 }
 
-@media (min-width: 901px){
+@media (min-width: 1026px){
     
     #upper-row {
         background : linear-gradient(180deg,var(--pastel-red) 50% , var(--mint-cream) 50%);
@@ -100,12 +100,12 @@
     }
     
     .food-card-row {
-        padding-left: 0.8em;
-        padding-right: 0.8em;
+        padding-left: 0.8vw;
+        padding-right: 0.8vw;
         justify-content: right;
     }
     
     .food-card-row .col-sm-4 {
-        padding: 0.8em;
+        padding: 0.8vw;
     }
 }
