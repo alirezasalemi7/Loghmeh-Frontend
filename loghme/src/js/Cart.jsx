@@ -37,7 +37,7 @@ export class Cart extends Component {
                                     {data.orders.length == 0 &&
                                         <div className="row">
                                             <div className="col-sm-12 text-center">
-                                                <h3 dir="rtl">هنوز هیچی نخریدی!</h3>
+                                                <p className="cart-total" dir="rtl">هنوز هیچی نخریدی!</p>
                                             </div>
                                         </div>
                                     }

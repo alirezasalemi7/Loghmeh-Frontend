@@ -76,7 +76,7 @@ export class CartContext extends Component {
     }
 
     finalize(){
-        let req = XMLHttpRequest()
+        let req = new XMLHttpRequest()
         req.onerror = function(){
             this.setState((state,props)=>({
                 spinner : false,
@@ -91,6 +91,7 @@ export class CartContext extends Component {
                     spinner : false
                 }))
                 this.show("ثبتش کردم :D")
+                this.updateState()
             }
             else if(req.readyState == 4 && req.status == 500){
                 this.setState((state,props)=>({
@@ -103,7 +104,7 @@ export class CartContext extends Component {
                     let ans = {
                         spinner : false
                     }
-                    if(state.orders.length == 0){
+                    if(req.response.status == 40001){
                         this.show("نمیتونی با سبد خالی سفارش بدی!")
                     }
                     else{
@@ -122,7 +123,7 @@ export class CartContext extends Component {
     }
 
     increase(item){
-        let req = XMLHttpRequest()
+        let req = new XMLHttpRequest()
         req.responseType = 'json'
         req.onerror = function(){
             this.setState((state,props)=>({
@@ -131,13 +132,78 @@ export class CartContext extends Component {
             this.show("سرورمون فعلا مشکل داره :(")
         }.bind(this)
         // onreadystatechanges
-        req.setRequestHeader("Content-Type", "application/json")
+        req.onreadystatechange = function() {
+            if(req.readyState == 4 && req.status == 200) {
+                this.setState((state,props)=>({
+                    spinner : false
+                }))
+                this.updateState()
+            }
+            else if(req.readyState == 4 && req.status == 500){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("سرورمون فعلا مشکل داره :(")
+            }
+            else if(req.readyState == 4 && req.status == 200 && req.response.status == 40401){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("این غذا وجود نداره :(")
+            }
+            else if(req.readyState == 4 && req.status == 403){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("اجازه دسترسی به این رستورانو نداری :(")
+            }
+            else if(req.readyState == 4 && req.status == 404 && req.response.status == 40402){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("این رستوران وجود نداره :(")
+            }
+            else if(req.readyState == 4 && req.status == 404 && req.response.status == 40401){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("این غذا وجود نداره :(")
+            }
+            else if(req.readyState == 4 && req.status == 400 && req.response.status == 40001){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("غذا تموم شده :(")
+            }
+            else if(req.readyState == 4 && req.status == 400 && req.response.status == 40002){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("درخواستت بده :(")
+            }
+            else if(req.readyState == 4 && req.status == 400 && req.response.status == 40001){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("تکلیف سفارش قبلی چیه؟")
+            }
+            else {
+                this.setState({spinner:true})
+            }
+        }.bind(this)
+        req.onerror = function(){
+            this.setState((state,props)=>({
+                spinner : false
+            }))
+            this.show("سرورمون فعلا مشکل داره :(")
+        }.bind(this)
         req.open('POST','http://127.0.0.1:8080/users/1/cart/add',true)
+        req.setRequestHeader("Content-Type", "application/json")
         req.send(JSON.stringify(item))
     }
 
     decrease(item){
-        let req = XMLHttpRequest()
+        let req = new XMLHttpRequest()
         req.responseType = 'json'
         req.onerror = function(){
             this.setState((state,props)=>({
@@ -146,8 +212,61 @@ export class CartContext extends Component {
             this.show("سرورمون فعلا مشکل داره :(")
         }.bind(this)
         // onreadystatechanges
-        req.setRequestHeader("Content-Type", "application/json")
+        req.onreadystatechange = function() {
+            if(req.readyState == 4 && req.status == 200) {
+                this.setState((state,props)=>({
+                    spinner : false
+                }))
+                this.updateState()
+            }
+            else if(req.readyState == 4 && req.status == 500){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("سرورمون فعلا مشکل داره :(")
+            }
+            else if(req.readyState == 4 && req.status == 200 && req.response.status == 40401){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("این غذا وجود نداره :(")
+            }
+            else if(req.readyState == 4 && req.status == 403){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("اجازه دسترسی به این رستورانو نداری :(")
+            }
+            else if(req.readyState == 4 && req.status == 404 && req.response.status == 40402){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("این رستوران وجود نداره :(")
+            }
+            else if(req.readyState == 4 && req.status == 404 && req.response.status == 40401){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("این غذا وجود نداره :(")
+            }
+            else if(req.readyState == 4 && req.status == 400 && req.response.status == 40001){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("غذا تموم شده :(")
+            }
+            else if(req.readyState == 4 && req.status == 400 && req.response.status == 40002){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("درخواستت بده :(")
+            }
+            else {
+                this.setState({spinner:true})
+            }
+        }.bind(this)
         req.open('DELETE','http://127.0.0.1:8080/users/1/cart/remove',true)
+        req.setRequestHeader("Content-Type", "application/json")
         req.send(JSON.stringify(item))
     }
 }
