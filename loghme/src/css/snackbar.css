@@ -1,0 +1,17 @@
+@import url(./body.css);
+
+.snackbar {
+    width:"55px";
+    position:"relative";
+    top:"-17px";
+    left:"5px"
+}
+
+.snackbar-row{
+    padding:"10px"
+}
+
+.snackbar-text{
+    margin-top:"auto";
+    margin-bottom:"auto";
+}
