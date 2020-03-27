@@ -44,6 +44,7 @@ body {
 
 .modal {
     display: block;
+    background-color: rgba(26, 83, 92, 0.623);
 }
 
 .form-control:focus {

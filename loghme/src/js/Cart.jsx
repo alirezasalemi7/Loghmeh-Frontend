@@ -3,7 +3,6 @@ import {tarnslateEnglishToPersianNumbers} from './Utils'
 import '../css/cart.css'
 import '../css/navbar.css'
 import Loader from 'react-loader-spinner'
-import {SnackBar} from './SnackBar'
 import {CartGlobalContext} from './context/CartContext'
 
 export class Cart extends Component {

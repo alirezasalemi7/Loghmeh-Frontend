@@ -1,5 +1,6 @@
 @import url(./body.css);
 
+
 @media (max-width:1025px){
     .food-card {
         border-radius: 8px;
@@ -7,7 +8,7 @@
         box-shadow: 0px 0px 2px grey;
         margin-left: auto;
         margin-right: auto;
-        display: block;
+        height: 100%;
     }
     
     .food-card-body{
@@ -22,13 +23,13 @@
     }
     
     .food-card-star-text {
-        font-size: 1em;
+        font-size: 0.8em;
         margin-right: 5%;
         color: rgb(153, 149, 149);
     }
     
     .food-card-price {
-        font-size: 1em;
+        font-size: 0.8em;
         margin-right: 5%;
         color: rgb(153, 149, 149);
     }
@@ -40,16 +41,16 @@
     
     .food-card-star::before{
         color: rgb(240, 156, 0);
-        font-size: 1em;
+        font-size: 0.8em;
     }
     
     .food-card-name {
-        font-size: 1em;
+        font-size: 0.8em;
         font-weight: bold;
     }
     
     .food-card-btn {
-        font-size: 0.8em;
+        font-size: 0.66em;
         width: 85%;
         background-color: var(--maize);
         margin-top: 5%;
@@ -72,14 +73,20 @@
         background-color: white;
         box-shadow: 0px 0px 2px grey;
         width: 10em;
-        height: 11.2em;
+        height: 100%;
         margin-left: auto;
         margin-right: auto;
-        display: block;
     }
+
     
     .food-card-body{
         padding: 7%;
+    }
+
+    .food-card .card-body{
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100% !important;
     }
     
     .food-card-pic {
@@ -118,7 +125,7 @@
         font-size: 0.78em;
         width: 85%;
         background-color: var(--maize);
-        margin-top: 5%;
+        margin-top: auto;
         padding: 4%;
         color: grey;
         font-weight: bold;

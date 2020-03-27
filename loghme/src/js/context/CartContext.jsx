@@ -145,7 +145,7 @@ export class CartContext extends Component {
                 }))
                 this.show("سرورمون فعلا مشکل داره :(")
             }
-            else if(req.readyState == 4 && req.status == 200 && req.response.status == 40401){
+            else if(req.readyState == 4 && req.status == 404 && req.response.status == 40401){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
@@ -181,7 +181,7 @@ export class CartContext extends Component {
                 }))
                 this.show("درخواستت بده :(")
             }
-            else if(req.readyState == 4 && req.status == 400 && req.response.status == 40001){
+            else if(req.readyState == 4 && req.status == 400 && req.response.status == 40004){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
@@ -270,6 +270,4 @@ export class CartContext extends Component {
         req.send(JSON.stringify(item))
     }
 }
-
-export var CartContexController = new CartContext()
 
