@@ -1,6 +1,12 @@
 @import url(./body.css);
 
 
+.food-card .card-body{
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+
 @media (max-width:1025px){
     .food-card {
         border-radius: 8px;
@@ -20,6 +26,7 @@
     .food-card-pic {
         width: 60%;
         border-radius: 8px;
+        height: 4.8em;
     }
     
     .food-card-star-text {
@@ -77,21 +84,15 @@
         margin-left: auto;
         margin-right: auto;
     }
-
     
     .food-card-body{
         padding: 7%;
-    }
-
-    .food-card .card-body{
-        display: flex !important;
-        flex-direction: column !important;
-        height: 100% !important;
     }
     
     .food-card-pic {
         width: 60%;
         border-radius: 8px;
+        height: 5em;
     }
     
     .food-card-star-text {

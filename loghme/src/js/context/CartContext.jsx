@@ -173,7 +173,7 @@ export class CartContext extends Component {
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
-                this.show("غذا تموم شده :(")
+                this.show("غذا اینقدر موجودی نداره :(")
             }
             else if(req.readyState == 4 && req.status == 400 && req.response.status == 40002){
                 this.setState((state,props)=>({

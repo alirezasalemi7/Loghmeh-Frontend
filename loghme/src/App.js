@@ -9,14 +9,15 @@ import {SnackBarContext} from './js/context/SnackBarContext'
 import { CartContext } from './js/context/CartContext'
 import {Footer} from './js/Footer'
 import {RestaurantPage} from './js/RestaurantPage'
-
+import {CartModal} from './js/Cart'
+import * as $ from 'jquery'
 
 function App() {
   return (
     <SnackBarContext>
       <CartContext>
         <div className="App">
-          <RestaurantPage id ="5e4fcf14af68ed25d5900f0e"></RestaurantPage>
+          <RestaurantPage id ="5e4fcf14af68ed25d5900f58"></RestaurantPage>
           <SnackBar></SnackBar>
           <Footer></Footer>
         </div>
@@ -24,5 +25,6 @@ function App() {
     </SnackBarContext>
   );
 }
+
 
 export default App;

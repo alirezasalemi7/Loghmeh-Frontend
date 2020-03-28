@@ -5,6 +5,7 @@ import {Menu} from './FoodGroupContainer'
 import * as $ from 'jquery'
 import { SnackBarGlobalContext } from './context/SnackBarContext'
 import {PageLoaderSpinner} from './PageLoadSpinner'
+import { NavBar } from './Navbar'
 
 var LoghmehLogo = require('../assets/LOGO.png')
 
@@ -43,7 +44,7 @@ export class RestaurantPage extends Component {
     }
 
     getRestaurantData(){
-        $("#loading-modal").modal({backdrop:false})
+        $("#loading-modal").modal('show')
         let req = new XMLHttpRequest()
         req.responseType = 'json'
         req.onreadystatechange = function() {
@@ -89,11 +90,12 @@ export class RestaurantPage extends Component {
                         this.show = data.showSnackbar
                         return(
                             <div>
+                                <NavBar></NavBar>
                                 <div className="container-fluid" id="body-container">
                                     <RestaurantInfoBar restaurantName={this.state.name} imgSrc={this.state.logo}></RestaurantInfoBar>
                                     <div className="row" id="middle-row">
                                         <div className="col-sm-8 text-center">
-                                            {this.state.valid && <Menu allFoods={this.state.menu}></Menu>}
+                                            {this.state.valid && <Menu allFoods={this.state.menu} restaurant={this.state.name} restaurantId={this.props.id}></Menu>}
                                         </div>
                                         <div className="col-sm-4 text-center" id="cart-col">
                                             <Cart></Cart>

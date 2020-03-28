@@ -1,110 +1,291 @@
 @import url(./body.css);
 
 
-.food-detail {
-    border-radius: 20px;
-}
-
-.food-detail-body {
-    margin-right: 0%;
-    margin-left: 0%;
-    padding-left: 9%;
-    padding-right: 9%;
-    padding-bottom: 0%;
-}
-
-.food-detail-img {
-    width: 100%;
-    border-radius: 5px;
-    height: 100%;
-    box-shadow: 0px 0px 2px grey;
-}
-
-.food-detail-restaurant{
-    font-size: 2.7vw;
-    color: dimgrey;
-    margin-bottom: 3%;
-}
-
-.food-detail-star{
-    margin-right: 5%;
-}
-
-.food-detail-star::before{
-    color: rgb(240, 156, 0);
-    font-size: 2.4vw;
-}
-
-.food-detail-star-text{
-    font-size: 2.4vw;
-}
-
-.food-detail-name {
-    font-size: 3vw;
-    text-align: right;
-}
-
-.food-detail-description {
-    font-size: 1.5vw;
-    color: gray;
-}
-
-.food-detail-price {
-    font-size: 2.4vw;
-
-}
-
-.food-detail hr {
-    border-style: dashed;
-    border-width: 1px;
-    border-color: rgb(233, 230, 230);
-}
-
-.food-detail-btn {
-    background-color: var(--med-torq);
-    color: white;
-    font-size: 1.8vw;
-    padding: 0.5vw;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
-    margin-right: 4%;
-    margin-left: 6%;
-    margin-bottom: 3%;
+.food-detail-modal-content {
+    border-radius: 15px;
 }
 
 .food-detail-dec-btn {
     padding: 0px;
-    margin-bottom: 3%;
 }
 
 .food-detail-inc-btn {
     padding: 0px;
-    margin-bottom: 3%;
 }
 
-
-.food-detail-dec-btn::before {
-    font-size: 2.2vw;
+.food-detail-red-line {
+    text-decoration: line-through;
     color: var(--pastel-red);
 }
 
-.food-detail-inc-btn::before {
-    font-size: 2.2vw;
+@media (min-width:1026px){
+    .food-detail {
+        /* margin-top: 11em; */
+        border-radius: 20px;
+        width: 32em;
+    }
+
+    .food-detail-body {
+        margin-right: 0%;
+        margin-left: 0%;
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-bottom: 0%;
+    }
+    
+    .food-detail-img {
+        width: 100%;
+        border-radius: 6px;
+        height: 100%;
+        box-shadow: 0px 0px 2px grey;
+    }
+    
+    .food-detail-restaurant{
+        font-size: 1.7em;
+        color: dimgrey;
+        margin-bottom: 3%;
+    }
+    
+    .food-detail-star{
+        margin-right: 5%;
+    }
+    
+    .food-detail-star::before{
+        color: rgb(240, 156, 0);
+        font-size: 1.3em;
+    }
+    
+    .food-detail-star-text{
+        font-size: 1.3em;
+    }
+    
+    .food-detail-name {
+        font-size: 1.6em;
+        text-align: right;
+    }
+    
+    .food-detail-description {
+        font-size: 0.9em;
+        color: gray;
+    }
+    
+    .food-detail-price {
+        font-size: 1.3em;
+        margin-right: 0.1em;
+    }
+
+    .food-detail-price-old {
+        font-size: 1.3em;
+        color: grey;
+        margin-right: 0.1em;
+        margin-left: 1.5em;
+    }
+    
+    .food-detail hr {
+        border-style: dashed;
+        border-width: 1px;
+        border-color: rgb(233, 230, 230);
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .food-detail-btn {
+        background-color: var(--med-torq);
+        color: white;
+        font-size: 1.1em;
+        padding-left: 0.9em;
+        padding-right: 0.9em;
+        margin-right: 1.2em;
+        margin-left: 2.5em;
+        margin-bottom: 1.2em;
+    }
+    
+    
+    .food-detail-dec-btn::before {
+        font-size: 1.2em;
+        color: var(--pastel-red);
+    }
+    
+    .food-detail-inc-btn::before {
+        font-size: 1.2em;
+    }
+    
+    .food-detail-count {
+        font-size: 1.2em;
+        padding: 1%;
+        /* margin-bottom: 3%; */
+    }
+
+    .food-detail-available{
+        border: 1px solid rgb(226, 223, 223);
+        background-color: var(--mint-cream);
+        margin-right: 3em;
+        margin-top: 0.2em;
+        border-radius: 8px;
+        height: 100%;
+        padding: 0.6em;
+        font-size: 0.9em;
+        color: rgb(134, 133, 133);
+    }
+
+    .food-detail-available-no{
+        border: 1px solid rgb(226, 223, 223);
+        background-color: var(--pastel-red);
+        margin-right: 3em;
+        margin-top: 0.2em;
+        border-radius: 8px;
+        height: 100%;
+        padding: 0.6em;
+        font-size: 0.9em;
+        color: rgb(134, 133, 133);
+    }
+
+    .food-detail-available-err{
+        border: 1px solid rgb(226, 223, 223);
+        background-color: var(--maize);
+        margin-right: 3em;
+        margin-top: 0.2em;
+        border-radius: 8px;
+        height: 100%;
+        padding: 0.6em;
+        font-size: 0.9em;
+        color: rgb(134, 133, 133);
+    }
 }
 
-.food-detail-count {
-    font-size: 2.4vw;
-    padding: 1%;
-    margin-bottom: 3%;
-}
 
-.food-detail-modal-dialog {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 55% !important;
-    padding-top: 15%;
-}
 
-.food-detail-modal-content {
-    border-radius: 15px;
+@media (max-width:1025px){
+    .food-detail {
+        /* margin-top: 11em; */
+        border-radius: 20px;
+        width: 25em;
+    }
+    
+    .food-detail-body {
+        margin-right: 0%;
+        margin-left: 0%;
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-bottom: 0%;
+    }
+    
+    .food-detail-img {
+        width: 100%;
+        border-radius: 6px;
+        height: 100%;
+        box-shadow: 0px 0px 2px grey;
+    }
+    
+    .food-detail-restaurant{
+        font-size: 1.5em;
+        color: dimgrey;
+        margin-bottom: 3%;
+    }
+    
+    .food-detail-star{
+        margin-right: 5%;
+    }
+    
+    .food-detail-star::before{
+        color: rgb(240, 156, 0);
+        font-size: 1.1em;
+    }
+    
+    .food-detail-star-text{
+        font-size: 1.1em;
+    }
+    
+    .food-detail-name {
+        font-size: 1.4em;
+        text-align: right;
+    }
+    
+    .food-detail-description {
+        font-size: 0.7em;
+        color: gray;
+    }
+    
+    .food-detail-price {
+        font-size: 1.1em;
+        margin-right: 0.1em;
+    }
+
+    .food-detail-price-old {
+        font-size: 1.1em;
+        color: grey;
+        margin-right: 0.1em;
+        margin-left: 1.5em;
+    }
+    
+    .food-detail hr {
+        border-style: dashed;
+        border-width: 1px;
+        border-color: rgb(233, 230, 230);
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    
+    .food-detail-btn {
+        background-color: var(--med-torq);
+        color: white;
+        font-size: 0.9em;
+        padding-left: 0.7em;
+        padding-right: 0.7em;
+        margin-right: 1em;
+        margin-left: 2.3em;
+        margin-bottom: 1em;
+    }
+    
+    
+    .food-detail-dec-btn::before {
+        font-size: 1em;
+        color: var(--pastel-red);
+    }
+    
+    .food-detail-inc-btn::before {
+        font-size: 1em;
+    }
+    
+    .food-detail-count {
+        font-size: 1em;
+        padding: 1%;
+        /* margin-bottom: 3%; */
+    }
+
+    .food-detail-available{
+        border: 1px solid rgb(226, 223, 223);
+        background-color: var(--mint-cream);
+        margin-right: 2.8em;
+        margin-top: 0.5em;
+        border-radius: 8px;
+        height: 100%;
+        padding: 0.5em;
+        font-size: 0.7em;
+        color: rgb(134, 133, 133);
+    }
+
+    .food-detail-available-no{
+        border: 1px solid rgb(226, 223, 223);
+        background-color: var(--pastel-red);
+        margin-right: 2.8em;
+        margin-top: 0.5em;
+        border-radius: 8px;
+        height: 100%;
+        padding: 0.5em;
+        font-size: 0.7em;
+        color: rgb(134, 133, 133);
+    }
+
+    .food-detail-available-err{
+        border: 1px solid rgb(226, 223, 223);
+        background-color: var(--maize);
+        margin-right: 2.8em;
+        margin-top: 0.5em;
+        border-radius: 8px;
+        height: 100%;
+        padding: 0.5em;
+        font-size: 0.7em;
+        color: rgb(134, 133, 133);
+    }
 }

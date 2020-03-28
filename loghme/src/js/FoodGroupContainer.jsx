@@ -11,17 +11,17 @@ class FoodRowSize3 extends Component {
                 
                 <div className="col-sm-4 text-center">
                     {foods.length >= 3 && 
-                        <FoodCardSmall food={foods[2]}></FoodCardSmall>
+                        <FoodCardSmall restaurant={this.props.restaurant} food={foods[2]}></FoodCardSmall>
                     }
                 </div>
                 <div className="col-sm-4 text-center">
                     {foods.length >= 2 && 
-                        <FoodCardSmall food={foods[1]}></FoodCardSmall>
+                        <FoodCardSmall restaurant={this.props.restaurant} food={foods[1]}></FoodCardSmall>
                     }
                 </div>
                 <div className="col-sm-4 text-center">
                     {foods.length >= 1 && 
-                        <FoodCardSmall food={foods[0]}></FoodCardSmall>
+                        <FoodCardSmall restaurant={this.props.restaurant} food={foods[0]}></FoodCardSmall>
                     }
                 </div>
             </div>
@@ -41,8 +41,9 @@ Object.defineProperty(Array.prototype, 'chunk', {
 export class Menu extends Component {
 
     render(){
-        let foods = this.props.allFoods.map((element)=>{
-            element.restaurant = this.props.restaurant
+        let foods = this.props.allFoods.map((element,i)=>{
+            element.restaurant = this.props.restaurantId
+            element.key = i
             return element
         }).chunk(3)
         return(
@@ -58,7 +59,7 @@ export class Menu extends Component {
                     </div>
                 }
                 {this.props.allFoods.length!=0 &&
-                    foods.map((element,i)=>(<FoodRowSize3 key={i} foods={element}></FoodRowSize3>))
+                    foods.map((element,i)=>(<FoodRowSize3 restaurant={this.props.restaurant} key={i} foods={element}></FoodRowSize3>))
                 }
             </div>
         )

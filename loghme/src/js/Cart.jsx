@@ -25,7 +25,7 @@ export class Cart extends Component {
             <CartGlobalContext.Consumer>
                 {
                     (data)=>(
-                        <div className="card text-center cart"> 
+                        <div className={!this.props.global?"card text-center cart":"modal-content card text-center cart"}> 
                             <div className="card-body text-center cart-body">
                                 <div className="row">
                                     <div className="col-sm-12 text-center">
@@ -50,7 +50,7 @@ export class Cart extends Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-sm-12 text-center"><button className={"btn btn-sm"} onClick={data.finalize} id="btn-finalize">تایید نهایی</button></div>
+                                    <div className="col-sm-12 text-center"><button className={"btn btn-sm"} disabled={data.orders.length==0} onClick={()=>{data.finalize()}} id="btn-finalize">تایید نهایی</button></div>
                                 </div>
                                 <div className="row">
                                     <div className="col-sm-12">
@@ -94,6 +94,21 @@ class CartItem extends Component {
                         </div>
                     </div>
                     <hr></hr>
+                </div>
+            </div>
+        )
+    }
+}
+
+export class CartModal extends Component {
+
+    render(){
+        return(
+            <div className="modal fade in" id={this.props.id} role="dialog">
+                <div className="modal-dialog">
+                    <div className="modal-body">
+                        <Cart global={true}></Cart>
+                    </div>
                 </div>
             </div>
         )
