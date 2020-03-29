@@ -1,0 +1,49 @@
+@import url(./body.css);
+@import url(./navbar.css);
+@import url(./footer.css);
+
+
+@media (max-width: 1025px){
+    
+    .c-input {
+        background-color: #F1F1F1;
+        width: 62.5%;
+        border-radius: 0.4em;
+    }
+
+    .c-input-err {
+        border-radius: 0.4em;
+        width: 62.5%;
+        background-color: var(--pastel-red-opc);
+    }
+
+    .c-input-empty {
+        border-radius: 0.4em;
+        width: 62.5%;
+        background-color: var(--maize-opc);
+    }
+}
+
+@media (min-width: 1026px) {
+
+    .c-input {
+        background-color: #F1F1F1;
+        width: 62.5%;
+        font-size: 1.5em;
+        border-radius: 0.5em;
+    }
+
+    .c-input-err {
+        font-size: 1.5em;
+        border-radius: 0.4em;
+        width: 62.5%;
+        background-color: var(--pastel-red-opc);
+    }
+
+    .c-input-empty {
+        font-size: 1.5em;
+        border-radius: 0.4em;
+        width: 62.5%;
+        background-color: var(--maize-opc);
+    }
+}

@@ -24,7 +24,7 @@ export class SnackBarContext extends Component {
 
     show(message,duration=1500){
         this.setState((state,props)=>({message:message,show:true}))
-        setInterval(()=>{this.setState({show:false})},duration)
+        setTimeout(()=>{this.setState({show:false})},duration)
     }
 }
 

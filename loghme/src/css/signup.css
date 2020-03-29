@@ -4,6 +4,7 @@
     background-image: url(../assets/login/Cover\ Photo.jpg);
     height: auto;
     position: relative;
+    margin-bottom: 5px;
 }
 
 .layer {
@@ -33,7 +34,7 @@ input {
 }
 
 
-@media (min-width:901px){
+@media (min-width:1026px){
 
     #upper-row-img {
         margin-top: 0.6em;
@@ -43,11 +44,6 @@ input {
     #upper-row-title {
         color: white;
         font-size: 1.5em;
-    }    
-
-    .form-control {
-        border-radius: 20px;
-        height: 2.7em;
     }
 
     .data-column-info-text {
@@ -59,10 +55,8 @@ input {
     }
     
     #signup-card {
-        margin-top: 0.5em;
-        margin-bottom: 0.5em;
-        margin-left: 1.5em;
-        margin-right: 0.5em;
+        margin-top: 0.8em;
+        margin-bottom: 0.8em;
     }    
 
     #signup-card-btn {
@@ -73,7 +67,7 @@ input {
     }    
 }
 
-@media (max-width:900px){
+@media (max-width:1025px){
 
     #upper-row-img {
         margin-top: 0.5em;
@@ -85,11 +79,6 @@ input {
         font-size: 1em;
     }    
 
-    .form-control {
-        border-radius: 20px;
-        height: 2.5em;
-    }
-
     .data-column-info-text {
         font-size: 0.8em;
     }
@@ -101,8 +90,6 @@ input {
     #signup-card {
         margin-top: 0.5em;
         margin-bottom: 0.5em;
-        margin-left: 0.5em;
-        margin-right: 0.5em;
     }    
 
     #signup-card-btn {

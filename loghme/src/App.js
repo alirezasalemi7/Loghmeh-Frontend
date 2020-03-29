@@ -9,15 +9,14 @@ import {SnackBarContext} from './js/context/SnackBarContext'
 import { CartContext } from './js/context/CartContext'
 import {Footer} from './js/Footer'
 import {RestaurantPage} from './js/RestaurantPage'
-import {CartModal} from './js/Cart'
-import * as $ from 'jquery'
+import {SignupPage} from './js/SignupPage'
 
 function App() {
   return (
     <SnackBarContext>
       <CartContext>
         <div className="App">
-          <RestaurantPage id ="5e4fcf14af68ed25d5900f58"></RestaurantPage>
+          <SignupPage></SignupPage>
           <SnackBar></SnackBar>
           <Footer></Footer>
         </div>

@@ -17,7 +17,9 @@ export class NavBar extends Component {
         exit_func : ()=>{},
         account : true,
         account_func : ()=>{},
-        cart : true
+        cart : true,
+        login : false,
+        login_func : ()=>{}
     }
 
     openCart(){
@@ -35,6 +37,7 @@ export class NavBar extends Component {
                                 <div className="nav navbar-nav">
                                     {this.props.exit && <a className="nav-item btn my-auto exit-btn" onClick={this.props.exit_func}>خروج</a>}
                                     {this.props.account && <a className="nav-item btn text-dark my-auto" onClick={this.props.account_func}>حساب کاربری</a>}
+                                    {this.props.login && <a className="nav-item btn text-dark my-auto" onClick={this.props.login_func}>ورود</a>}
                                     {this.props.cart && <a className="nav-item btn my-auto" onClick={this.openCart}>
                                         <i className="flaticon-smart-cart">
                                             <span className="badge badge-pill med-torq text-light" id="navbar-cart-badge">{tarnslateEnglishToPersianNumbers(data.orders.reduce((a,b)=>(a+Number(b.count)),0))}</span>
