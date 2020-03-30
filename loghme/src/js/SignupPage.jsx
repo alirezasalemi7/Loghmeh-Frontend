@@ -2,27 +2,41 @@ import React,{Component} from 'react'
 import '../css/signup.css'
 import {NavBar} from './Navbar'
 import {InputField} from './basics/Inputs'
-import {SnackBarGlobalContext} from './context/SnackBarContext'
+import {SnackBarGlobalContext,SnackBarContext} from './context/SnackBarContext'
+import {CartContext} from './context/CartContext'
 import {validateEmail,isNumeric} from './Utils'
+import {SnackBar} from './SnackBar'
+import {PageLoaderSpinner} from './PageLoadSpinner'
+import * as $ from 'jquery'
+import {PageRouter} from './router/PageRouter'
 
 export class SignupPage extends Component {
     
     render(){
         return(
-            <div>
-                <NavBar exit={false} account={false} cart={false} login={true}></NavBar>
-                <div className="container-fluid" id="body-container">
-                    <SignupPageUpperRow></SignupPageUpperRow>
-                    <div className="row">
-                        <div className="col-sm-12" id="signup-card-col">
-                            <div className="card" id="signup-card">
-                                <SignupCard></SignupCard>
+            <SnackBarContext>
+                <CartContext>
+                    <NavBar exit={false} account={false} cart={false} login={true}></NavBar>
+                    <div className="container-fluid" id="body-container">
+                        <SignupPageUpperRow></SignupPageUpperRow>
+                        <div className="row">
+                            <div className="col-sm-12" id="signup-card-col">
+                                <div className="card" id="signup-card">
+                                    <SignupCard></SignupCard>
+                                </div>
                             </div>
-                        </div>
-                    </div>    
-                </div>
-            </div>
+                        </div>    
+                    </div>
+                    <SnackBar></SnackBar>
+                    <PageLoaderSpinner id="loading-modal"></PageLoaderSpinner>
+                </CartContext>
+            </SnackBarContext>
         )
+    }
+
+    componentDidMount(){
+        $("#loading-modal").modal('show')
+        setTimeout(()=>{$("#loading-modal").modal('hide')},1500)
     }
 }
 
@@ -142,9 +156,22 @@ class SignupCard extends Component{
             err_msg += 'تلفن غلطه'
         }
         if(empty || err_pass || err_email || err_phone){
+            this.setState((state,props)=>(validatation))
             this.show(err_msg)
         }
-        this.setState((state,props)=>(validatation))
+        else{
+            //connect server
+            if(true){ // signup ok
+                this.show('ثبت‌نام موفق بود! برو وارد شو',2000)
+                setTimeout(
+                    ()=>{
+                        let router = new PageRouter()
+                        router.gotoLoginPage()
+                    },
+                    2000
+                )
+            }
+        }
     }
     
     render(){
@@ -189,12 +216,12 @@ class SignupCard extends Component{
                                 </div>
                                 <div className="form-group row">
                                     <div className="col-sm-12 text-center">
-                                        <InputField dir="rtl" value={this.state.password} err={this.state.password_err} empty={this.state.password_empty} type="password" onChange={this.passwordChange} id="pass-inp" placeholder="گذر واژه"></InputField>
+                                        <InputField dir="ltr" value={this.state.password} err={this.state.password_err} empty={this.state.password_empty} type="password" onChange={this.passwordChange} id="pass-inp" placeholder="گذر واژه"></InputField>
                                     </div>
                                 </div>
                                 <div className="form-group row">
                                     <div className="col-sm-12 text-center">
-                                        <InputField dir="rtl" value={this.state.re_password} err={this.state.re_password_err} empty={this.state.re_password_empty} type="password" onChange={this.re_passwordChange} id="pass-re-inp" placeholder="تکرار گذر واژه"></InputField>
+                                        <InputField dir="ltr" value={this.state.re_password} err={this.state.re_password_err} empty={this.state.re_password_empty} type="password" onChange={this.re_passwordChange} id="pass-re-inp" placeholder="تکرار گذر واژه"></InputField>
                                     </div>
                                 </div>
                                 <div className="row">

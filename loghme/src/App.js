@@ -8,20 +8,17 @@ import {SnackBar} from './js/SnackBar'
 import {SnackBarContext} from './js/context/SnackBarContext'
 import { CartContext } from './js/context/CartContext'
 import {Footer} from './js/Footer'
-import {RestaurantPage} from './js/RestaurantPage'
 import {SignupPage} from './js/SignupPage'
+import { LoginPage } from './js/LoginPage'
 
 function App() {
   return (
-    <SnackBarContext>
-      <CartContext>
-        <div className="App">
-          <SignupPage></SignupPage>
-          <SnackBar></SnackBar>
-          <Footer></Footer>
-        </div>
-      </CartContext>
-    </SnackBarContext>
+    <div className="App">
+      <div id="page-container">
+        <LoginPage></LoginPage>
+      </div>
+      <Footer></Footer>
+    </div>
   );
 }
 

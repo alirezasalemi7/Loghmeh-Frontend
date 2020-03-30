@@ -27,5 +27,3 @@ export class SnackBarContext extends Component {
         setTimeout(()=>{this.setState({show:false})},duration)
     }
 }
-
-export var SnackBarContextController = new SnackBarContext()
