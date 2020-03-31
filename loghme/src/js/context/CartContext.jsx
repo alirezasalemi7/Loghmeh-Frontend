@@ -71,7 +71,7 @@ export class CartContext extends Component {
             }))
             this.show("سرورمون فعلا مشکل داره :(")
         }.bind(this)
-        req.open('GET','http://127.0.0.1:8080/users/1/cart/view',true)
+        req.open('GET','http://127.0.0.1:8080/users/1/cart',true)
         req.send()
     }
 
@@ -197,7 +197,7 @@ export class CartContext extends Component {
             }))
             this.show("سرورمون فعلا مشکل داره :(")
         }.bind(this)
-        req.open('POST','http://127.0.0.1:8080/users/1/cart/add',true)
+        req.open('POST','http://127.0.0.1:8080/users/1/cart',true)
         req.setRequestHeader("Content-Type", "application/json")
         req.send(JSON.stringify(item))
     }
@@ -265,7 +265,7 @@ export class CartContext extends Component {
                 this.setState({spinner:true})
             }
         }.bind(this)
-        req.open('DELETE','http://127.0.0.1:8080/users/1/cart/remove',true)
+        req.open('DELETE','http://127.0.0.1:8080/users/1/cart',true)
         req.setRequestHeader("Content-Type", "application/json")
         req.send(JSON.stringify(item))
     }
