@@ -6,6 +6,7 @@ import {SnackBarGlobalContext,SnackBarContext} from './context/SnackBarContext'
 import {CartContext} from './context/CartContext'
 import {SnackBar} from './SnackBar'
 import {PageLoaderSpinner} from './PageLoadSpinner'
+import {PageRouter} from './router/PageRouter'
 import * as $ from 'jquery'
 
 class LoginPageUpperRow extends Component {
@@ -91,6 +92,7 @@ class LoginCard extends Component {
         this.onUsernameChange = this.onUsernameChange.bind(this)
         this.onPasswordChange = this.onPasswordChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+        this.gotoSignupPage = this.gotoSignupPage.bind(this)
     }
 
     onUsernameChange(event){
@@ -132,6 +134,11 @@ class LoginCard extends Component {
         }
     }
 
+    gotoSignupPage(){
+        let router = new PageRouter()
+        router.gotoSignupPage()
+    }
+
     render(){
         return(
             <div>
@@ -164,7 +171,7 @@ class LoginCard extends Component {
                                     <button dir="rtl" className="btn" onClick={this.onSubmit} id="login-card-btn">بریم تو!</button>
                                     <p dir="rtl" className="data-column-info-text">
                                         هنوز لقمه‌ای نیستی؟ عیب نداره!
-                                        <a href="./signup.html">بیا لقمه‌ای شو!</a>
+                                        <a onClick={this.gotoSignupPage}>بیا لقمه‌ای شو!</a>
                                     </p>
                                 </div>
                             </div>

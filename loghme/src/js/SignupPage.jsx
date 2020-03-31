@@ -71,6 +71,7 @@ class SignupCard extends Component{
         this.firstnameChange = this.firstnameChange.bind(this)
         this.lastnameChange = this.lastnameChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+        this.gotoLoginPage = this.gotoLoginPage.bind(this)
     }
 
     passwordChange(event){
@@ -173,6 +174,11 @@ class SignupCard extends Component{
             }
         }
     }
+
+    gotoLoginPage(){
+        let router = new PageRouter()
+        router.gotoLoginPage()
+    }
     
     render(){
         return(
@@ -233,7 +239,7 @@ class SignupCard extends Component{
                                     <div className="col-sm-12">
                                         <p dir="rtl" className="data-column-text">
                                             تو لقمه‌ای بودی؟ بزم بریم
-                                            <a dir="rtl" href="./Login.html">وارد شیم!</a>
+                                            <a dir="rtl" onClick={this.gotoLoginPage}>وارد شیم!</a>
                                         </p>
                                     </div>
                                 </div>
