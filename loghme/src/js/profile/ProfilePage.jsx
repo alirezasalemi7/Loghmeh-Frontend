@@ -6,6 +6,8 @@ import { MainTable } from "./MainTable"
 import { NavBar } from "../Navbar"
 import { SnackBarContext, SnackBarGlobalContext } from "../context/SnackBarContext"
 import { CartContext } from "../context/CartContext"
+import { SnackBar } from "../SnackBar"
+import { isReal } from "../Utils"
 
 
 export class ProfilePage extends Component {
@@ -41,6 +43,7 @@ export class ProfilePage extends Component {
                             }
                         }
                     </SnackBarGlobalContext.Consumer>
+                    <SnackBar></SnackBar>
                 </CartContext>
             </SnackBarContext>
         )
@@ -52,20 +55,25 @@ export class ProfilePage extends Component {
     }
 
     increase(amount) {
+        console.log(amount)
+        if (!isReal(amount)) {
+            this.show('مقدار ورودی باید یک عدد باشد')
+            return
+        } 
+        let amountValue = Number(amount) 
+        if (amountValue <= 0) {
+            this.show('عدد وارد شده باید مثبت باشد')
+            return
+        }
+        console.log(amountValue)
         let req = new XMLHttpRequest()
         req.onreadystatechange = function() {
             if (req.readyState == 4) {
-                let response = JSON.parse(req.response) 
-                console.log()
-                console.log("status ->" + req.response)
+                let response = JSON.parse(req.response)
                 if (req.status == 200) {
                     this.show('با موفقیت انجام شد:)')
                     this.getUserInfo()
-                } else if (response.status == 4001) {
-                    this.show('عدد وارد شده باید مثبت باشد')
-                } else if (response.status == 4002) {
-                    this.show('مقدار ورودی باید یک عدد باشد')
-                } else if (response.status == 4003) {
+                } else if (req.status == 400) {
                     this.show('درخواست اشتباه. دوباره تلاش کنید.')
                 }
             }
@@ -75,7 +83,7 @@ export class ProfilePage extends Component {
         }.bind(this)
         req.open("POST", "http://127.0.0.1:8080/users/1/profile/addCredit", true);
         req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        req.send(JSON.stringify({ "credit": amount}));
+        req.send(JSON.stringify({ "credit": amountValue}));
     }
 
     getOrders() {

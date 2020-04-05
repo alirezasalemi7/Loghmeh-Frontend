@@ -33,3 +33,7 @@ export function validateEmail(email) {
 export function isNumeric(value) {
     return /^\d+$/.test(value);
 }
+
+export function isReal(value) {
+    return /^(-)?[0-9]+(\.[0-9]+)?$/.test(value)
+}
