@@ -91,12 +91,12 @@
         width: 60%;
     }
 
-    .order-detail-button {
+    .delivered {
         background-color: var(--maize);
         box-shadow: 0 1px 1px 0 rgb(165, 165, 165);
     }
 
-    .order-detail-button, .delivering {
+    .delivered, .delivering {
         width: 50%;
         height: 2em;
     }
@@ -104,10 +104,6 @@
     .credit-box {
         height: 2.2em;
         width: 80%;
-    }
-
-    .credit-container {
-        margin-bottom: 32em;
     }
 
     .credit-input {
@@ -197,12 +193,12 @@
         width: 60%;
     }
 
-    .order-detail-button {
+    .delivered {
         background-color: var(--maize);
         box-shadow: 0 1px 1px 0 rgb(165, 165, 165);
     }
 
-    .order-detail-button, .delivering {
+    .delivered, .delivering {
         width: 50%;
         height: 2em;
     }
