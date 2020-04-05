@@ -1,0 +1,31 @@
+@import url(./body.css);
+@import url(./navbar.css);
+@import url(./footer.css);
+
+
+
+.header-cover {
+    background-color: var(--pastel-red-opc);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.backgruond-image {
+    background-size: 100%;
+    background-image: url("../assets/login/Cover Photo.jpg");
+    position: relative;
+    height: 12em;
+}
+
+.logo-image {
+    width: 4em;
+    width: 4em;
+}
+
+.header-info {
+    z-index: 2;
+}
