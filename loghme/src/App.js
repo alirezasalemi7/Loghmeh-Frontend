@@ -10,12 +10,14 @@ import { CartContext } from './js/context/CartContext'
 import {Footer} from './js/Footer'
 import {SignupPage} from './js/SignupPage'
 import { LoginPage } from './js/LoginPage'
+import { ProfilePage } from './js/profile/ProfilePage';
 
 function App() {
   return (
     <div className="App">
       <div id="page-container">
-        <LoginPage></LoginPage>
+        {/* <LoginPage></LoginPage> */}
+        <ProfilePage></ProfilePage>
       </div>
       <Footer></Footer>
     </div>

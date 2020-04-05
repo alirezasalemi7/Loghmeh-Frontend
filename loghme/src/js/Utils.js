@@ -8,7 +8,7 @@ String.prototype.allReplace = function(obj) {
     return retStr;
 };
 
-export function tarnslateEnglishToPersianNumbers(num){
+export function translateEnglishToPersianNumbers(num){
     let dict = {
         "0":"۰",
         "1":"۱",
