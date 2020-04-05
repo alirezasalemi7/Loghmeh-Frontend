@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import '../css/navbar.css'
 import { CartGlobalContext } from './context/CartContext'
-import {tarnslateEnglishToPersianNumbers} from './Utils'
+import {translateEnglishToPersianNumbers} from './Utils'
 import {CartModal} from './Cart'
 import * as $ from 'jquery'
 import {PageRouter} from './router/PageRouter'
@@ -58,7 +58,7 @@ export class NavBar extends Component {
                                     {this.props.signup && <a className="nav-item btn text-dark my-auto" onClick={this.signup}>ثبت‌نام</a>}
                                     {this.props.cart && <a className="nav-item btn my-auto" onClick={this.openCart}>
                                         <i className="flaticon-smart-cart">
-                                            <span className="badge badge-pill med-torq text-light" id="navbar-cart-badge">{tarnslateEnglishToPersianNumbers(data.orders.reduce((a,b)=>(a+Number(b.count)),0))}</span>
+                                            <span className="badge badge-pill med-torq text-light" id="navbar-cart-badge">{translateEnglishToPersianNumbers(data.orders.reduce((a,b)=>(a+Number(b.count)),0))}</span>
                                         </i>
                                     </a>}
                                 </div>

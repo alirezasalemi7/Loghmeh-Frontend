@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {tarnslateEnglishToPersianNumbers} from './Utils'
+import {translateEnglishToPersianNumbers} from './Utils'
 import '../css/cart.css'
 import '../css/navbar.css'
 import Loader from 'react-loader-spinner'
@@ -46,7 +46,7 @@ export class Cart extends Component {
                                 </div>
                                 <div className="row mx-auto ">
                                     <div className="col-sm-12">
-                                        <p dir="rtl" className="text-center cart-total">جمع کل: <b>{tarnslateEnglishToPersianNumbers(data.total)} تومان</b></p>
+                                        <p dir="rtl" className="text-center cart-total">جمع کل: <b>{translateEnglishToPersianNumbers(data.total)} تومان</b></p>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -80,7 +80,7 @@ class CartItem extends Component {
                         <div className="col-sm-4">
                             <div className="btn-group">
                                 <span className="flaticon-minus btn cart-item-dec-btn" onClick={()=>{this.props.decrease(this.props.item)}}></span>
-                                <span className="text-center btn disabled cart-item-count">{tarnslateEnglishToPersianNumbers(this.props.item.count)}</span>
+                                <span className="text-center btn disabled cart-item-count">{translateEnglishToPersianNumbers(this.props.item.count)}</span>
                                 <span className="flaticon-plus btn cart-item-inc-btn" onClick={()=>{this.props.increase(this.props.item)}}></span>
                             </div>
                         </div>
@@ -90,7 +90,7 @@ class CartItem extends Component {
                     </div>
                     <div className="row">
                         <div className="col-sm-6 text-center">
-                            <div dir="rtl" className="cart-item-price">{tarnslateEnglishToPersianNumbers(this.props.item.cost)} تومان</div>
+                            <div dir="rtl" className="cart-item-price">{translateEnglishToPersianNumbers(this.props.item.cost)} تومان</div>
                         </div>
                     </div>
                     <hr></hr>

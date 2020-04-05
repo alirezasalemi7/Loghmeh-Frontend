@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {tarnslateEnglishToPersianNumbers} from './Utils'
+import {translateEnglishToPersianNumbers} from './Utils'
 import {CartGlobalContext} from './context/CartContext'
 import '../css/food-card.css'
 import '../css/food-detail.css'
@@ -28,13 +28,13 @@ export class FoodCardSmall extends Component {
                     <div className="row">
                         <div className="col-sm-12 text-center">
                             <span className="flaticon-star food-card-star"></span>
-                            <span className="food-card-star-text">{tarnslateEnglishToPersianNumbers(this.props.food.popularity)}</span>
+                            <span className="food-card-star-text">{translateEnglishToPersianNumbers(this.props.food.popularity)}</span>
                             <span dir="rtl" className="food-card-name">{this.props.food.name}</span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-sm-12 text-center">
-                            <span className="food-card-price" dir="rtl">{tarnslateEnglishToPersianNumbers(this.props.food.price)} تومان</span>
+                            <span className="food-card-price" dir="rtl">{translateEnglishToPersianNumbers(this.props.food.price)} تومان</span>
                         </div>
                     </div>
                     <div className="row mt-auto">
@@ -86,7 +86,7 @@ export class FoodCardLarge extends Component {
                                     <div className="row" dir="rtl">
                                         <p className="food-detail-name" dir="rtl">{this.props.food.name}</p>
                                         <span className="flaticon-star food-detail-star"></span>
-                                        <span className="food-detail-star-text">{tarnslateEnglishToPersianNumbers(this.props.food.popularity)}</span>
+                                        <span className="food-detail-star-text">{translateEnglishToPersianNumbers(this.props.food.popularity)}</span>
                                     </div>
                                 </div>
                             </div>
@@ -98,12 +98,12 @@ export class FoodCardLarge extends Component {
                                     this.props.special &&
                                     <div className="food-detail-red-line">
                                         <div className="row food-detail-price-old" dir="rtl">
-                                            {tarnslateEnglishToPersianNumbers(this.props.food.oldPrice)}
+                                            {translateEnglishToPersianNumbers(this.props.food.oldPrice)}
                                         </div>
                                     </div>
                                 }
                                 <div className="row food-detail-price" dir="rtl">
-                                    {tarnslateEnglishToPersianNumbers(this.props.food.price)} تومان
+                                    {translateEnglishToPersianNumbers(this.props.food.price)} تومان
                                 </div>
                             </div>
                         </div>
@@ -123,14 +123,14 @@ export class FoodCardLarge extends Component {
                         }
                     </CartGlobalContext.Consumer>
                     <span className="flaticon-minus btn food-detail-dec-btn" onClick={this.decreaseCount}></span>
-                    <span className="text-center btn disabled food-detail-count">{tarnslateEnglishToPersianNumbers(this.state.count)}</span>
+                    <span className="text-center btn disabled food-detail-count">{translateEnglishToPersianNumbers(this.state.count)}</span>
                     <span className="flaticon-plus btn food-detail-inc-btn" onClick={this.increaseCount}></span> 
                     {
                         this.props.special &&
                         ((this.state.available == 0)?
-                        (<div className="ml-auto food-detail-available-no" dir="rtl"> موجودی: {tarnslateEnglishToPersianNumbers(this.state.available)}</div>):
+                        (<div className="ml-auto food-detail-available-no" dir="rtl"> موجودی: {translateEnglishToPersianNumbers(this.state.available)}</div>):
                         (this.state.err!=true)?
-                        (<div className="ml-auto food-detail-available" dir="rtl"> موجودی: {tarnslateEnglishToPersianNumbers(this.state.available)}</div>):
+                        (<div className="ml-auto food-detail-available" dir="rtl"> موجودی: {translateEnglishToPersianNumbers(this.state.available)}</div>):
                         (<div className="ml-auto food-detail-available-err" dir="rtl">{this.state.available}</div>))
                     }
                 </div>
