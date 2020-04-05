@@ -37,7 +37,6 @@ class CreditPart extends Component {
     clickButton(e) {
         e.preventDefault()
         let amount = $("#increase-credit-input").val()
-        console.log(amount)
         this.props.increase(amount)
     }
 
@@ -46,7 +45,7 @@ class CreditPart extends Component {
             <div className="border mx-auto p-4 pt-5 bg-white order-container">
                 <div className="container my-3 mx-auto text-center credit-box">
                     <button className="col-4 border-0 mr-2 h-100 med-torq text-white credit-button" onClick={(e)=>{this.clickButton(e)}}>افزایش</button>
-                    <input type="text" id="increase-credit-input" className="col-8 border h-100 credit-input" dir="rtl" placeholder="میزان افزایش اعتبار"/>
+                    <input type="text" id="increase-credit-input" className="col-8 border h-100 credit-input" placeholder="میزان افزایش اعتبار"/>
                 </div>
             </div>
         )
