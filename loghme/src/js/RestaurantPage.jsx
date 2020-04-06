@@ -1,12 +1,13 @@
 import React,{Component} from 'react'
 import '../css/RestaurantPage.css'
 import {Cart} from './Cart'
-import {Menu} from './FoodGroupContainer'
+import {Menu} from './Menu'
 import * as $ from 'jquery'
 import { SnackBarGlobalContext,SnackBarContext } from './context/SnackBarContext'
 import {CartContext} from './context/CartContext'
 import {PageLoaderSpinner} from './PageLoadSpinner'
 import { NavBar } from './Navbar'
+import {SnackBar} from './SnackBar'
 
 var LoghmehLogo = require('../assets/LOGO.png')
 
