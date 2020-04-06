@@ -9,6 +9,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="../css/home.css">
     <link rel="stylesheet" type="text/css" href="../css/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="../css/food-card.css">
+    <link rel="stylesheet" type="text/css" href="../css/food-detail.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
@@ -36,13 +38,96 @@
         </div>
     </nav>
     <!-- main -->
-    <div class="container-fluid px-0">
+    <div class="container-fluid px-0 main-body">
         <!-- starter -->
         <div class="backgruond-image text-center text-white">
-            <div class="header-cover">
+            <div class="header-cover h-100">
                 <img class="mt-4 logo-image" src="../assets/LOGO.png" alt="logo">
-                <p class="mt-4">اولین و بزرگ‌ترین وب‌سایت سفارش آنلاین غذا در دانشگاه تهران</p>
+                <p class="my-4 text-white home-top-text">اولین و بزرگ‌ترین وب‌سایت سفارش آنلاین غذا در دانشگاه تهران</p>
+                <!-- search box -->
+                <div class="row justify-content-center bg-white border-0 search-box py-2 px-1 mx-auto">
+                    <button type="submit" class="col-3 search-box-margin text-center border maize search-box-radius">جست‌و‌جو</button>
+                    <input type="text" class="col-4 search-box-margin border search-box-radius" dir="rtl" placeholder="نام رستوران" />
+                    <input type="text" class="col-4 search-box-margin border search-box-radius" dir="rtl" placeholder="نام غذا" />
+                </div>
             </div>
+        </div>
+        <!-- foodParty -->
+        <!-- header -->
+        <div class="text-center mt-5">
+            <p class="part-title mx-auto mb-2" dir="rtl">جشن غذا!</p>
+            <div class="food-party-time py-1 mx-auto">زمان باقی‌مانده: ۱۲:۲۴</div>
+        </div>
+        <!-- swiper -->
+        <div class="swiper-container mt-2 mb-4 border">
+
+        </div>
+        <!-- restaurants -->
+        <div class="text-center">
+            <!-- header -->
+            <p class="part-title mx-auto mb-3">رستوران‌ها</p>
+            <!-- container -->
+            <div class="row mx-auto mb-5 restaurant-container">
+                
+                <div class="card align-items-center p-1 restaurant-card border">
+                    <img class="restaurant-image mb-1 mt-2" src="../assets/restaurant/rest-logo.jpg" alt="Restaurant Image"/>
+                    <div class="card-body text-center p-0">
+                      <p class="restaurant-name-text mb-2">رستوران خامس</p>
+                      <button type="submit" class="border maize px-2 menu-button">نمایش منو</button>
+                    </div>
+                </div>
+
+                <div class="card align-items-center p-1 restaurant-card border">
+                    <img class="restaurant-image mb-1 mt-2" src="../assets/restaurant/rest-logo.jpg" alt="Restaurant Image"/>
+                    <div class="card-body text-center p-0">
+                      <p class="restaurant-name-text mb-2">رستوران خامس</p>
+                      <button type="submit" class="border maize px-2 menu-button">نمایش منو</button>
+                    </div>
+                </div>
+                <div class="card align-items-center p-1 restaurant-card border">
+                    <img class="restaurant-image mb-1 mt-2" src="../assets/restaurant/rest-logo.jpg" alt="Restaurant Image"/>
+                    <div class="card-body text-center p-0">
+                      <p class="restaurant-name-text mb-2">رستوران خامس</p>
+                      <button type="submit" class="border maize px-2 menu-button">نمایش منو</button>
+                    </div>
+                </div>
+                <div class="card align-items-center p-1 restaurant-card border">
+                    <img class="restaurant-image mb-1 mt-2" src="../assets/restaurant/rest-logo.jpg" alt="Restaurant Image"/>
+                    <div class="card-body text-center p-0">
+                      <p class="restaurant-name-text mb-2">رستوران خامس</p>
+                      <button type="submit" class="border maize px-2 menu-button">نمایش منو</button>
+                    </div>
+                </div>
+                <div class="card align-items-center p-1 restaurant-card border">
+                    <img class="restaurant-image mb-1 mt-2" src="../assets/restaurant/rest-logo.jpg" alt="Restaurant Image"/>
+                    <div class="card-body text-center p-0">
+                      <p class="restaurant-name-text mb-2">رستوران خامس</p>
+                      <button type="submit" class="border maize px-2 menu-button">نمایش منو</button>
+                    </div>
+                </div>
+                <div class="card align-items-center p-1 restaurant-card border">
+                    <img class="restaurant-image mb-1 mt-2" src="../assets/restaurant/rest-logo.jpg" alt="Restaurant Image"/>
+                    <div class="card-body text-center p-0">
+                      <p class="restaurant-name-text mb-2">رستوران خامس</p>
+                      <button type="submit" class="border maize px-2 menu-button">نمایش منو</button>
+                    </div>
+                </div>
+                <div class="card align-items-center p-1 restaurant-card border">
+                    <img class="restaurant-image mb-1 mt-2" src="../assets/restaurant/rest-logo.jpg" alt="Restaurant Image"/>
+                    <div class="card-body text-center p-0">
+                      <p class="restaurant-name-text mb-2">رستوران خامس</p>
+                      <button type="submit" class="border maize px-2 menu-button">نمایش منو</button>
+                    </div>
+                </div>
+                <div class="card align-items-center p-1 restaurant-card border">
+                    <img class="restaurant-image mb-1 mt-2" src="../assets/restaurant/rest-logo.jpg" alt="Restaurant Image"/>
+                    <div class="card-body text-center p-0">
+                      <p class="restaurant-name-text mb-2">رستوران خامس</p>
+                      <button type="submit" class="border maize px-2 menu-button">نمایش منو</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
     <!-- footer -->
