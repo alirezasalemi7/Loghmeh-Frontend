@@ -8,7 +8,6 @@ import {CartContext} from './context/CartContext'
 import {PageLoaderSpinner} from './PageLoadSpinner'
 import { NavBar } from './Navbar'
 import {SnackBar} from './SnackBar'
-
 var LoghmehLogo = require('../assets/LOGO.png')
 
 class RestaurantInfoBar extends Component{
