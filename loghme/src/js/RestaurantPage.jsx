@@ -8,7 +8,6 @@ import {CartContext} from './context/CartContext'
 import {PageLoaderSpinner} from './PageLoadSpinner'
 import { NavBar } from './Navbar'
 import {SnackBar} from './SnackBar'
-import {OrdersContext} from './context/OrdersContext'
 
 var LoghmehLogo = require('../assets/LOGO.png')
 
@@ -89,35 +88,33 @@ export class RestaurantPage extends Component {
     render(){
         return(
             <SnackBarContext>
-                <OrdersContext>
-                    <CartContext>
-                        <SnackBarGlobalContext.Consumer>
-                            {
-                                (data) => {
-                                    this.show = data.showSnackbar
-                                    return(
-                                        <div>
-                                            <NavBar history={this.props.history}></NavBar>
-                                            <div className="container-fluid" id="restaurant-body-container">
-                                                <RestaurantInfoBar restaurantName={this.state.name} imgSrc={this.state.logo}></RestaurantInfoBar>
-                                                <div className="row" id="restaurant-middle-row">
-                                                    <div className="col-sm-8 text-center">
-                                                        {this.state.valid && <Menu allFoods={this.state.menu} restaurant={this.state.name} restaurantId={this.props.id}></Menu>}
-                                                    </div>
-                                                    <div className="col-sm-4 text-center" id="restaurant-cart-col">
-                                                        <Cart></Cart>
-                                                    </div>
+                <CartContext>
+                    <SnackBarGlobalContext.Consumer>
+                        {
+                            (data) => {
+                                this.show = data.showSnackbar
+                                return(
+                                    <div>
+                                        <NavBar history={this.props.history}></NavBar>
+                                        <div className="container-fluid" id="restaurant-body-container">
+                                            <RestaurantInfoBar restaurantName={this.state.name} imgSrc={this.state.logo}></RestaurantInfoBar>
+                                            <div className="row" id="restaurant-middle-row">
+                                                <div className="col-sm-8 text-center">
+                                                    {this.state.valid && <Menu allFoods={this.state.menu} restaurant={this.state.name} restaurantId={this.props.id}></Menu>}
+                                                </div>
+                                                <div className="col-sm-4 text-center" id="restaurant-cart-col">
+                                                    <Cart></Cart>
                                                 </div>
                                             </div>
-                                            <PageLoaderSpinner id="loading-modal"></PageLoaderSpinner>
                                         </div>
-                                    )
-                                }
+                                        <PageLoaderSpinner id="loading-modal"></PageLoaderSpinner>
+                                    </div>
+                                )
                             }
-                        </SnackBarGlobalContext.Consumer>
-                        <SnackBar></SnackBar>
-                    </CartContext>
-                </OrdersContext>
+                        }
+                    </SnackBarGlobalContext.Consumer>
+                    <SnackBar></SnackBar>
+                </CartContext>
             </SnackBarContext>
         )
     }

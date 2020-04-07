@@ -7,7 +7,6 @@ import {CartContext} from './context/CartContext'
 import {SnackBar} from './SnackBar'
 import {PageLoaderSpinner} from './PageLoadSpinner'
 import * as $ from 'jquery'
-import {OrdersContext} from './context/OrdersContext'
 
 class LoginPageUpperRow extends Component {
 
@@ -52,23 +51,21 @@ export class LoginPage extends Component {
     render(){
         return(
             <SnackBarContext>
-                <OrdersContext>
-                    <CartContext>
-                        <div>
-                            <NavBar history={this.props.history} exit={false} account={false} cart={false} signup={true}></NavBar>
-                            <div className="container-fluid" id="login-body-container">
-                                <LoginPageUpperRow></LoginPageUpperRow>
-                                <div className="row">
-                                    <div className="col-sm-12" id="login-col">
-                                        <LoginCard history={this.props.history}></LoginCard>
-                                    </div>
+                <CartContext>
+                    <div>
+                        <NavBar history={this.props.history} exit={false} account={false} cart={false} signup={true}></NavBar>
+                        <div className="container-fluid" id="login-body-container">
+                            <LoginPageUpperRow></LoginPageUpperRow>
+                            <div className="row">
+                                <div className="col-sm-12" id="login-col">
+                                    <LoginCard history={this.props.history}></LoginCard>
                                 </div>
                             </div>
                         </div>
-                        <SnackBar></SnackBar>
-                        <PageLoaderSpinner id="loading-modal"></PageLoaderSpinner>
-                    </CartContext>
-                </OrdersContext>
+                    </div>
+                    <SnackBar></SnackBar>
+                    <PageLoaderSpinner id="loading-modal"></PageLoaderSpinner>
+                </CartContext>
             </SnackBarContext>
         )
     }

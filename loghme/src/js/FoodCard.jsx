@@ -141,7 +141,15 @@ export class FoodCardLarge extends Component {
     componentDidMount(){
         if(this.props.special){
             this.getAvailableCount()
-            setInterval(this.getAvailableCount,500)
+            this.interval = setInterval(this.getAvailableCount,500)
+            this.mount = true
+        }
+    }
+
+    componentWillUnmount(){
+        if(this.props.special){
+            clearInterval(this.interval)
+            this.mount = false
         }
     }
 
@@ -165,25 +173,25 @@ export class FoodCardLarge extends Component {
         let req = new XMLHttpRequest()
         req.responseType = 'json'
         req.onreadystatechange = function() {
-            if(req.readyState === 4 && req.status === 200){
+            if(req.readyState === 4 && req.status === 200 && this.mount){
                 this.setState((state,props)=>({
                     available : req.response.count,
                     err : false
                 }))
             }
-            else if(req.readyState === 4 && req.status === 403){
+            else if(req.readyState === 4 && req.status === 403 && this.mount){
                 this.setState((state,props)=>({
                     available : "اجازه دسترسی نداری",
                     err : true
                 }))
             }
-            else if(req.readyState === 4 && req.status === 404){
+            else if(req.readyState === 4 && req.status === 404 && this.mount){
                 this.setState((state,props)=>({
                     available : "پیدا نشد",
                     err : true
                 }))
             }
-            else if(req.readyState === 4 && req.status === 500){
+            else if(req.readyState === 4 && req.status === 500 && this.mount){
                 this.setState((state,props)=>({
                     available : "سرور مشکل داره :(",
                     err : true
@@ -191,7 +199,7 @@ export class FoodCardLarge extends Component {
             }
         }.bind(this)
         req.onerror = function(){
-            if(req.readyState === 4){
+            if(req.readyState === 4 && this.mount){
                 this.setState((state,props)=>({
                     available : "سرور دسترس نیست :(",
                     err : true

@@ -8,30 +8,27 @@ import {validateEmail,isNumeric} from './Utils'
 import {SnackBar} from './SnackBar'
 import {PageLoaderSpinner} from './PageLoadSpinner'
 import * as $ from 'jquery'
-import { OrdersContext } from './context/OrdersContext'
 
 export class SignupPage extends Component {
     
     render(){
         return(
             <SnackBarContext>
-                <OrdersContext>
-                    <CartContext>
-                        <NavBar history={this.props.history} exit={false} account={false} cart={false} login={true}></NavBar>
-                        <div className="container-fluid" id="body-container">
-                            <SignupPageUpperRow></SignupPageUpperRow>
-                            <div className="row">
-                                <div className="col-sm-12" id="signup-card-col">
-                                    <div className="card" id="signup-card">
-                                        <SignupCard history={this.props.history}></SignupCard>
-                                    </div>
+                <CartContext>
+                    <NavBar history={this.props.history} exit={false} account={false} cart={false} login={true}></NavBar>
+                    <div className="container-fluid" id="body-container">
+                        <SignupPageUpperRow></SignupPageUpperRow>
+                        <div className="row">
+                            <div className="col-sm-12" id="signup-card-col">
+                                <div className="card" id="signup-card">
+                                    <SignupCard history={this.props.history}></SignupCard>
                                 </div>
-                            </div>    
-                        </div>
-                        <SnackBar></SnackBar>
-                        <PageLoaderSpinner id="loading-modal"></PageLoaderSpinner>
-                    </CartContext>
-                </OrdersContext>
+                            </div>
+                        </div>    
+                    </div>
+                    <SnackBar></SnackBar>
+                    <PageLoaderSpinner id="loading-modal"></PageLoaderSpinner>
+                </CartContext>
             </SnackBarContext>
         )
     }
