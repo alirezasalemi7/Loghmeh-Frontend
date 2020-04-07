@@ -9,7 +9,6 @@ export class MainTable extends Component {
 
     constructor(props) {
         super(props)
-        console.log(this.props.orders)
         this.state = {
             innerContent : "Orders",
             changePage: this.changePage.bind(this)
@@ -123,25 +122,30 @@ class OrderItem extends Component {
 
 class OrderDetail extends Component {
     render() {
-        // console.log("HAY" + this.props.details.order)
-        let foodLists = this.props.details.order.map((element, i)=><tr><td>{i}</td><td>{element.name}</td><td>{element.count}</td><td>{element.cost}</td></tr>)
+        let foodLists = this.props.details.order.map((element, i)=><tr key={i}><td className="border px-1">{translateEnglishToPersianNumbers(i + 1)}</td><td className="border px-1">{element.name}</td><td className="border px-2">{translateEnglishToPersianNumbers(element.count)}</td><td className="border px-2">{translateEnglishToPersianNumbers(element.cost)}</td></tr>)
         return (
-            <div className="modal fade in"  id={this.props.id}>
-                <div className="modal-body">
-                <div className="modal-content card mx-auto">
-                    <h1>{this.props.children}</h1>
-                        <table>
-                            <thead>
-                                <tr>ردیف</tr>
-                                <tr>نام غذا</tr>
-                                <tr>تعداد</tr>
-                                <tr>قیمت</tr>
-                            </thead>
-                            <tbody>
-                                {foodLists}
-                            </tbody>
-                        </table>
-                        <p dir="rtl">جمع کل: {this.props.details.totalCost} تومان</p>
+            <div className="modal fade in" id={this.props.id}>
+                <div className="modal-dialog modal-dialog-shape">
+                    <div className="modal-body mx-auto px-0">
+                        <div className="modal-content modal-shape mx-auto px-2">
+                            <p className="modal-header pb-1 align-self-center">{this.props.children}</p>
+                            <div className="px-5">
+                                <table dir="rtl" className="table-style">
+                                    <thead className="table-heaader">
+                                        <tr>
+                                            <td className="border px-1">ردیف</td>
+                                            <td className="border px-1">نام غذا</td>
+                                            <td className="border px-2">تعداد</td>
+                                            <td className="border px-2">قیمت</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {foodLists}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <b dir="rtl" className="text-left px-5 pt-1 pb-4">جمع کل: {translateEnglishToPersianNumbers(this.props.details.totalCost)} تومان</b>
+                        </div>
                     </div>
                 </div>
             </div>
