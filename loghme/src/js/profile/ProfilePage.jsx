@@ -66,7 +66,7 @@ export class ProfilePage extends Component {
         req.onerror = function() {
             this.show('سرورمون فعلا مشکل داره:(')
         }.bind(this)
-        req.open("GET", "http://127.0.0.1:8080/users/1/profile/view", true)
+        req.open("GET", "http://127.0.0.1:8080/users/1/profile", true)
         req.send()
     }
 
