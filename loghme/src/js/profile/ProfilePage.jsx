@@ -55,7 +55,6 @@ export class ProfilePage extends Component {
     }
 
     increase(amount) {
-        console.log(amount)
         if (!isReal(amount)) {
             this.show('مقدار ورودی باید یک عدد باشد')
             return
@@ -65,7 +64,6 @@ export class ProfilePage extends Component {
             this.show('عدد وارد شده باید مثبت باشد')
             return
         }
-        console.log(amountValue)
         let req = new XMLHttpRequest()
         req.onreadystatechange = function() {
             if (req.readyState == 4) {

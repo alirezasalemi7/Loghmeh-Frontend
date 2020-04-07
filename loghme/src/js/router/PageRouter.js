@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {LoginPage} from '../LoginPage'
 import {SignupPage} from '../SignupPage'
 import { RestaurantPage } from '../RestaurantPage';
+import { ProfilePage } from '../profile/ProfilePage';
 
 export class PageRouter {
     
@@ -16,5 +17,9 @@ export class PageRouter {
 
     gotoRestaurantPage(id) {
         ReactDOM.render(<RestaurantPage id={id}></RestaurantPage>, document.getElementById('page-container'))
+    }
+
+    gotoProfilePage() {
+        ReactDOM.render(<ProfilePage></ProfilePage>, document.getElementById('page-container'))
     }
 }

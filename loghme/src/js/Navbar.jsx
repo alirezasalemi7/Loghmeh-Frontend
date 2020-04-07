@@ -14,6 +14,7 @@ export class NavBar extends Component {
         this.exit = this.exit.bind(this)
         this.login = this.login.bind(this)
         this.signup = this.signup.bind(this)
+        this.profile = this.profile.bind(this)
         this.router = new PageRouter()
     }
 
@@ -34,6 +35,9 @@ export class NavBar extends Component {
         this.router.gotoLoginPage()
     }
 
+    profile() {
+        this.router.gotoProfilePage()
+    }
 
     signup(){
         this.router.gotoSignupPage()
@@ -53,7 +57,7 @@ export class NavBar extends Component {
                             <div className="container-fluid">
                                 <div className="nav navbar-nav">
                                     {this.props.exit && <a className="nav-item btn my-auto exit-btn" onClick={this.exit}>خروج</a>}
-                                    {this.props.account && <a className="nav-item btn text-dark my-auto" onClick={this.props.account_func}>حساب کاربری</a>}
+                                    {this.props.account && <a className="nav-item btn text-dark my-auto" onClick={this.profile}>حساب کاربری</a>}
                                     {this.props.login && <a className="nav-item btn text-dark my-auto" onClick={this.login}>ورود</a>}
                                     {this.props.signup && <a className="nav-item btn text-dark my-auto" onClick={this.signup}>ثبت‌نام</a>}
                                     {this.props.cart && <a className="nav-item btn my-auto" onClick={this.openCart}>
