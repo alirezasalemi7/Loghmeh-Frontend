@@ -14,7 +14,7 @@ class RestaurantInfoBar extends Component{
 
     render(){
         return(
-            <div className="row" id="upper-row">
+            <div className="row" id="restaurant-upper-row">
                 <div className="col-sm-12">
                     <div className="row">
                         <img src={this.props.imgSrc} id="restaurant-logo" alt="" className="img-thumbnail"></img>
@@ -94,13 +94,13 @@ export class RestaurantPage extends Component {
                                 return(
                                     <div>
                                         <NavBar></NavBar>
-                                        <div className="container-fluid" id="body-container">
+                                        <div className="container-fluid" id="restaurant-body-container">
                                             <RestaurantInfoBar restaurantName={this.state.name} imgSrc={this.state.logo}></RestaurantInfoBar>
-                                            <div className="row" id="middle-row">
+                                            <div className="row" id="restaurant-middle-row">
                                                 <div className="col-sm-8 text-center">
                                                     {this.state.valid && <Menu allFoods={this.state.menu} restaurant={this.state.name} restaurantId={this.props.id}></Menu>}
                                                 </div>
-                                                <div className="col-sm-4 text-center" id="cart-col">
+                                                <div className="col-sm-4 text-center" id="restaurant-cart-col">
                                                     <Cart></Cart>
                                                 </div>
                                             </div>

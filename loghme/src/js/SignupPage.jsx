@@ -191,11 +191,11 @@ class SignupCard extends Component{
                 </SnackBarGlobalContext.Consumer>
                 <div className="card-header">
                     <div className="col-sm-12 text-center">
-                        <p className="data-column-info-text" dir="rtl">وقتشه که لقمتو بگیری! واسه شروع اطلاعاتتو بده ثبت کنیم تا برسیم به بعدش :)</p>
-                        <p className="data-column-info-text" dir="rtl">ما واسه عضو شدنت تو لقمه فقط یه شرط داریم، ازش لذت ببری :)</p>
+                        <p className="signup-data-column-info-text" dir="rtl">وقتشه که لقمتو بگیری! واسه شروع اطلاعاتتو بده ثبت کنیم تا برسیم به بعدش :)</p>
+                        <p className="signup-data-column-info-text" dir="rtl">ما واسه عضو شدنت تو لقمه فقط یه شرط داریم، ازش لذت ببری :)</p>
                     </div>
                 </div>
-                <div className="card-body">
+                <div className="card-body signup-card-body">
                     <div className="row  text-center">
                         <div className="col-sm-3"></div>
                         <div className="col-sm-6">
@@ -237,7 +237,7 @@ class SignupCard extends Component{
                                 </div>
                                 <div className="row">
                                     <div className="col-sm-12">
-                                        <p dir="rtl" className="data-column-text">
+                                        <p dir="rtl" className="signup-data-column-text">
                                             تو لقمه‌ای بودی؟ بزم بریم
                                             <a dir="rtl" onClick={this.gotoLoginPage}>وارد شیم!</a>
                                         </p>
@@ -257,8 +257,8 @@ class SignupPageUpperRow extends Component {
     
     render(){
         return(
-            <div className="row" id="upper-row">
-                <div className="layer"></div>
+            <div className="row" id="signup-upper-row">
+                <div className="signup-layer"></div>
                 <div className="col-sm-12 text-center">
                     <img src={require('../assets/LOGO.png')} id="upper-row-img"></img>
                     <h2 dir="rtl" id="upper-row-title">بزرگترین سایت سفارش غذا در دانشگاه تهران</h2>

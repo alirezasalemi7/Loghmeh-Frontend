@@ -1,11 +1,11 @@
 @import url(./body.css);
 
-#body-container {
+#login-body-container {
     background-size: 100%;
     padding: 0px;
 }
 
-#data-column-left {
+#login-data-column-left {
     background-image: url(../assets/login/Cover\ Photo.jpg);
     background-size: 100%;
 }
@@ -14,7 +14,7 @@
     padding-right: 0%;
 }
 
-#data-column {
+#login-data-column {
     height: 100%;
     background-color: var(--pastel-red-opc);
     z-index: -2px;
@@ -30,27 +30,27 @@ input {
 
 @media (max-width:1025px){
 
-    #data-column-logo {
+    #login-data-column-logo {
         margin-top: 5em;
         width: 50%;
     }
     
-    #data-column-title {
+    #login-data-column-title {
         margin-top: 2em;
         color: white;
         font-size: 1.2em;
     }
     
-    .data-column-info {
+    .login-data-column-info {
         margin-top: 3em;
         color: white;
     }
     
-    .data-column-info-header {
+    .login-data-column-info-header {
         font-size: 1.4em;
     }
     
-    .data-column-info-text {
+    .login-data-column-info-text {
         font-size: 1em;
     }
     
@@ -81,31 +81,31 @@ input {
 }
 
 @media (min-width:1026px){
-    #data-column-logo {
+    #login-data-column-logo {
         margin-top: 11em;
         width: 50%;
     }
     
-    #data-column-title {
+    #login-data-column-title {
         margin-top: 1.5em;
         color: white;
         font-size: 2.5em;
     }
     
-    .data-column-info {
+    .login-data-column-info {
         margin-top: 14em;
         color: white;
     }
     
-    #data-column-introduction {
+    #login-data-column-introduction {
         margin-bottom: 9em;
     }
     
-    .data-column-info-header {
+    .login-data-column-info-header {
         font-size: 3em;
     }
     
-    .data-column-info-text {
+    .login-data-column-info-text {
         font-size: 1.4em;
     }
     

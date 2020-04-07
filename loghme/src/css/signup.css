@@ -1,5 +1,5 @@
 
-#upper-row {
+#signup-upper-row {
     background-size: 100%;
     background-image: url(../assets/login/Cover\ Photo.jpg);
     height: auto;
@@ -7,7 +7,7 @@
     margin-bottom: 5px;
 }
 
-.layer {
+.signup-layer {
     background-color: var(--pastel-red-opc);
     position: absolute;
     top: 0;
@@ -24,7 +24,7 @@
     padding: 0px;
 }
 
-.card-body {
+.signup-card-body {
     padding-bottom: 0px;
 }
 
@@ -46,11 +46,11 @@ input {
         font-size: 1.5em;
     }
 
-    .data-column-info-text {
+    .signup-data-column-info-text {
         font-size: 1em;
     }
     
-    .data-column-text {
+    .signup-data-column-text {
         font-size: 1em;
     }
     
@@ -79,11 +79,11 @@ input {
         font-size: 1em;
     }    
 
-    .data-column-info-text {
+    .signup-data-column-info-text {
         font-size: 0.8em;
     }
     
-    .data-column-text {
+    .signup-data-column-text {
         font-size: 0.8em;
     }
     

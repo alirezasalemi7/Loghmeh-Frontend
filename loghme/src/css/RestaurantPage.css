@@ -1,7 +1,7 @@
 @import url(./body.css);
 @import url(./navbar.css);
 
-#body-container {
+#restaurant-body-container {
     width: 100%;
     height: 100%;
     background: var(--mint-cream);
@@ -10,7 +10,7 @@
 
 @media (max-width: 1025px){
     
-    #upper-row {
+    #restaurant-upper-row {
         background : linear-gradient(180deg,var(--pastel-red) 50% , var(--mint-cream) 50%);
         margin-bottom: 2.6em;
     }
@@ -34,7 +34,7 @@
         font-weight: bold;
     }
     
-    #cart-col {
+    #restaurant-cart-col {
         margin-top: 4em;
         margin-bottom: 1em;
         padding-left: 1em;
@@ -43,25 +43,25 @@
         border-color: rgb(221, 218, 218);
     }
     
-    #middle-row{
+    #restaurant-middle-row{
         margin-left: 4.5em;
         margin-bottom: 1em;
     }
     
-    .food-card-row {
+    .restaurant-food-card-row {
         padding-left: 0.5em;
         padding-right: 0.5em;
         justify-content: right;
     }
     
-    .food-card-row .col-sm-4 {
+    .restaurant-food-card-row .col-sm-4 {
         padding: 0.7em;
     }
 }
 
 @media (min-width: 1026px){
     
-    #upper-row {
+    #restaurant-upper-row {
         background : linear-gradient(180deg,var(--pastel-red) 50% , var(--mint-cream) 50%);
         margin-bottom: 2.7em;
     }
@@ -85,7 +85,7 @@
         font-weight: bold;
     }
     
-    #cart-col {
+    #restaurant-cart-col {
         margin-top: 4em;
         margin-bottom: 1em;
         padding-left: 1em;
@@ -94,18 +94,18 @@
         border-color: rgb(221, 218, 218);
     }
     
-    #middle-row{
+    #restaurant-middle-row{
         margin-left: 20vw;
         margin-bottom: 1em;
     }
     
-    .food-card-row {
+    .restaurant-food-card-row {
         padding-left: 0.8vw;
         padding-right: 0.8vw;
         justify-content: right;
     }
     
-    .food-card-row .col-sm-4 {
+    .restaurant-food-card-row .col-sm-4 {
         padding: 0.8vw;
     }
 }

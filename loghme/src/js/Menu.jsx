@@ -23,7 +23,7 @@ export class Menu extends Component {
                     </div>
                 }
                 {this.props.allFoods.length!=0 &&
-                    <div className="row food-card-row d-flex justify-content-end">
+                    <div className="row restaurant-food-card-row d-flex justify-content-end">
                         {foods.map((e,i)=><div className="col-sm-4 col-lg-3" key={i}><FoodCardSmall restaurant={this.props.restaurant} food={e}></FoodCardSmall></div>)}
                     </div>
                 }
