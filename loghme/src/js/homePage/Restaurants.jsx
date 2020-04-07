@@ -71,12 +71,10 @@ class RestaurantCart extends Component {
 
     render() {
         return (
-            <div className="card align-items-center p-1 restaurant-card border">
-                <img className="restaurant-image rounded-circle mb-1 mt-2" src={this.props.imageSrc} alt="Restaurant"/>
-                <div className="card-body text-center p-0">
-                    <p className="restaurant-name-text mb-2">{this.props.name}</p>
-                    <button type="submit" className="border maize px-2 menu-button" onClick={(e)=>this.gotoRestaurantPage(this.props.id)}>نمایش منو</button>
-                </div>
+            <div className="card d-flex align-items-center p-1 restaurant-card border">
+                <img className="restaurant-image rounded-circle mb-1 mt-2" src={this.props.imageSrc} alt="Restaurant Image"/>
+                <p className="restaurant-name-text mb-2 flex-grow-1">{this.props.name}</p>
+                <button type="submit" className="border maize px-2 menu-button" onClick={(e)=>this.gotoRestaurantPage(this.props.id)}>نمایش منو</button>
             </div>
         )
     }

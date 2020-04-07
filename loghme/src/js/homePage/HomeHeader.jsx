@@ -20,8 +20,8 @@ class SearchBox extends Component {
         return (
             <div className="row justify-content-center bg-white border-0 search-box py-2 px-1 mx-auto">
                 <button type="submit" className="col-3 search-box-margin text-center border maize search-box-radius">جست‌و‌جو</button>
-                <input type="text" className="col-4 search-box-margin border search-box-radius" dir="rtl" placeholder="نام رستوران" />
-                <input type="text" className="col-4 search-box-margin border search-box-radius" dir="rtl" placeholder="نام غذا" />
+                <input type="text" className="col-4 border search-box-input" dir="rtl" placeholder="نام رستوران" />
+                <input type="text" className="col-4 border search-box-input" dir="rtl" placeholder="نام غذا" />
             </div>
         )
     }

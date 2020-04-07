@@ -44,7 +44,7 @@ export class FoodPartyContainer extends Component {
         req.onerror = function () {
             this.show('سرور فعلا مشکل داره:(')
         }.bind(this)
-        req.open("GET", "http://127.0.0.1:8080/foodParty/all")
+        req.open("GET", "http://127.0.0.1:8080/foodParty")
         req.send()
     }
 
@@ -66,7 +66,7 @@ export class FoodPartyContainer extends Component {
                                         <p className="part-title mx-auto mb-2" dir="rtl">جشن غذا!</p>
                                         <Timer minutes={this.state.minutes} seconds={this.state.seconds} runAtTimesup={()=>this.getFoods()}></Timer>
                                     </div>
-                                    <div className="swiper-container mt-2 mb-4 py-2 border justify-content-center">
+                                    <div className="swiper-container row d-flex flex-nowrap flex-row mt-2 mb-4 py-2 border">
                                         {foodCards}
                                     </div>
                                 </div>
@@ -103,9 +103,8 @@ class Timer extends Component {
             }
             if (this.state.seconds === -1) {
                 if (this.state.minutes === 0) {
-                    console.log("HEREEEE")
-                    clearInterval(this.myInterval)
                     this.props.runAtTimesup()
+                    clearInterval(this.myInterval)
                 } else {
                     this.setState(() => ({
                         minutes: this.state.minutes - 1,
@@ -135,36 +134,36 @@ class FoodPartyFoodCard extends Component {
     }
 
     render() {
-        let buttonClasses = "mx-auto rounded-lg count-box border-0 " + ((this.props.food.count === 0) ? "btn-gray" : "med-torq") + " text-white"
+        let buttonClasses = "mx-1 flex-fill rounded-lg count-box border-0 " + ((this.props.food.count === 0) ? "btn-gray disabled" : "med-torq") + " text-white"
         let btnOnClick = ((this.props.food.count === 0) ? null : (e)=>this.openModal())
         return (
-            <div className="border special-food-card mx-2 rounded text-center bg-white">
-                <div className="px-2 py-2 dashed-border">
-                    <div className="row special-food-image-row mx-0">
-                        <div className="px-0 mx-auto">
-                            <div className="special-food-name text-center" dir="rtl">{this.props.food.name}</div>
-                            <div className="flaticon-star food-card-star px-1" dir="rtl"> {translateEnglishToPersianNumbers(this.props.food.popularity)}</div>
+            <div className="card d-flex flex-column mx-2 flex-wrap align-self-stretch rounded text-center food-party-card">
+                <div className="mx-0 px-2 py-2 dashed-border d-flex flex-column">
+                    <div className="d-flex flex-row flex-grow-1">
+                        <div className="px-2 flex-grow-1 flex-column mx-auto">
+                            <div className="special-food-name text-right" dir="rtl">{this.props.food.name}</div>
+                            <div className="flaticon-star food-card-star text-right" dir="rtl"> {translateEnglishToPersianNumbers(this.props.food.popularity)}</div>
                         </div>
-                        <img alt="" className="special-food-card-image" src={this.props.food.image}/>
+                        <img className="special-food-card-image" src={this.props.food.image} alt="restaurant image"/>
                     </div>
-                    <div className="row special-food-row mx-0 my-1">
-                        <div className="col-6 px-2 cost-font text-right">
+                    <div className="d-flex flex-row my-1">
+                        <div className="flex-fill px-1 cost-font text-center">
                             {translateEnglishToPersianNumbers(this.props.food.price)}
                         </div>
-                        <div className="col-6 px-2 cost-font text-left old-cost">
+                        <div className="flex-fill px-1 cost-font text-center old-cost">
                             {translateEnglishToPersianNumbers(this.props.food.oldPrice)}
                         </div>
                     </div>
-                    <div className="row special-food-row mx-auto">
-                        <button type="submit" className={buttonClasses} onClick={btnOnClick}>
+                    <div className="d-flex flex-row mx-0 justify-content-between">
+                        <button type="submit" className={buttonClasses} onClick={()=>btnOnClick()}>
                             خرید
                         </button>
-                        <div className="mx-auto rounded-lg border count-box count-box-color">
+                        <div className="mx-1 flex-fill rounded-lg border count-box count-box-color">
                             موجودی: {translateEnglishToPersianNumbers(this.props.food.count)}
                         </div>
                     </div>
                 </div>
-                <p className="text-center footer-font-size mb-0">{this.props.food.restaurantName}</p>
+                <p className="text-center mx-0 mb-0" dir="rtl">{this.props.food.restaurantName}</p>
                 <FoodCardModal id={"modal-"+this.props.id} food={this.props.food} restaurant={this.props.restaurantName} restaurantId={this.props.food.restaurantId} special={true}></FoodCardModal>
             </div>
         )

@@ -33,14 +33,6 @@
     text-shadow: 1px 1px 1px rgb(77, 77, 77);
 }
 
-.search-box-radius, .search-box {
-    border-radius: 0.3em;
-}
-
-.search-box-margin {
-    margin: 0em 0.2em;
-}
-
 .search-box {
     width: 25em;
     height: 3.4em;
@@ -48,11 +40,13 @@
     box-shadow: 0px 1px 2px 1px rgb(167, 165, 165);
 }
 
-input {
+.search-box-input {
+    border-radius: 0.3em;
+    margin: 0em 0.2em;
     background-color: #F1F1F1;
 }
 
-input::placeholder {
+.search-box-input::placeholder {
     font-size: 0.8em;
     text-align: center;
 }
@@ -65,9 +59,9 @@ input::placeholder {
 }
 
 .food-party-time {
-    width: 11em;
-    height: 3em;
-    font-size: 0.5em;
+    width: 13em;
+    height: 2em;
+    font-size: 0.8em;
     border: 1px solid;
     border-color: #1A535C;
     border-radius: 0.5em;
@@ -78,76 +72,61 @@ input::placeholder {
 }
 
 .restaurant-card {
-    width: 8em;
+    width: 9em;
     box-shadow: 0px 1px 1px 2px #F1F1F1;
     border-radius: 10px;
     margin: 0.5em 0.8em;
 }
 
 .restaurant-name-text {
-    font-size: 0.7em;
+    font-size: 1em;
 }
 
 .restaurant-image {
-    width: 4em;
-    height: 4em;
+    width: 4.5em;
+    height: 4.5em;
 }
 
 .menu-button {
-    font-size: 0.7em;
+    font-size: 0.9em;
     border-radius: 0.4em;
 }
+
 
 .swiper-container {
     width: 100%;
     box-shadow: 0px 0px 3px 3px #F1F1F1;
     overflow: auto;
-    display: flex;
-    flex-flow: row nowrap;
-    white-space: nowrap;
 }
 
-.special-food-card {
-    flex: 1;
-    flex-grow: initial;
-    width: 7.6em;
+.food-party-card {
     box-shadow: 0px 1px 2px 1px rgb(148, 148, 148);
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 9em;
 }
 
 .special-food-card-image {
-    width: 3em;
-    height: 3em;
-    border-radius: 0.3em;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 0.4em;
 }
 
 .special-food-name {
-    width: 4em;
-    font-size: 0.7em;
-    overflow: hidden;
-}
-
-.special-food-image-row {
-    width: 6.7em;
-    height: 50%;
-}
-
-.special-food-row {
-    width: 6.7em;
-    height: 20%;
+    font-size: 0.9em;
 }
 
 .food-card-star{
-    text-align: right;
-    font-size: 0.5em;
+    font-size: 0.7em;
 }
 
 .food-card-star::before{
     color: rgb(240, 156, 0);
-    font-size: 0.5em;
+    font-size: 0.7em;
 }
 
 .cost-font {
-    font-size: 0.7em;
+    font-size: 0.9em;
 }
 
 .old-cost {
@@ -156,13 +135,12 @@ input::placeholder {
     text-decoration-color: red;
 }
 
-.count-box-color {
-    background-color: #F7FFF7;
+.count-box {
+    font-size: 0.7em;
 }
 
-.count-box {
-    font-size: 0.5em;
-    width: 6em;
+.count-box-color {
+    background-color: #F7FFF7;
 }
 
 .dashed-border {
@@ -171,7 +149,6 @@ input::placeholder {
 
 .footer-font-size {
     font-size: 0.6em;
-    overflow: hidden;
 }
 
 .btn-gray {
