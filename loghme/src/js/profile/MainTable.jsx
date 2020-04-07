@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import "../../css/profilePage.css"
 import "../../css/flaticon.css"
 import * as $ from "jquery"
+import { translateEnglishToPersianNumbers } from "../Utils";
 
 
 export class MainTable extends Component {
 
     constructor(props) {
         super(props)
+        console.log(this.props.orders)
         this.state = {
             innerContent : "Orders",
             changePage: this.changePage.bind(this)
@@ -71,7 +73,7 @@ class OrderList extends Component {
         return ( 
             <div className="border mx-auto p-4 pt-5 bg-white order-container">
                 {(this.props.orders.length) ?
-                this.props.orders.map((element, i) => <OrderItem status={element.orderStatus} restaurantName={element.restaurantName} itemNumber={i} orderId={element.id}></OrderItem>) : 
+                this.props.orders.map((element, i) => <OrderItem key={i} status={element.orderStatus} restaurantName={element.restaurantName} itemNumber={i + 1} orderId={element.id} orderDetails={element.details}></OrderItem>) : 
                 <p>سفارش ثبت‌شده‌ای ندارید. برای ثبت سفارش به صفحات رستوران‌ها مراجعه کنید</p>}
             </div>
         )
@@ -82,9 +84,6 @@ class OrderItem extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            details: []
-        }
         this.showOrderDetails = this.showOrderDetails.bind(this)
     }
 
@@ -92,35 +91,20 @@ class OrderItem extends Component {
         $("#order-detail-" + this.props.orderId).modal('show')
     }
 
-    componentDidMount() {
-        let req = new XMLHttpRequest()
-        req.onreadystatechange = function() {
-            if (req.readyState == 4) {
-                if (req.status == 200) {
-                    this.setState({
-                        details: JSON.parse(req.response)
-                    })
-                }
-            }
-        }.bind(this)
-        req.open("GET", "http://127.0.0.1:8080/users/1/orders/" + this.props.orderId, true)
-        req.send()
-    }
-
     render() {
         return (
             <div className={"row m-3 mint-cream align-items-center order-list-item border text-center"}>
                 <span className="col-5">
                     {
-                        ((!this.props.status.localeCompare("delivered")) ?  
+                        ((!this.props.status.localeCompare("Delivered")) ?  
                             <button className={"rounded border-0 mx-auto px-1 delivered order-status-font"} onClick={this.showOrderDetails}>
                                 مشاهده فاکتور
                             </button> : 
-                        (!this.props.status.localeCompare("delivering")) ?
+                        (!this.props.status.localeCompare("InRoad")) ?
                             <div className={"rounded border-0 mx-auto px-1 delivering order-status-font"}>
                                 پیک در مسیر
                             </div> : 
-                        (!this.props.status.localeCompare("findingDelivery")) ?
+                        (!this.props.status.localeCompare("DeliveryManFinding")) ?
                             <div className={"rounded border-0 mx-auto px-1 finding-delivery order-status-font"}>
                                 در جست‌وجوی پیک
                             </div> : null)
@@ -129,8 +113,9 @@ class OrderItem extends Component {
                 <span className="col-6 border-right border-left h-100">
                     <div className="m-2 restaurant-name">{this.props.restaurantName}</div>
                 </span>
-                <span className="col-1">{this.props.itemNumber}</span>
-                <OrderDetail id={"order-detail-" + this.props.orderId} details={this.state.details}>{this.props.restaurantName}</OrderDetail>
+                <span className="col-1">{translateEnglishToPersianNumbers(this.props.itemNumber)}</span>
+                {console.log("HSY" + this.props.orderDetails)}
+                <OrderDetail id={"order-detail-" + this.props.orderId} details={this.props.orderDetails}>{this.props.restaurantName}</OrderDetail>
             </div>
         )
     }
@@ -138,21 +123,26 @@ class OrderItem extends Component {
 
 class OrderDetail extends Component {
     render() {
+        // console.log("HAY" + this.props.details.order)
         let foodLists = this.props.details.order.map((element, i)=><tr><td>{i}</td><td>{element.name}</td><td>{element.count}</td><td>{element.cost}</td></tr>)
         return (
-            <div className="modal-dialog fade">
-                <h1 className="modal-header">{this.props.children}</h1>
+            <div className="modal fade in"  id={this.props.id}>
                 <div className="modal-body">
-                    <table>
-                        <tr>
-                            <th>ردیف</th>
-                            <th>نام غذا</th>
-                            <th>تعداد</th>
-                            <th>قیمت</th>
-                        </tr>
-                        {foodLists}
-                    </table>
-                    <p dir="rtl">جمع کل: {this.props.details.totalCost} تومان</p>
+                <div className="modal-content card mx-auto">
+                    <h1>{this.props.children}</h1>
+                        <table>
+                            <thead>
+                                <tr>ردیف</tr>
+                                <tr>نام غذا</tr>
+                                <tr>تعداد</tr>
+                                <tr>قیمت</tr>
+                            </thead>
+                            <tbody>
+                                {foodLists}
+                            </tbody>
+                        </table>
+                        <p dir="rtl">جمع کل: {this.props.details.totalCost} تومان</p>
+                    </div>
                 </div>
             </div>
         )
