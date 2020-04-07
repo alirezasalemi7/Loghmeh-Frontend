@@ -9,31 +9,34 @@ import { RestaurantsContainer } from "./Restaurants";
 import { FoodPartyContainer } from "./FoodPartyContainer";
 import {PageLoaderSpinner} from '../PageLoadSpinner'
 import * as $ from 'jquery'
+import {OrdersContext} from '../context/OrdersContext'
 
 export class Home extends Component {
 
     render() {
         return (
             <SnackBarContext>
-                <CartContext>
-                    <SnackBarGlobalContext.Consumer>
-                        {
-                            (data) => {
-                                this.show = data.showSnackbar
-                                return (
-                                    <div className="container-fluid" id="body-container">
-                                        <NavBar history={this.props.history}></NavBar>
-                                        <HomeHeader></HomeHeader>
-                                        <FoodPartyContainer></FoodPartyContainer>
-                                        <RestaurantsContainer history={this.props.history}></RestaurantsContainer>
-                                    </div>
-                                )
+                <OrdersContext>
+                    <CartContext>
+                        <SnackBarGlobalContext.Consumer>
+                            {
+                                (data) => {
+                                    this.show = data.showSnackbar
+                                    return (
+                                        <div className="container-fluid" id="body-container">
+                                            <NavBar history={this.props.history}></NavBar>
+                                            <HomeHeader></HomeHeader>
+                                            <FoodPartyContainer></FoodPartyContainer>
+                                            <RestaurantsContainer history={this.props.history}></RestaurantsContainer>
+                                        </div>
+                                    )
+                                }
                             }
-                        }
-                    </SnackBarGlobalContext.Consumer>
-                    <PageLoaderSpinner id="loading-modal"></PageLoaderSpinner>
-                    <SnackBar></SnackBar>
-                </CartContext>
+                        </SnackBarGlobalContext.Consumer>
+                        <PageLoaderSpinner id="loading-modal"></PageLoaderSpinner>
+                        <SnackBar></SnackBar>
+                    </CartContext>
+                </OrdersContext>
             </SnackBarContext>
         )
     }

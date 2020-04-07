@@ -10,6 +10,7 @@ import { SnackBar } from "../SnackBar"
 import { isReal } from "../Utils"
 import * as $ from 'jquery'
 import {PageLoaderSpinner} from '../PageLoadSpinner'
+import {OrdersContext} from '../context/OrdersContext'
 
 export class ProfilePage extends Component {
 
@@ -17,7 +18,6 @@ export class ProfilePage extends Component {
         super(props)
         this.state = {
             user : [],
-            orders : [],
             increase: this.increase.bind(this),
             getUserInfo: this.getUserInfo.bind(this)
         }
@@ -29,31 +29,32 @@ export class ProfilePage extends Component {
     render() {
         return (
             <SnackBarContext>
-                <CartContext>
-                    <SnackBarGlobalContext.Consumer>
-                        {
-                            (data) => {
-                                this.show = data.showSnackbar
-                                return (
-                                    <div className="container-fluid" id="body-container">
-                                        <NavBar history={this.props.history}></NavBar>
-                                        <UserInfoHeader user={this.state.user}></UserInfoHeader>
-                                        <MainTable increase={this.state.increase} orders={this.state.orders}></MainTable>
-                                    </div>
-                                )
+                <OrdersContext>
+                    <CartContext>
+                        <SnackBarGlobalContext.Consumer>
+                            {
+                                (data) => {
+                                    this.show = data.showSnackbar
+                                    return (
+                                        <div className="container-fluid" id="body-container">
+                                            <NavBar history={this.props.history}></NavBar>
+                                            <UserInfoHeader user={this.state.user}></UserInfoHeader>
+                                            <MainTable increase={this.state.increase}></MainTable>
+                                        </div>
+                                    )
+                                }
                             }
-                        }
-                    </SnackBarGlobalContext.Consumer>
-                    <SnackBar></SnackBar>
-                    <PageLoaderSpinner id="loading-modal"></PageLoaderSpinner>
-                </CartContext>
+                        </SnackBarGlobalContext.Consumer>
+                        <SnackBar></SnackBar>
+                        <PageLoaderSpinner id="loading-modal"></PageLoaderSpinner>
+                    </CartContext>
+                    </OrdersContext>
             </SnackBarContext>
         )
     }
 
     componentDidMount() {
         this.getUserInfo()
-        this.getOrders()
         $("#loading-modal").modal('show')
     }
 
@@ -112,7 +113,7 @@ export class ProfilePage extends Component {
                     this.setState({
                         user: JSON.parse(req.response)
                     })
-                    setTimeout(()=>{$("#loading-modal").modal('hide')},1000)
+                    setTimeout(()=>{$("#loading-modal").modal('hide')},2000)
                 }
             }
         }.bind(this)

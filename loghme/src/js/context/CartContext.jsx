@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import {SnackBarGlobalContext} from './SnackBarContext'
+import {OdresGlobalContext} from './OrdersContext'
 
 export const CartGlobalContext = React.createContext()
 
@@ -24,18 +25,30 @@ export class CartContext extends Component {
 
     render(){
         return(
-            <SnackBarGlobalContext.Consumer>
-                {
-                    (data)=>{
-                        this.show = data.showSnackbar
-                        return(
-                            <CartGlobalContext.Provider value = {this.state}>
-                                {this.props.children}
-                            </CartGlobalContext.Provider>
-                        )
+            <div>
+                <SnackBarGlobalContext.Consumer>
+                    {
+                        (data)=>{
+                            this.show = data.showSnackbar
+                            return(
+                                <div>
+                                    <CartGlobalContext.Provider value = {this.state}>
+                                        {this.props.children}
+                                    </CartGlobalContext.Provider>
+                                </div>
+                            )
+                        }
                     }
-                }
-            </SnackBarGlobalContext.Consumer>
+                </SnackBarGlobalContext.Consumer>
+                <OdresGlobalContext.Consumer>
+                    {
+                        (data)=>{
+                            this.updateOrders = data.getOrders
+                            return(<div></div>)
+                        }
+                    }
+                </OdresGlobalContext.Consumer>
+            </div>
         );
     }
 
@@ -91,6 +104,7 @@ export class CartContext extends Component {
                     spinner : false
                 }))
                 this.show("ثبتش کردم :D")
+                this.updateOrders()
                 this.updateState()
             }
             else if(req.readyState === 4 && req.status === 500){

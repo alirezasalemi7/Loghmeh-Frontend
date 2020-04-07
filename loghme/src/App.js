@@ -35,7 +35,7 @@ function App() {
 
 function LoginRender(){
   if(localStorage.getItem('auth')){
-    return(<Redirect to="\home"></Redirect>)
+    return(<Redirect to="/home"></Redirect>)
   }
   else{
     return (<LoginPage history={history}></LoginPage>)
@@ -44,7 +44,7 @@ function LoginRender(){
 
 function SignupRender(){
   if(localStorage.getItem('auth')){
-    return(<Redirect to="\home"></Redirect>)
+    return(<Redirect to="/home"></Redirect>)
   }
   else{
     return (<SignupPage history={history}></SignupPage>)
@@ -53,7 +53,7 @@ function SignupRender(){
 
 function ProfileRender(){
   if(!localStorage.getItem('auth')){
-    return(<Redirect to="\login"></Redirect>)
+    return(<Redirect to="/login"></Redirect>)
   }
   else{
     return (<ProfilePage history={history}></ProfilePage>)
@@ -62,7 +62,7 @@ function ProfileRender(){
 
 function HomeRender(){
   if(!localStorage.getItem('auth')){
-    return(<Redirect to="\login"></Redirect>)
+    return(<Redirect to="/login"></Redirect>)
   }
   else{
     return (<Home history={history}></Home>)
@@ -71,7 +71,7 @@ function HomeRender(){
 
 function RestaurantRender(id){
   if(!localStorage.getItem('auth')){
-    return(<Redirect to="\login"></Redirect>)
+    return(<Redirect to="/login"></Redirect>)
   }
   else{ 
     return (<RestaurantPage history={history} id={id}></RestaurantPage>)

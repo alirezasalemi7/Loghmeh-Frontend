@@ -3,7 +3,7 @@ import "../../css/profilePage.css"
 import "../../css/flaticon.css"
 import * as $ from "jquery"
 import { translateEnglishToPersianNumbers } from "../Utils";
-
+import {OdresGlobalContext} from '../context/OrdersContext'
 
 export class MainTable extends Component {
 
@@ -27,7 +27,7 @@ export class MainTable extends Component {
         return (
             <div>
                 <SelectorButtons activeButton={this.state.innerContent} changePage={this.state.changePage}></SelectorButtons>
-                {(!this.state.innerContent.localeCompare("Orders")) ? <OrderList orders={this.props.orders}></OrderList> : <CreditPart increase={(amount)=>{this.props.increase(amount)}}></CreditPart>}
+                {(!this.state.innerContent.localeCompare("Orders")) ? <OrderList></OrderList> : <CreditPart increase={(amount)=>{this.props.increase(amount)}}></CreditPart>}
             </div>
         )
     }
@@ -70,11 +70,15 @@ class OrderList extends Component {
     render() {
         // TODO: add go to restaurant page in else of orderList
         return ( 
-            <div className="border mx-auto p-4 pt-5 bg-white order-container">
-                {(this.props.orders.length) ?
-                this.props.orders.map((element, i) => <OrderItem key={i} status={element.orderStatus} restaurantName={element.restaurantName} itemNumber={i + 1} orderId={element.id} orderDetails={element.details}></OrderItem>) : 
-                <p>سفارش ثبت‌شده‌ای ندارید. برای ثبت سفارش به صفحات رستوران‌ها مراجعه کنید</p>}
-            </div>
+            <OdresGlobalContext.Consumer>
+                {
+                    (data)=><div className="border mx-auto p-4 pt-5 bg-white order-container">
+                        {(data.orders.length) ?
+                        data.orders.map((element, i) => <OrderItem key={i} status={element.orderStatus} restaurantName={element.restaurantName} itemNumber={i + 1} orderId={element.id} orderDetails={element.details}></OrderItem>) : 
+                        <p>سفارش ثبت‌شده‌ای ندارید. برای ثبت سفارش به صفحات رستوران‌ها مراجعه کنید</p>}
+                    </div>
+                }
+            </OdresGlobalContext.Consumer>
         )
     }
 }
@@ -110,9 +114,9 @@ class OrderItem extends Component {
                     }
                 </span>
                 <span className="col-6 border-right border-left h-100">
-                    <div className="m-2 restaurant-name">{this.props.restaurantName}</div>
+                    <div className="m-2 restaurant-name" dir="rtl">{this.props.restaurantName}</div>
                 </span>
-                <span className="col-1">{translateEnglishToPersianNumbers(this.props.itemNumber)}</span>
+                <span className="col-1" dir="rtl">{translateEnglishToPersianNumbers(this.props.itemNumber)}</span>
                 {console.log("HSY" + this.props.orderDetails)}
                 <OrderDetail id={"order-detail-" + this.props.orderId} details={this.props.orderDetails}>{this.props.restaurantName}</OrderDetail>
             </div>
