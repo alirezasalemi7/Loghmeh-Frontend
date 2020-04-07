@@ -103,7 +103,8 @@ class Timer extends Component {
             }
             if (this.state.seconds === -1) {
                 if (this.state.minutes === 0) {
-                    console.log("HERE")
+                    console.log("HEREEEE")
+                    clearInterval(this.myInterval)
                     this.props.runAtTimesup()
                 } else {
                     this.setState(() => ({
