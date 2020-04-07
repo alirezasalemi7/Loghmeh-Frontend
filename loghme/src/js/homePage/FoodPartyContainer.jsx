@@ -13,18 +13,28 @@ export class FoodPartyContainer extends Component {
         super(props)
         this.state = {
             foods: [],
-            deadLine: 0
+            minutes: 0,
+            seconds: 0
         }
         this.getFoods = this.getFoods.bind(this)
     }
 
     getFoods() {
+        this.setState({
+            foods: [],
+            minutes: 1,
+            seconds: 0
+        })
         let req = new XMLHttpRequest()
         req.onreadystatechange = function() {
             if (req.readyState == 4) {
                 if (req.status == 200) {
+                    console.log(JSON.parse(req.response))
+                    let completeInfo = JSON.parse(req.response)
                     this.setState({
-                        foods: JSON.parse(req.response)
+                        foods: completeInfo.foods,
+                        minutes: completeInfo.minutes,
+                        seconds: completeInfo.seconds
                     })
                 } else {
                     this.show('لطفا دوباره تلاش کنید')
@@ -54,7 +64,7 @@ export class FoodPartyContainer extends Component {
                                 <div>
                                     <div className="text-center">
                                         <p className="part-title mx-auto mb-2" dir="rtl">جشن غذا!</p>
-                                        <div className="food-party-time py-1 mx-auto">زمان باقی‌مانده: ۱۲:۲۴</div>
+                                        <Timer minutes={this.state.minutes} seconds={this.state.seconds} runAtTimesup={()=>this.getFoods()}></Timer>
                                     </div>
                                     <div className="swiper-container mt-2 mb-4 py-2 border justify-content-center">
                                         {foodCards}
@@ -70,6 +80,53 @@ export class FoodPartyContainer extends Component {
     }
 }
 
+class Timer extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            minutes: 3,
+            seconds: 0,
+        }
+    }
+
+    componentDidMount() {
+        this.setState({
+            minutes: this.props.minutes,
+            seconds: this.props.seconds
+        })
+        this.myInterval = setInterval(() => {
+            if (this.state.seconds >= 0) {
+                this.setState(() => ({
+                    seconds: this.state.seconds - 1
+                }))
+            }
+            if (this.state.seconds === -1) {
+                if (this.state.minutes === 0) {
+                    console.log("HERE")
+                    this.props.runAtTimesup()
+                } else {
+                    this.setState(() => ({
+                        minutes: this.state.minutes - 1,
+                        seconds: 59
+                    }))
+                }
+            } 
+        }, 1000)
+    }
+
+    // componentWillUnmount() {
+    //     clearInterval(this.myInterval)
+    // }
+
+    render() {
+        const { minutes, seconds } = this.state
+        return (
+            <div className="food-party-time py-1 mx-auto" dir="rtl">زمان باقی‌مانده: {translateEnglishToPersianNumbers(minutes)}:{translateEnglishToPersianNumbers((seconds < 10) ? `0${seconds}` : seconds)}</div>
+        )
+    }
+}
+
 class FoodPartyFoodCard extends Component {
 
     openModal() {
@@ -79,7 +136,6 @@ class FoodPartyFoodCard extends Component {
     render() {
         let buttonClasses = "mx-auto rounded-lg count-box border-0 " + ((this.props.food.count === 0) ? "btn-gray" : "med-torq") + " text-white"
         let btnOnClick = ((this.props.food.count === 0) ? null : (e)=>this.openModal())
-        console.log(buttonClasses)
         return (
             <div className="border special-food-card mx-2 rounded text-center bg-white">
                 <div className="px-2 py-2 dashed-border">
