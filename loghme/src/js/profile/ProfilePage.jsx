@@ -79,7 +79,7 @@ export class ProfilePage extends Component {
         req.onerror = function() {
             this.show('سرورمون فعلا مشکل داره:(')
         }.bind(this)
-        req.open("POST", "http://127.0.0.1:8080/users/1/profile/addCredit", true);
+        req.open("PUT", "http://127.0.0.1:8080/users/1/profile/credit", true);
         req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         req.send(JSON.stringify({ "credit": amountValue}));
     }
