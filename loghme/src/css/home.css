@@ -176,4 +176,5 @@ input::placeholder {
 
 .btn-gray {
     background-color: rgb(180, 180, 180);
+    cursor: not-allowed !important; 
 }

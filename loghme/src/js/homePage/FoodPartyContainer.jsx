@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { SnackBarContext, SnackBarGlobalContext } from "../context/SnackBarContext";
 import { SnackBar } from "../SnackBar";
 import { translateEnglishToPersianNumbers } from "../Utils";
+import * as $ from "jquery"
+import { FoodCardModal } from "../FoodCard";
 
 
 export class FoodPartyContainer extends Component {
@@ -41,7 +43,7 @@ export class FoodPartyContainer extends Component {
     }
 
     render() {
-        let foodCards = this.state.foods.map((element)=><FoodPartyFoodCard food={element}></FoodPartyFoodCard>)
+        let foodCards = this.state.foods.map((element, i)=><FoodPartyFoodCard key={i} id={i} food={element}></FoodPartyFoodCard>)
         return (
             <SnackBarContext>
                 <SnackBarGlobalContext.Consumer>
@@ -70,8 +72,13 @@ export class FoodPartyContainer extends Component {
 
 class FoodPartyFoodCard extends Component {
 
+    openModal() {
+        $("#modal-"+this.props.id).modal('show')
+    }
+
     render() {
-        let buttonClasses = "mx-auto rounded-lg count-box border-0 " + ((this.props.food.count == 0) ? "btn-gray" : "med-torq") + " text-white"
+        let buttonClasses = "mx-auto rounded-lg count-box border-0 " + ((this.props.food.count === 0) ? "btn-gray" : "med-torq") + " text-white"
+        let btnOnClick = ((this.props.food.count === 0) ? null : (e)=>this.openModal())
         console.log(buttonClasses)
         return (
             <div className="border special-food-card mx-2 rounded text-center bg-white">
@@ -92,7 +99,7 @@ class FoodPartyFoodCard extends Component {
                         </div>
                     </div>
                     <div className="row special-food-row mx-auto">
-                        <button type="submit" className={buttonClasses}>
+                        <button type="submit" className={buttonClasses} onClick={btnOnClick}>
                             خرید
                         </button>
                         <div className="mx-auto rounded-lg border count-box count-box-color">
@@ -101,6 +108,7 @@ class FoodPartyFoodCard extends Component {
                     </div>
                 </div>
                 <p className="text-center footer-font-size mb-0">{this.props.food.restaurantName}</p>
+                <FoodCardModal id={"modal-"+this.props.id} food={this.props.food} restaurant={this.props.restaurantName} restaurantId={this.props.food.restaurantId} special={true}></FoodCardModal>
             </div>
         )
     }
