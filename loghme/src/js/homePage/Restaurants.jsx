@@ -47,8 +47,11 @@ export class RestaurantsContainer extends Component {
                         (data) => {
                             this.show = data.showSnackbar
                             return (
-                                <div class="row mx-auto mb-5 restaurant-container" dir="rtl">
-                                    {restaurants}
+                                <div class="text-center">
+                                    <p class="part-title mx-auto mb-3">رستوران‌ها</p>
+                                    <div class="row mx-auto mb-5 restaurant-container" dir="rtl">
+                                        {restaurants}
+                                    </div>
                                 </div>
                             )
                         }
