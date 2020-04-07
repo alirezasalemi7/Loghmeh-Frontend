@@ -6,7 +6,6 @@ import {SnackBarGlobalContext,SnackBarContext} from './context/SnackBarContext'
 import {CartContext} from './context/CartContext'
 import {SnackBar} from './SnackBar'
 import {PageLoaderSpinner} from './PageLoadSpinner'
-import {PageRouter} from './router/PageRouter'
 import * as $ from 'jquery'
 
 class LoginPageUpperRow extends Component {
@@ -17,7 +16,7 @@ class LoginPageUpperRow extends Component {
                 <div className="col-sm-6">
                     <div className="row">
                         <div className="col-sm-12 text-center">
-                            <img src={require("../assets/LOGO.png")} id="login-data-column-logo"></img>
+                            <img alt="" src={require("../assets/LOGO.png")} id="login-data-column-logo"></img>
                             <h2 dir="rtl" id="login-data-column-title">بزرگترین سایت سفارش غذا در دانشگاه تهران</h2>
                         </div>
                     </div>
@@ -54,12 +53,12 @@ export class LoginPage extends Component {
             <SnackBarContext>
                 <CartContext>
                     <div>
-                        <NavBar exit={false} account={false} cart={false} signup={true}></NavBar>
+                        <NavBar history={this.props.history} exit={false} account={false} cart={false} signup={true}></NavBar>
                         <div className="container-fluid" id="login-body-container">
                             <LoginPageUpperRow></LoginPageUpperRow>
                             <div className="row">
                                 <div className="col-sm-12" id="login-col">
-                                    <LoginCard></LoginCard>
+                                    <LoginCard history={this.props.history}></LoginCard>
                                 </div>
                             </div>
                         </div>
@@ -115,11 +114,11 @@ class LoginCard extends Component {
     onSubmit(){
         let empty = false
         let validation = {}
-        if(this.state.username=="" || this.state.username==undefined || this.state.username==null){
+        if(this.state.username==="" || this.state.username===undefined || this.state.username===null){
             validation.username_empty = true
             empty = true
         }
-        if(this.state.password=="" || this.state.password==undefined || this.state.password==null){
+        if(this.state.password==="" || this.state.password===undefined || this.state.password===null){
             validation.password_empty = true
             empty = true
         }
@@ -130,19 +129,18 @@ class LoginCard extends Component {
         else{
             //connect server
             if(true){ //login ok
-                this.gotoHomePage()
+                localStorage.setItem('auth','true')
+                this.props.history.push('/home')
             }
         }
     }
 
     gotoHomePage() {
-        let router = new PageRouter()
-        router.gotoHomePage()
+        this.props.history.push('/home')
     }
 
     gotoSignupPage(){
-        let router = new PageRouter()
-        router.gotoSignupPage()
+        this.props.history.push('/signup')
     }
 
     render(){
@@ -159,7 +157,7 @@ class LoginCard extends Component {
                 <div className="card" id="login-card">
                     <div className="card-header">
                         <div className="col-sm-12 text-center">
-                            <img id="login-card-logo" src={require("../assets/LOGO.png")}></img>
+                            <img alt="" id="login-card-logo" src={require("../assets/LOGO.png")}></img>
                             <p className="login-data-column-info-text" dir="rtl"> میخوای بیای تو؟ باشه اول وارد شو بعدش کلی خوراکی منتظرته ;)</p>
                         </div>
                     </div>

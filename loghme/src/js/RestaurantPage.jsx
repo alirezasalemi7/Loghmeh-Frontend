@@ -49,10 +49,10 @@ export class RestaurantPage extends Component {
         let req = new XMLHttpRequest()
         req.responseType = 'json'
         req.onreadystatechange = function() {
-            if(req.readyState == 4){
+            if(req.readyState === 4){
                 $("#loading-modal").modal('hide')
             }
-            if(req.readyState == 4 && req.status == 200) {
+            if(req.readyState === 4 && req.status === 200) {
                 this.setState((state,props)=>({
                     logo : req.response.logo,
                     menu : req.response.menu,
@@ -61,15 +61,15 @@ export class RestaurantPage extends Component {
                     valid : true
                 }))
             }
-            else if(req.readyState == 4 && req.status == 500){
+            else if(req.readyState === 4 && req.status === 500){
                 this.setState({name:"سرور قطعه",logo:LoghmehLogo})
                 this.show("سرورمون فعلا مشکل داره :(")
             }
-            else if(req.readyState == 4 && req.status == 404){
+            else if(req.readyState === 4 && req.status === 404){
                 this.setState({name:"رستوران وجود نداره",logo:LoghmehLogo})
                 this.show("این رستوران وجود نداره :(")
             }
-            else if(req.readyState == 4 && req.status == 403){
+            else if(req.readyState === 4 && req.status === 403){
                 this.setState({name:"درسترسی غیر مجاز",logo:LoghmehLogo})
                 this.show("اجازه دسترسی به این رستورانو نداری :(")
             }
@@ -93,7 +93,7 @@ export class RestaurantPage extends Component {
                                 this.show = data.showSnackbar
                                 return(
                                     <div>
-                                        <NavBar></NavBar>
+                                        <NavBar history={this.props.history}></NavBar>
                                         <div className="container-fluid" id="restaurant-body-container">
                                             <RestaurantInfoBar restaurantName={this.state.name} imgSrc={this.state.logo}></RestaurantInfoBar>
                                             <div className="row" id="restaurant-middle-row">

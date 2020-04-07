@@ -4,7 +4,6 @@ import { CartGlobalContext } from './context/CartContext'
 import {translateEnglishToPersianNumbers} from './Utils'
 import {CartModal} from './Cart'
 import * as $ from 'jquery'
-import {PageRouter} from './router/PageRouter'
 
 export class NavBar extends Component {
     
@@ -15,32 +14,32 @@ export class NavBar extends Component {
         this.login = this.login.bind(this)
         this.signup = this.signup.bind(this)
         this.profile = this.profile.bind(this)
-        this.router = new PageRouter()
+        this.history = this.props.history
     }
 
     static defaultProps = {
         exit : true,
         account : true,
-        account_func : ()=>{},
         cart : true,
         login : false,
         signup : false,
     }
 
     exit(){
-        this.router.gotoLoginPage()
+        localStorage.removeItem('auth')
+        this.props.history.push('/')
     }
 
     login(){
-        this.router.gotoLoginPage()
+        this.props.history.push('/')
     }
 
     profile() {
-        this.router.gotoProfilePage()
+        this.props.history.push('/profile')
     }
 
     signup(){
-        this.router.gotoSignupPage()
+        this.props.history.push('/signup')
     }
 
     openCart(){

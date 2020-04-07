@@ -33,14 +33,14 @@ export class Cart extends Component {
                                     </div>
                                 </div>
                                 <div className="cart-list">
-                                    {data.orders.length == 0 &&
+                                    {data.orders.length === 0 &&
                                         <div className="row">
                                             <div className="col-sm-12 text-center">
                                                 <p className="cart-total" dir="rtl">هنوز هیچی نخریدی!</p>
                                             </div>
                                         </div>
                                     }
-                                    {data.orders.length != 0 &&
+                                    {data.orders.length !== 0 &&
                                         data.orders.map((element,i) => <CartItem item={element} increase = {data.increase} decrease = {data.decrease} key={i} ></CartItem>)
                                     }
                                 </div>
@@ -50,7 +50,7 @@ export class Cart extends Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-sm-12 text-center"><button className={"btn btn-sm"} disabled={data.orders.length==0} onClick={()=>{data.finalize()}} id="btn-finalize">تایید نهایی</button></div>
+                                    <div className="col-sm-12 text-center"><button className={"btn btn-sm"} disabled={data.orders.length===0} onClick={()=>{data.finalize()}} id="btn-finalize">تایید نهایی</button></div>
                                 </div>
                                 <div className="row">
                                     <div className="col-sm-12">
@@ -68,10 +68,6 @@ export class Cart extends Component {
 
 class CartItem extends Component {
     
-    constructor(props){
-        super(props)
-    }
-
     render(){
         return(
             <div className="row">

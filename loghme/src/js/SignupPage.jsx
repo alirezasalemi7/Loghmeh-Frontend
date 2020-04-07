@@ -8,7 +8,6 @@ import {validateEmail,isNumeric} from './Utils'
 import {SnackBar} from './SnackBar'
 import {PageLoaderSpinner} from './PageLoadSpinner'
 import * as $ from 'jquery'
-import {PageRouter} from './router/PageRouter'
 
 export class SignupPage extends Component {
     
@@ -16,13 +15,13 @@ export class SignupPage extends Component {
         return(
             <SnackBarContext>
                 <CartContext>
-                    <NavBar exit={false} account={false} cart={false} login={true}></NavBar>
+                    <NavBar history={this.props.history} exit={false} account={false} cart={false} login={true}></NavBar>
                     <div className="container-fluid" id="body-container">
                         <SignupPageUpperRow></SignupPageUpperRow>
                         <div className="row">
                             <div className="col-sm-12" id="signup-card-col">
                                 <div className="card" id="signup-card">
-                                    <SignupCard></SignupCard>
+                                    <SignupCard history={this.props.history}></SignupCard>
                                 </div>
                             </div>
                         </div>    
@@ -104,23 +103,23 @@ class SignupCard extends Component{
         let empty = false
         let err_email = false
         let err_phone = false
-        if(this.state.firstname=="" || this.state.firstname==null || this.state.firstname==undefined){
+        if(this.state.firstname==="" || this.state.firstname===null || this.state.firstname===undefined){
             validatation.firstname_empty = true
             empty = true
         }
-        if(this.state.lastname=="" || this.state.lastname==null || this.state.lastname==undefined){
+        if(this.state.lastname==="" || this.state.lastname===null || this.state.lastname===undefined){
             validatation.lastname_empty = true
             empty = true
         }
-        if(this.state.phone=="" || this.state.phone==null || this.state.phone==undefined){
+        if(this.state.phone==="" || this.state.phone===null || this.state.phone===undefined){
             validatation.phone_empty = true
             empty = true
         }
-        else if(!(isNumeric(this.state.phone) && this.state.phone.length==11)){
+        else if(!(isNumeric(this.state.phone) && this.state.phone.length===11)){
             err_phone = true
             validatation.phone_err = true
         }
-        if(this.state.email=="" || this.state.email==null || this.state.email==undefined){
+        if(this.state.email==="" || this.state.email===null || this.state.email===undefined){
             validatation.email_empty = true
             empty = true
         }
@@ -128,11 +127,11 @@ class SignupCard extends Component{
             err_email = true
             validatation.email_err = true
         }
-        if(this.state.password=="" || this.state.password==null || this.state.password==undefined){
+        if(this.state.password==="" || this.state.password===null || this.state.password===undefined){
             validatation.password_empty = true
             empty = true
         }
-        if(this.state.re_password=="" || this.state.re_password==null || this.state.re_password==undefined){
+        if(this.state.re_password==="" || this.state.re_password===null || this.state.re_password===undefined){
             validatation.re_password_empty = true
             empty = true
         }
@@ -166,8 +165,7 @@ class SignupCard extends Component{
                 this.show('ثبت‌نام موفق بود! برو وارد شو',2000)
                 setTimeout(
                     ()=>{
-                        let router = new PageRouter()
-                        router.gotoLoginPage()
+                        this.props.history.push('/')
                     },
                     2000
                 )
@@ -176,8 +174,7 @@ class SignupCard extends Component{
     }
 
     gotoLoginPage(){
-        let router = new PageRouter()
-        router.gotoLoginPage()
+        this.props.history.push('/')
     }
     
     render(){
@@ -260,7 +257,7 @@ class SignupPageUpperRow extends Component {
             <div className="row" id="signup-upper-row">
                 <div className="signup-layer"></div>
                 <div className="col-sm-12 text-center">
-                    <img src={require('../assets/LOGO.png')} id="upper-row-img"></img>
+                    <img alt="" src={require('../assets/LOGO.png')} id="upper-row-img"></img>
                     <h2 dir="rtl" id="upper-row-title">بزرگترین سایت سفارش غذا در دانشگاه تهران</h2>
                 </div>
             </div>

@@ -8,7 +8,8 @@ import { SnackBarContext, SnackBarGlobalContext } from "../context/SnackBarConte
 import { CartContext } from "../context/CartContext"
 import { SnackBar } from "../SnackBar"
 import { isReal } from "../Utils"
-
+import * as $ from 'jquery'
+import {PageLoaderSpinner} from '../PageLoadSpinner'
 
 export class ProfilePage extends Component {
 
@@ -35,7 +36,7 @@ export class ProfilePage extends Component {
                                 this.show = data.showSnackbar
                                 return (
                                     <div className="container-fluid" id="body-container">
-                                        <NavBar></NavBar>
+                                        <NavBar history={this.props.history}></NavBar>
                                         <UserInfoHeader user={this.state.user}></UserInfoHeader>
                                         <MainTable increase={this.state.increase} orders={this.state.orders}></MainTable>
                                     </div>
@@ -44,6 +45,7 @@ export class ProfilePage extends Component {
                         }
                     </SnackBarGlobalContext.Consumer>
                     <SnackBar></SnackBar>
+                    <PageLoaderSpinner id="loading-modal"></PageLoaderSpinner>
                 </CartContext>
             </SnackBarContext>
         )
@@ -52,6 +54,7 @@ export class ProfilePage extends Component {
     componentDidMount() {
         this.getUserInfo()
         this.getOrders()
+        $("#loading-modal").modal('show')
     }
 
     increase(amount) {
@@ -66,12 +69,11 @@ export class ProfilePage extends Component {
         }
         let req = new XMLHttpRequest()
         req.onreadystatechange = function() {
-            if (req.readyState == 4) {
-                let response = JSON.parse(req.response)
-                if (req.status == 200) {
+            if (req.readyState === 4) {
+                if (req.status === 200) {
                     this.show('با موفقیت انجام شد:)')
                     this.getUserInfo()
-                } else if (req.status == 400) {
+                } else if (req.status === 400) {
                     this.show('درخواست اشتباه. دوباره تلاش کنید.')
                 }
             }
@@ -87,8 +89,8 @@ export class ProfilePage extends Component {
     getOrders() {
         let req = new XMLHttpRequest()
         req.onreadystatechange = function() {
-            if (req.readyState == 4) {
-                if (req.status == 200) {
+            if (req.readyState === 4) {
+                if (req.status === 200) {
                     this.setState({
                         orders: JSON.parse(req.response)
                     })
@@ -105,11 +107,12 @@ export class ProfilePage extends Component {
     getUserInfo() {
         let req = new XMLHttpRequest()
         req.onreadystatechange = function() {
-            if (req.readyState == 4) {
-                if (req.status == 200) {
+            if (req.readyState === 4) {
+                if (req.status === 200) {
                     this.setState({
                         user: JSON.parse(req.response)
                     })
+                    setTimeout(()=>{$("#loading-modal").modal('hide')},1000)
                 }
             }
         }.bind(this)

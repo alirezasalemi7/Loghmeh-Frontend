@@ -27,8 +27,8 @@ export class FoodPartyContainer extends Component {
         })
         let req = new XMLHttpRequest()
         req.onreadystatechange = function() {
-            if (req.readyState == 4) {
-                if (req.status == 200) {
+            if (req.readyState === 4) {
+                if (req.status === 200) {
                     console.log(JSON.parse(req.response))
                     let completeInfo = JSON.parse(req.response)
                     this.setState({
@@ -60,7 +60,7 @@ export class FoodPartyContainer extends Component {
                     {
                         (data)=> {
                             this.show = data.showSnackbar
-                            return (foodCards.length == 0) ? null : (
+                            return (foodCards.length === 0) ? null : (
                                 <div>
                                     <div className="text-center">
                                         <p className="part-title mx-auto mb-2" dir="rtl">جشن غذا!</p>
@@ -145,7 +145,7 @@ class FoodPartyFoodCard extends Component {
                             <div className="special-food-name text-center" dir="rtl">{this.props.food.name}</div>
                             <div className="flaticon-star food-card-star px-1" dir="rtl"> {translateEnglishToPersianNumbers(this.props.food.popularity)}</div>
                         </div>
-                        <img className="special-food-card-image" src={this.props.food.image}/>
+                        <img alt="" className="special-food-card-image" src={this.props.food.image}/>
                     </div>
                     <div className="row special-food-row mx-0 my-1">
                         <div className="col-6 px-2 cost-font text-right">

@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {SnackBarContext,SnackBarGlobalContext} from './SnackBarContext'
+import {SnackBarGlobalContext} from './SnackBarContext'
 
 export const CartGlobalContext = React.createContext()
 
@@ -47,7 +47,7 @@ export class CartContext extends Component {
         let req = new XMLHttpRequest()
         req.responseType = 'json'
         req.onreadystatechange = function() {
-            if(req.readyState == 4 && req.status == 200) {
+            if(req.readyState === 4 && req.status === 200) {
                 this.state.orders = []
                 this.setState((state,props)=>({
                     orders : req.response.orders,
@@ -55,7 +55,7 @@ export class CartContext extends Component {
                     spinner : false
                 }))
             }
-            else if(req.readyState == 4 && req.status == 500){
+            else if(req.readyState === 4 && req.status === 500){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
@@ -84,7 +84,7 @@ export class CartContext extends Component {
             this.show("سرورمون فعلا مشکل داره :(")
         }.bind(this)
         req.onreadystatechange = function() {
-            if(req.readyState == 4 && req.status == 200) {
+            if(req.readyState === 4 && req.status === 200) {
                 this.setState((state,props)=>({
                     orders : [],
                     total : 0,
@@ -93,18 +93,18 @@ export class CartContext extends Component {
                 this.show("ثبتش کردم :D")
                 this.updateState()
             }
-            else if(req.readyState == 4 && req.status == 500){
+            else if(req.readyState === 4 && req.status === 500){
                 this.setState((state,props)=>({
                     spinner : false
                 }))
                 this.show("سرورمون فعلا مشکل داره :(")
             }
-            else if(req.readyState == 4 && req.status == 400){
+            else if(req.readyState === 4 && req.status === 400){
                 this.setState((state,props)=>{
                     let ans = {
                         spinner : false
                     }
-                    if(req.response.status == 40001){
+                    if(req.response.status === 40001){
                         this.show("نمیتونی با سبد خالی سفارش بدی!")
                     }
                     else{
@@ -133,55 +133,55 @@ export class CartContext extends Component {
         }.bind(this)
         // onreadystatechanges
         req.onreadystatechange = function() {
-            if(req.readyState == 4 && req.status == 200) {
+            if(req.readyState === 4 && req.status === 200) {
                 this.setState((state,props)=>({
                     spinner : false
                 }))
                 this.updateState()
             }
-            else if(req.readyState == 4 && req.status == 500){
+            else if(req.readyState === 4 && req.status === 500){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("سرورمون فعلا مشکل داره :(")
             }
-            else if(req.readyState == 4 && req.status == 404 && req.response.status == 40401){
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 40401){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("این غذا وجود نداره :(")
             }
-            else if(req.readyState == 4 && req.status == 403){
+            else if(req.readyState === 4 && req.status === 403){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("اجازه دسترسی به این رستورانو نداری :(")
             }
-            else if(req.readyState == 4 && req.status == 404 && req.response.status == 40402){
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 40402){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("این رستوران وجود نداره :(")
             }
-            else if(req.readyState == 4 && req.status == 404 && req.response.status == 40401){
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 40401){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("این غذا وجود نداره :(")
             }
-            else if(req.readyState == 4 && req.status == 400 && req.response.status == 40001){
+            else if(req.readyState === 4 && req.status === 400 && req.response.status === 40001){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("غذا اینقدر موجودی نداره :(")
             }
-            else if(req.readyState == 4 && req.status == 400 && req.response.status == 40002){
+            else if(req.readyState === 4 && req.status === 400 && req.response.status === 40002){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("درخواستت بده :(")
             }
-            else if(req.readyState == 4 && req.status == 400 && req.response.status == 40004){
+            else if(req.readyState === 4 && req.status === 400 && req.response.status === 40004){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
@@ -213,49 +213,49 @@ export class CartContext extends Component {
         }.bind(this)
         // onreadystatechanges
         req.onreadystatechange = function() {
-            if(req.readyState == 4 && req.status == 200) {
+            if(req.readyState === 4 && req.status === 200) {
                 this.setState((state,props)=>({
                     spinner : false
                 }))
                 this.updateState()
             }
-            else if(req.readyState == 4 && req.status == 500){
+            else if(req.readyState === 4 && req.status === 500){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("سرورمون فعلا مشکل داره :(")
             }
-            else if(req.readyState == 4 && req.status == 200 && req.response.status == 40401){
+            else if(req.readyState === 4 && req.status === 200 && req.response.status === 40401){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("این غذا وجود نداره :(")
             }
-            else if(req.readyState == 4 && req.status == 403){
+            else if(req.readyState === 4 && req.status === 403){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("اجازه دسترسی به این رستورانو نداری :(")
             }
-            else if(req.readyState == 4 && req.status == 404 && req.response.status == 40402){
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 40402){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("این رستوران وجود نداره :(")
             }
-            else if(req.readyState == 4 && req.status == 404 && req.response.status == 40401){
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 40401){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("این غذا وجود نداره :(")
             }
-            else if(req.readyState == 4 && req.status == 400 && req.response.status == 40001){
+            else if(req.readyState === 4 && req.status === 400 && req.response.status === 40001){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("غذا تموم شده :(")
             }
-            else if(req.readyState == 4 && req.status == 400 && req.response.status == 40002){
+            else if(req.readyState === 4 && req.status === 400 && req.response.status === 40002){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))

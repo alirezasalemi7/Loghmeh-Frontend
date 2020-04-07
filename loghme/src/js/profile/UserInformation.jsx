@@ -10,11 +10,11 @@ export class UserInfoHeader extends Component {
         return (
             <div className="pastel-red header-info row mb-5 justify-content-between">
                 <div className="col-4 align-self-center">
-                    <UserInfo infoType="phone" dir="ltr">{translateEnglishToPersianNumbers(this.props.user.phoneNumber)}</UserInfo>
-                    <UserInfo infoType="mail" dir="ltr">{this.props.user.email}</UserInfo>
-                    <UserInfo infoType="card" dir="rtl">{translateEnglishToPersianNumbers(this.props.user.credit)} تومان</UserInfo>
+                    <UserInfo infoType="phone" dir="ltr">{translateEnglishToPersianNumbers((this.props.user.phoneNumber)?this.props.user.phoneNumber:'0')}</UserInfo>
+                    <UserInfo infoType="mail" dir="ltr">{(this.props.user.email)?this.props.user.email:"داره لود میشه"}</UserInfo>
+                    <UserInfo infoType="card" dir="rtl">{translateEnglishToPersianNumbers((this.props.user.credit)?this.props.user.credit:'0')} تومان</UserInfo>
                 </div>
-                <UserName>{this.props.user.name + " " + this.props.user.family}</UserName>
+                <UserName>{((this.props.user.name)?(this.props.user.name):("داره لود میشه")) + " " + ((this.props.user.family)?(this.props.user.family):("داره لود میشه"))}</UserName>
             </div>
         )
     }

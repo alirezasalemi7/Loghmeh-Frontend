@@ -22,7 +22,7 @@ export class FoodCardSmall extends Component {
                 <div className="card-body d-flex flex-column food-card-body">
                     <div className="row text-center">
                         <div className="col-sm-12 mx-auto">
-                            <img className="food-card-pic" src={this.props.food.image} ></img>
+                            <img alt="" className="food-card-pic" src={this.props.food.image} ></img>
                         </div>
                     </div>
                     <div className="row">
@@ -108,7 +108,7 @@ export class FoodCardLarge extends Component {
                             </div>
                         </div>
                         <div className="col-sm-4">
-                            <img className="food-detail-img" src={this.props.food.image}></img>
+                            <img alt="" className="food-detail-img" src={this.props.food.image}></img>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ export class FoodCardLarge extends Component {
                         {
                             (data)=>{
                                 this.increase = data.increase
-                                return(<button className="btn food-detail-btn text-center" disabled={this.state.count==0} onClick={this.addToCart} type="button" >اضافه کردن به سبد خرید</button>)
+                                return(<button className="btn food-detail-btn text-center" disabled={this.state.count===0} onClick={this.addToCart} type="button" >اضافه کردن به سبد خرید</button>)
                             }
                         }
                     </CartGlobalContext.Consumer>
@@ -127,9 +127,9 @@ export class FoodCardLarge extends Component {
                     <span className="flaticon-plus btn food-detail-inc-btn" onClick={this.increaseCount}></span> 
                     {
                         this.props.special &&
-                        ((this.state.available == 0)?
+                        ((this.state.available === 0)?
                         (<div className="ml-auto food-detail-available-no" dir="rtl"> موجودی: {translateEnglishToPersianNumbers(this.state.available)}</div>):
-                        (this.state.err!=true)?
+                        (this.state.err!==true)?
                         (<div className="ml-auto food-detail-available" dir="rtl"> موجودی: {translateEnglishToPersianNumbers(this.state.available)}</div>):
                         (<div className="ml-auto food-detail-available-err" dir="rtl">{this.state.available}</div>))
                     }
@@ -165,25 +165,25 @@ export class FoodCardLarge extends Component {
         let req = new XMLHttpRequest()
         req.responseType = 'json'
         req.onreadystatechange = function() {
-            if(req.readyState == 4 && req.status == 200){
+            if(req.readyState === 4 && req.status === 200){
                 this.setState((state,props)=>({
                     available : req.response.count,
                     err : false
                 }))
             }
-            else if(req.readyState == 4 && req.status == 403){
+            else if(req.readyState === 4 && req.status === 403){
                 this.setState((state,props)=>({
                     available : "اجازه دسترسی نداری",
                     err : true
                 }))
             }
-            else if(req.readyState == 4 && req.status == 404){
+            else if(req.readyState === 4 && req.status === 404){
                 this.setState((state,props)=>({
                     available : "پیدا نشد",
                     err : true
                 }))
             }
-            else if(req.readyState == 4 && req.status == 500){
+            else if(req.readyState === 4 && req.status === 500){
                 this.setState((state,props)=>({
                     available : "سرور مشکل داره :(",
                     err : true
@@ -191,7 +191,7 @@ export class FoodCardLarge extends Component {
             }
         }.bind(this)
         req.onerror = function(){
-            if(req.readyState == 4){
+            if(req.readyState === 4){
                 this.setState((state,props)=>({
                     available : "سرور دسترس نیست :(",
                     err : true
@@ -216,10 +216,6 @@ export class FoodCardLarge extends Component {
 }
 
 export class FoodCardModal extends Component {
-
-    constructor(props){
-        super(props)
-    }
 
     render(){
         return(
