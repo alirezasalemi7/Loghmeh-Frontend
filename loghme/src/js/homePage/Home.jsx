@@ -7,6 +7,7 @@ import { NavBar } from "../Navbar";
 import { Footer } from "../Footer";
 import { SnackBar } from "../SnackBar";
 import { RestaurantsContainer } from "./Restaurants";
+import { FoodPartyContainer } from "./FoodPartyContainer";
 
 
 export class Home extends Component {
@@ -27,6 +28,7 @@ export class Home extends Component {
                                     <div className="container-fluid" id="body-container">
                                         <NavBar></NavBar>
                                         <HomeHeader></HomeHeader>
+                                        <FoodPartyContainer></FoodPartyContainer>
                                         <RestaurantsContainer></RestaurantsContainer>
                                     </div>
                                 )
