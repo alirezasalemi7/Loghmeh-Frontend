@@ -8,16 +8,13 @@ import {SnackBar} from './js/SnackBar'
 import {SnackBarContext} from './js/context/SnackBarContext'
 import { CartContext } from './js/context/CartContext'
 import {Footer} from './js/Footer'
-import {SignupPage} from './js/SignupPage'
 import { LoginPage } from './js/LoginPage'
-import { ProfilePage } from './js/profile/ProfilePage';
 
 function App() {
   return (
     <div className="App">
       <div id="page-container">
-        {/* <LoginPage></LoginPage> */}
-        <ProfilePage></ProfilePage>
+        <LoginPage></LoginPage>
       </div>
       <Footer></Footer>
     </div>

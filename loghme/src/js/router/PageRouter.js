@@ -4,6 +4,7 @@ import {LoginPage} from '../LoginPage'
 import {SignupPage} from '../SignupPage'
 import { RestaurantPage } from '../RestaurantPage';
 import { ProfilePage } from '../profile/ProfilePage';
+import { Home } from '../homePage/Home';
 
 export class PageRouter {
     
@@ -21,5 +22,9 @@ export class PageRouter {
 
     gotoProfilePage() {
         ReactDOM.render(<ProfilePage></ProfilePage>, document.getElementById('page-container'))
+    }
+
+    gotoHomePage() {
+        ReactDOM.render(<Home></Home>, document.getElementById('page-container'))
     }
 }

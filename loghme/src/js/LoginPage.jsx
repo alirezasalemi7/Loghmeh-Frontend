@@ -93,6 +93,7 @@ class LoginCard extends Component {
         this.onPasswordChange = this.onPasswordChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
         this.gotoSignupPage = this.gotoSignupPage.bind(this)
+        this.gotoHomePage = this.gotoHomePage.bind(this) 
     }
 
     onUsernameChange(event){
@@ -129,9 +130,14 @@ class LoginCard extends Component {
         else{
             //connect server
             if(true){ //login ok
-                // goto main page
+                this.gotoHomePage()
             }
         }
+    }
+
+    gotoHomePage() {
+        let router = new PageRouter()
+        router.gotoHomePage()
     }
 
     gotoSignupPage(){
