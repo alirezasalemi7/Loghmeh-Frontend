@@ -64,10 +64,12 @@ export class FoodPartyContainer extends Component {
         this.getRemainingTime()
         this.mount = true
         this.interval = setInterval(this.getFoods,1000)
+        this.intervalTime = setInterval(this.getRemainingTime,1000)
     }
 
     componentWillUnmount(){
         this.mount = false
+        clearInterval(this.intervalTime)
         clearInterval(this.interval)
     }
 
@@ -144,19 +146,12 @@ class Timer extends Component {
     }
 
     render() {
-        let minutes = 0
-        let seconds = 0
-        if(this.state.minutes===this.props.minutes){
-            minutes = this.state.minutes
-            seconds = this.state.seconds
-        }
-        else {
+        if(this.state.minutes===0 && this.state.seconds==0){
             this.state.minutes = this.props.minutes
             this.state.seconds = this.props.seconds
-            minutes = this.props.minutes
-            seconds = this.props.seconds
         }
-        this.prevHash = this.props.hash
+        let minutes = this.state.minutes
+        let seconds = this.state.seconds    
         return (
             <div className="food-party-time py-1 mx-auto" dir="rtl">زمان باقی‌مانده: {translateEnglishToPersianNumbers(minutes)}:{translateEnglishToPersianNumbers((seconds < 10) ? `0${seconds}` : seconds)}</div>
         )

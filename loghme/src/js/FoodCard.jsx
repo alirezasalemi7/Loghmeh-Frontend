@@ -168,7 +168,9 @@ export class FoodCardLarge extends Component {
         }
         this.increase(json)
         this.setState({count:0})
-        // $("#"+this.props.id).modal('hide')
+        if(!this.props.special){
+            $("#"+this.props.id).modal('hide')
+        }
     }
 
     increaseCount(){
