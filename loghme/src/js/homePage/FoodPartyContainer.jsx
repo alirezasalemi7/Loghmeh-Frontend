@@ -195,7 +195,7 @@ class FoodPartyFoodCard extends Component {
                     </div>
                 </div>
                 <p className="text-center mx-0 mb-0" dir="rtl">{this.props.food.restaurantName}</p>
-                <FoodCardModal id={"modal-"+this.props.id} food={this.props.food} restaurant={this.props.restaurantName} restaurantId={this.props.food.restaurantId} special={true}></FoodCardModal>
+                <FoodCardModal id={"modal-"+this.props.id} food={this.props.food} restaurant={this.props.food.restaurantName} restaurantId={this.props.food.restaurantId} special={true}></FoodCardModal>
             </div>
         )
     }
