@@ -85,7 +85,7 @@ export class FoodPartyContainer extends Component {
                                         <p className="part-title mx-auto mb-2" dir="rtl">جشن غذا!</p>
                                         <Timer minutes={this.state.minutes} seconds={this.state.seconds} length={this.state.foods.length} runAtTimesup={this.getFoods}></Timer>
                                     </div>
-                                    <div className="swiper-container row d-flex flex-nowrap flex-row mt-2 justify-content-end mx-0 mb-4 py-2 px-3 border">
+                                    <div className="swiper-container row d-flex flex-nowrap flex-row mt-2 justify-content-end mb-4 py-2 px-3 border">
                                         {foodCards}
                                     </div>
                                 </div>

@@ -17,7 +17,7 @@ var history = createBrowserHistory()
 
 function App() {
   return (
-    <div className="App">
+    <div className="App container-fluid">
       <Router history={history}>
         <Switch>
           <Route exact path="/" component={LoginRender}></Route>
