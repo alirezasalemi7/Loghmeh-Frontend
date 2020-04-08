@@ -59,15 +59,12 @@ export class FoodCardLarge extends Component {
     constructor(props){
         super(props)
         this.state = {
-            count : 1,
-            available : "الان میگم",
-            err:false
+            count : 1
         }
         this.increase = () => {}
         this.decrease = () => {}
         this.increaseCount = this.increaseCount.bind(this)
         this.decreaseCount = this.decreaseCount.bind(this)
-        this.getAvailableCount = this.getAvailableCount.bind(this)
         this.addToCart = this.addToCart.bind(this)
     }
 
@@ -129,29 +126,31 @@ export class FoodCardLarge extends Component {
                     <span className="flaticon-plus btn food-detail-inc-btn" onClick={this.increaseCount}></span> 
                     {
                         this.props.special &&
-                        ((this.state.available === 0)?
-                        (<div className="ml-auto food-detail-available-no" dir="rtl"> موجودی: {translateEnglishToPersianNumbers(this.state.available)}</div>):
-                        (this.state.err!==true)?
-                        (<div className="ml-auto food-detail-available" dir="rtl"> موجودی: {translateEnglishToPersianNumbers(this.state.available)}</div>):
-                        (<div className="ml-auto food-detail-available-err" dir="rtl">{this.state.available}</div>))
+                        ((this.props.food === 0)?
+                        (<div className="ml-auto food-detail-available-no" dir="rtl"> موجودی: {translateEnglishToPersianNumbers(this.props.food.count)}</div>):
+                        (<div className="ml-auto food-detail-available" dir="rtl"> موجودی: {translateEnglishToPersianNumbers(this.props.food.count)}</div>))
                     }
-                    <Loader type="BallTriangle" color="#FF6B6B" visible={this.spinner} height={50} width={50}/>
                 </div>
+                {
+                    this.props.special &&
+                    <div className="row food-detail-spinner">
+                        <div className="col-sm-12">
+                            <Loader type="BallTriangle" color="#FF6B6B" visible={this.spinner} height={50} width={50}/>
+                        </div>
+                    </div>
+                }
             </div>
         )
     }
 
     componentDidMount(){
         if(this.props.special){
-            this.getAvailableCount()
-            this.interval = setInterval(this.getAvailableCount,1000)
             this.mount = true
         }
     }
 
     componentWillUnmount(){
         if(this.props.special){
-            clearInterval(this.interval)
             this.mount = false
         }
     }
@@ -169,50 +168,7 @@ export class FoodCardLarge extends Component {
         }
         this.increase(json)
         this.setState({count:0})
-        $("#"+this.props.id).modal('hide')
-    }
-
-    getAvailableCount(){
-        let req = new XMLHttpRequest()
-        req.responseType = 'json'
-        req.onreadystatechange = function() {
-            if(req.readyState === 4 && req.status === 200 && this.mount){
-                this.setState((state,props)=>({
-                    available : req.response.count,
-                    err : false
-                }))
-            }
-            else if(req.readyState === 4 && req.status === 403 && this.mount){
-                this.setState((state,props)=>({
-                    available : "اجازه دسترسی نداری",
-                    err : true
-                }))
-            }
-            else if(req.readyState === 4 && req.status === 404 && this.mount){
-                this.setState((state,props)=>({
-                    available : "پیدا نشد",
-                    err : true
-                }))
-            }
-            else if(req.readyState === 4 && req.status === 500 && this.mount){
-                this.setState((state,props)=>({
-                    available : "سرور مشکل داره :(",
-                    err : true
-                }))
-            }
-        }.bind(this)
-        req.onerror = function(){
-            if(req.readyState === 4 && this.mount){
-                this.setState((state,props)=>({
-                    available : "سرور دسترس نیست :(",
-                    err : true
-                }))
-            }
-        }.bind(this)
-        req.open('GET','http://127.0.0.1:8080/restaurants/'+this.props.restaurantId+'/'+this.props.food.name,true)
-        if(this.mount){
-            req.send()
-        }
+        // $("#"+this.props.id).modal('hide')
     }
 
     increaseCount(){

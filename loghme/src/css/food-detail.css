@@ -18,6 +18,10 @@
     color: var(--pastel-red);
 }
 
+.food-detail-spinner{
+    padding-bottom: 0.6em;
+}
+
 @media (min-width:1026px){
     .food-detail {
         /* margin-top: 11em; */

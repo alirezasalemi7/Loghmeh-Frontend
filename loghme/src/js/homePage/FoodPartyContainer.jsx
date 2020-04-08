@@ -83,7 +83,8 @@ export class FoodPartyContainer extends Component {
                                 <div>
                                     <div className="text-center">
                                         <p className="part-title mx-auto mb-2" dir="rtl">جشن غذا!</p>
-                                        <Timer minutes={this.state.minutes} seconds={this.state.seconds} length={this.state.foods.length} runAtTimesup={this.getFoods}></Timer>
+                                        {console.log(this.state.minutes + " " + this.state.seconds)}
+                                        <Timer minutes={this.state.minutes} seconds={this.state.seconds} runAtTimesup={this.getFoods}></Timer>
                                     </div>
                                     <div className="swiper-container row d-flex flex-nowrap flex-row mt-2 justify-content-end mb-4 py-2 px-3 border">
                                         {foodCards}
@@ -107,7 +108,6 @@ class Timer extends Component {
             minutes: props.minutes,
             seconds: props.seconds,
         }
-        this.prevLength = 0
         this.update = this.update.bind(this)
     }
 
@@ -146,7 +146,7 @@ class Timer extends Component {
     render() {
         let minutes = 0
         let seconds = 0
-        if(this.prevLength===this.props.length){
+        if(this.state.minutes===this.props.minutes){
             minutes = this.state.minutes
             seconds = this.state.seconds
         }
@@ -156,7 +156,7 @@ class Timer extends Component {
             minutes = this.props.minutes
             seconds = this.props.seconds
         }
-        this.prevLength = this.props.length
+        this.prevHash = this.props.hash
         return (
             <div className="food-party-time py-1 mx-auto" dir="rtl">زمان باقی‌مانده: {translateEnglishToPersianNumbers(minutes)}:{translateEnglishToPersianNumbers((seconds < 10) ? `0${seconds}` : seconds)}</div>
         )
