@@ -189,15 +189,15 @@ class OrderItem extends Component {
                 <span className="col-5">
                     {
                         ((!this.props.status.localeCompare("Delivered")) ?  
-                            <button className={"rounded border-0 mx-auto px-1 delivered order-status-font"} onClick={this.showOrderDetails}>
+                            <button className={"rounded border-0 mx-auto px-1 delivered py-1 my-2 order-status-font"} onClick={this.showOrderDetails}>
                                 مشاهده فاکتور
                             </button> : 
                         (!this.props.status.localeCompare("InRoad")) ?
-                            <div className={"rounded border-0 mx-auto px-1 delivering order-status-font"}>
+                            <div className={"rounded border-0 mx-auto px-1 delivering py-1 my-2 order-status-font"}>
                                 پیک در مسیر
                             </div> : 
                         (!this.props.status.localeCompare("DeliveryManFinding")) ?
-                            <div className={"rounded border-0 mx-auto px-1 finding-delivery order-status-font"}>
+                            <div className={"rounded border-0 mx-auto px-1 finding-delivery py-1 my-2 order-status-font"}>
                                 در جست‌وجوی پیک
                             </div> : null)
                     }

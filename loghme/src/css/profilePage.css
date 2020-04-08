@@ -72,10 +72,6 @@
         font-size: 0.9em;
     }
 
-    .info-row-hieght {
-        height: 1.2em;
-    }
-
     .order-container {
         width: 80%;
         border-radius: 1.5em;
@@ -86,7 +82,7 @@
         height: 2.4em;
         border-radius: 0.4em;
     }
-    .restauratn-name {
+    .restaurant-name {
         font-size: 0.8em;
     }
 
@@ -114,7 +110,6 @@
 
     .delivered, .delivering {
         width: 50%;
-        height: 2em;
     }
 
     .credit-box {
@@ -174,10 +169,6 @@
         font-size: 1.4em;
     }
 
-    .info-row-hieght {
-        height: 1.7em;
-    }
-
     .order-container {
         width: 850px;
         border-radius: 2em;
@@ -188,7 +179,7 @@
         height: 3.7em;
         border-radius: 0.9em;
     }
-    .restauratn-name {
+    .restaurant-name {
         font-size: 1.3em;
     }
 
@@ -205,7 +196,6 @@
     .finding-delivery {
         background-color: #D2FFFC;
         color: #30706B;
-        height: 2.1em;
         width: 60%;
     }
 
@@ -216,7 +206,6 @@
 
     .delivered, .delivering {
         width: 50%;
-        height: 2em;
     }
 
     .credit-box {

@@ -60,9 +60,9 @@ export class FoodPartyContainer extends Component {
                                     <div className="text-center">
                                         <p className="part-title mx-auto mb-2" dir="rtl">جشن غذا!</p>
                                         {console.log(this.state.minutes + " " + this.state.seconds)}
-                                        <Timer minutes={this.state.minutes} seconds={this.state.seconds} runAtTimesup={()=>this.getFoods()}></Timer>
+                                        <Timer runAtTimesup={()=>this.getFoods()}></Timer>
                                     </div>
-                                    <div className="swiper-container row d-flex flex-nowrap flex-row mt-2 mb-4 py-2 border">
+                                    <div className="swiper-container row d-flex flex-nowrap flex-row mt-2 mb-4 py-2 px-3 border">
                                         {foodCards}
                                     </div>
                                 </div>
@@ -80,19 +80,37 @@ class Timer extends Component {
 
     constructor(props) {
         super(props)
-        console.log("HERE1" + this.props.minutes + this.props.seconds)
         this.state = {
             minutes: 3,
             seconds: 0,
         }
+        this.getRemainigTime = this.getRemainigTime.bind(this)
+    }
+
+    getRemainigTime() {
+        let req = new XMLHttpRequest()
+        req.onreadystatechange = function() {
+            if (req.readyState === 4) {
+                if (req.status === 200) {
+                    let timeInfo = JSON.parse(req.response)
+                    this.setState({
+                        minutes: timeInfo.minutes,
+                        seconds: timeInfo.seconds
+                    })
+                } else {
+                    console.log("server is not responding")
+                }
+            }
+        }.bind(this)
+        req.onerror = function () {
+            console.log("server is not responding")
+        }.bind(this)
+        req.open("GET", "http://127.0.0.1:8080/foodParty", true)
+        req.send()
     }
 
     componentDidMount() {
-        console.log("HERE" + this.props.minutes + this.props.seconds)
-        this.setState({
-            minutes: this.props.minutes,
-            seconds: this.props.seconds
-        })
+        this.getRemainigTime()
         this.myInterval = setInterval(() => {
             if (this.state.seconds > 0) {
                 this.setState(() => ({
@@ -101,12 +119,13 @@ class Timer extends Component {
             }
             if (this.state.seconds === 0) {
                 if (this.state.minutes === 0) {
+                    console.log("NOW ITS HERE")
                     this.props.runAtTimesup()
+                    console.log("NOW ITS HERE1")
+                    this.getRemainigTime()
+                    console.log("NOW ITS HERE2")
                     clearInterval(this.myInterval)
-                    this.setState({
-                        minutes: this.props.minutes,
-                        seconds: this.props.seconds
-                    })
+                    console.log("NOW ITS HERE3")
                 } else {
                     this.setState(() => ({
                         minutes: this.state.minutes - 1,
@@ -140,31 +159,31 @@ class FoodPartyFoodCard extends Component {
     }
 
     updateCount() {
-        this.interval = setInterval(()=> {
-            let req = new XMLHttpRequest()
-            req.onreadystatechange = function () {
-                if (req.readyState == 4) {
-                    if (req.status == 200) {
-                        let res = JSON.parse(req.response)
-                        console.log("res")
-                        this.setState({
-                            count: res.count
-                        })
-                    }
+        let req = new XMLHttpRequest()
+        req.onreadystatechange = function () {
+            if (req.readyState === 4) {
+                if (req.status === 200 && this.mount) {
+                    let res = JSON.parse(req.response)
+                    this.setState({
+                        count: res.count
+                    })
+                } else {
+                    clearInterval(this.updateInterval)
                 }
-            }.bind(this)
-            req.onerror = function() {}.bind(this)
-            req.open("GET", "http://127.0.0.1:8080/foodParty/" + this.props.food.name)
-            req.send()
-        }, 500)
+            }
+        }.bind(this)
+        req.open("GET", "http://127.0.0.1:8080/foodParty/" + this.props.food.name)
+        req.send()
     }
 
     componentDidMount() {
-        this.updateCount()
+        this.updateInterval = setInterval(this.updateCount, 1000)
+        this.mount = true
     }
 
     componentWillUnmount() {
-        clearInterval(this.interval)
+        clearInterval(this.updateInterval)
+        this.mount = false
     }
 
     openModal() {
