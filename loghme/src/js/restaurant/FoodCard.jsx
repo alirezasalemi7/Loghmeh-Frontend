@@ -5,6 +5,7 @@ import '../../css/food-card.css'
 import '../../css/food-detail.css'
 import * as $ from 'jquery'
 import Loader from 'react-loader-spinner'
+import PropTypes from 'prop-types'
 
 export class FoodCardSmall extends Component {
 
@@ -15,6 +16,11 @@ export class FoodCardSmall extends Component {
         }
         this.increase = () => {}
         this.openModal = this.openModal.bind(this)
+    }
+
+    static propTypes = {
+        food : PropTypes.object.isRequired,
+        restaurant : PropTypes.string.isRequired
     }
 
     render(){
@@ -70,6 +76,12 @@ export class FoodCardLarge extends Component {
 
     static defaultProps = {
         special : false
+    }
+
+    static propTypes = {
+        food : PropTypes.object.isRequired,
+        restaurant : PropTypes.string.isRequired,
+        special : PropTypes.bool
     }
 
     render(){
@@ -187,6 +199,15 @@ export class FoodCardLarge extends Component {
 }
 
 export class FoodCardModal extends Component {
+
+
+    static propTypes = {
+        id : PropTypes.string.isRequired,
+        special : PropTypes.bool.isRequired,
+        food : PropTypes.object.isRequired,
+        restaurant : PropTypes.string.isRequired,
+        restaurantId : PropTypes.string.isRequired
+    }
 
     render(){
         return(

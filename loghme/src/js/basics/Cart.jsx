@@ -4,7 +4,7 @@ import '../../css/cart.css'
 import '../../css/navbar.css'
 import Loader from 'react-loader-spinner'
 import {CartGlobalContext} from '../context/CartContext'
-
+import PropTypes from 'prop-types'
 export class Cart extends Component {
 
     constructor(props){
@@ -14,6 +14,10 @@ export class Cart extends Component {
             total : "0",
             spinner : true
         }
+    }
+
+    static propTypes = {
+        global: PropTypes.bool
     }
 
     static defaultProps = {
@@ -94,9 +98,19 @@ class CartItem extends Component {
             </div>
         )
     }
+
+    static propTypes = {
+        decrease : PropTypes.func.isRequired,
+        increase : PropTypes.func.isRequired,
+        item : PropTypes.object.isRequired
+    }
 }
 
 export class CartModal extends Component {
+
+    static propTypes = {
+        id : PropTypes.string.isRequired
+    }
 
     render(){
         return(

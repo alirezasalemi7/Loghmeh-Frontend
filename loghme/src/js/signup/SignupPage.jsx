@@ -7,10 +7,15 @@ import {CartContext} from '../context/CartContext'
 import {validateEmail,isNumeric} from '../basics/Utils'
 import {SnackBar} from '../basics/SnackBar'
 import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
+import PropTypes from 'prop-types'
 import * as $ from 'jquery'
 
 export class SignupPage extends Component {
     
+    static propTypes = {
+        history : PropTypes.object.isRequired
+    }
+
     render(){
         return(
             <SnackBarContext>
@@ -40,6 +45,10 @@ export class SignupPage extends Component {
 }
 
 class SignupCard extends Component{
+
+    static propTypes = {
+        history : PropTypes.object.isRequired
+    }
 
     constructor(props){
         super(props)

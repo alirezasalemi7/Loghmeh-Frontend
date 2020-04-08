@@ -4,6 +4,7 @@ import { CartGlobalContext } from '../context/CartContext'
 import {translateEnglishToPersianNumbers} from './Utils'
 import {CartModal} from './Cart'
 import * as $ from 'jquery'
+import PropTypes from 'prop-types'
 
 export class NavBar extends Component {
     
@@ -24,6 +25,15 @@ export class NavBar extends Component {
         cart : true,
         login : false,
         signup : false,
+    }
+
+    static propTypes = {
+        exit : PropTypes.bool,
+        account : PropTypes.bool,
+        cart : PropTypes.bool,
+        login : PropTypes.bool,
+        signup : PropTypes.bool,
+        history : PropTypes.object.isRequired
     }
 
     exit(){

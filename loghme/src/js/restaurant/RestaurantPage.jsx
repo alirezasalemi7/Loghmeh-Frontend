@@ -8,11 +8,18 @@ import {CartContext} from '../context/CartContext'
 import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
 import { NavBar } from '../basics/Navbar'
 import {SnackBar} from '../basics/SnackBar'
+import PropTypes from 'prop-types'
+
 
 var LoghmehLogo = require('../../assets/LOGO.png')
 
 
 class RestaurantInfoBar extends Component{
+
+    static propTypes = {
+        imgSrc : PropTypes.string.isRequired,
+        restaurantName : PropTypes.string.isRequired
+    }
 
     render(){
         return(
@@ -44,6 +51,11 @@ export class RestaurantPage extends Component {
             valid : false
         }
         this.show = () => {}
+    }
+
+    static propTypes = {
+        id : PropTypes.string.isRequired,
+        history : PropTypes.object.isRequired
     }
 
     getRestaurantData(){

@@ -7,6 +7,7 @@ import {CartContext} from '../context/CartContext'
 import {SnackBar} from '../basics/SnackBar'
 import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
 import * as $ from 'jquery'
+import PropTypes from 'prop-types'
 
 class LoginPageUpperRow extends Component {
 
@@ -70,6 +71,10 @@ export class LoginPage extends Component {
         )
     }
 
+    static propTypes = {
+        history : PropTypes.object.isRequired
+    }
+
     componentDidMount(){
         $("#loading-modal").modal('show')
         setTimeout(()=>{$("#loading-modal").modal('hide')},1500)
@@ -93,6 +98,10 @@ class LoginCard extends Component {
         this.onSubmit = this.onSubmit.bind(this)
         this.gotoSignupPage = this.gotoSignupPage.bind(this)
         this.gotoHomePage = this.gotoHomePage.bind(this) 
+    }
+
+    static propTypes = {
+        history : PropTypes.object.isRequired
     }
 
     onUsernameChange(event){

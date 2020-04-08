@@ -1,8 +1,14 @@
 import React,{Component} from 'react'
 import '../../css/RestaurantPage.css'
 import {FoodCardSmall} from './FoodCard'
+import PropTypes from 'prop-types'
 
 export class Menu extends Component {
+
+    static propTypes = {
+        allFoods: PropTypes.array.isRequired,
+        restaurant : PropTypes.string.isRequired
+    }
 
     render(){
         let foods = this.props.allFoods.map((element,i)=>{

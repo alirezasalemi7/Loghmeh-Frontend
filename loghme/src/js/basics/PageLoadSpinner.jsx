@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import Loader from 'react-loader-spinner'
 import '../../css/body.css'
+import PropTypes from 'prop-types'
 
 export class PageLoaderSpinner extends Component {
     
@@ -19,4 +20,10 @@ export class PageLoaderSpinner extends Component {
     static defaultProps = {
         mode : 'BallTriangle'
     }
+
+    static propTypes = {
+        mode : PropTypes.string,
+        id : PropTypes.string.isRequired
+    }
+
 }
