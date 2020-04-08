@@ -4,6 +4,7 @@ import {CartGlobalContext} from './context/CartContext'
 import '../css/food-card.css'
 import '../css/food-detail.css'
 import * as $ from 'jquery'
+import Loader from 'react-loader-spinner'
 
 export class FoodCardSmall extends Component {
 
@@ -117,6 +118,7 @@ export class FoodCardLarge extends Component {
                     <CartGlobalContext.Consumer>
                         {
                             (data)=>{
+                                this.spinner = data.spinner
                                 this.increase = data.increase
                                 return(<button className="btn food-detail-btn text-center" disabled={this.state.count===0} onClick={this.addToCart} type="button" >اضافه کردن به سبد خرید</button>)
                             }
@@ -133,6 +135,7 @@ export class FoodCardLarge extends Component {
                         (<div className="ml-auto food-detail-available" dir="rtl"> موجودی: {translateEnglishToPersianNumbers(this.state.available)}</div>):
                         (<div className="ml-auto food-detail-available-err" dir="rtl">{this.state.available}</div>))
                     }
+                    <Loader type="BallTriangle" color="#FF6B6B" visible={this.spinner} height={50} width={50}/>
                 </div>
             </div>
         )
@@ -141,7 +144,7 @@ export class FoodCardLarge extends Component {
     componentDidMount(){
         if(this.props.special){
             this.getAvailableCount()
-            this.interval = setInterval(this.getAvailableCount,500)
+            this.interval = setInterval(this.getAvailableCount,1000)
             this.mount = true
         }
     }
@@ -207,7 +210,9 @@ export class FoodCardLarge extends Component {
             }
         }.bind(this)
         req.open('GET','http://127.0.0.1:8080/restaurants/'+this.props.restaurantId+'/'+this.props.food.name,true)
-        req.send()
+        if(this.mount){
+            req.send()
+        }
     }
 
     increaseCount(){

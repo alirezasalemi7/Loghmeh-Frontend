@@ -64,6 +64,8 @@ export class ProfilePage extends Component {
             }
         }.bind(this)
         req.onerror = function() {
+            $("#loading-modal").modal('hide')
+            this.setState({user:{name:"سرور",family:"مشکل داره",phoneNumber:"سرور مشکل داره",email:"سرور مشکل داره",credit:"0"}})
             this.show('سرورمون فعلا مشکل داره:(')
         }.bind(this)
         req.open("GET", "http://127.0.0.1:8080/users/1/profile", true)

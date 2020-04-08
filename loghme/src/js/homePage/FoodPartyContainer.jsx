@@ -22,6 +22,9 @@ export class FoodPartyContainer extends Component {
     getFoods() {
         let req = new XMLHttpRequest()
         req.onreadystatechange = function() {
+            if(!this.mount){
+                return
+            }
             if (req.readyState === 4) {
                 if (req.status === 200) {
                     console.log(JSON.parse(req.response))
@@ -31,13 +34,8 @@ export class FoodPartyContainer extends Component {
                         minutes: completeInfo.minutes,
                         seconds: completeInfo.seconds
                     })
-                } else {
-                    this.show('لطفا دوباره تلاش کنید')
                 }
             }
-        }.bind(this)
-        req.onerror = function () {
-            this.show('سرور فعلا مشکل داره:(')
         }.bind(this)
         req.open("GET", "http://127.0.0.1:8080/foodParty")
         req.send()
@@ -45,6 +43,13 @@ export class FoodPartyContainer extends Component {
 
     componentDidMount() {
         this.getFoods()
+        this.mount = true
+        this.interval = setInterval(this.getFoods,1000)
+    }
+
+    componentWillUnmount(){
+        this.mount = false
+        clearInterval(this.interval)
     }
 
     render() {
@@ -60,7 +65,7 @@ export class FoodPartyContainer extends Component {
                                     <div className="text-center">
                                         <p className="part-title mx-auto mb-2" dir="rtl">جشن غذا!</p>
                                         {console.log(this.state.minutes + " " + this.state.seconds)}
-                                        <Timer runAtTimesup={()=>this.getFoods()}></Timer>
+                                        <Timer minutes={this.state.minutes} seconds={this.state.seconds} length={this.state.foods.length} runAtTimesup={this.getFoods}></Timer>
                                     </div>
                                     <div className="swiper-container row d-flex flex-nowrap flex-row mt-2 mb-4 py-2 px-3 border">
                                         {foodCards}
@@ -81,67 +86,59 @@ class Timer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            minutes: 3,
-            seconds: 0,
+            minutes: props.minutes,
+            seconds: props.seconds,
         }
-        this.getRemainigTime = this.getRemainigTime.bind(this)
+        this.prevLength = 0
+        this.update = this.update.bind(this)
     }
 
-    getRemainigTime() {
-        let req = new XMLHttpRequest()
-        req.onreadystatechange = function() {
-            if (req.readyState === 4) {
-                if (req.status === 200) {
-                    let timeInfo = JSON.parse(req.response)
-                    this.setState({
-                        minutes: timeInfo.minutes,
-                        seconds: timeInfo.seconds
-                    })
-                } else {
-                    console.log("server is not responding")
-                }
+    update(){
+        if(!this.mount){
+            return
+        }
+        if (this.state.seconds > 0) {
+            this.setState(() => ({
+                seconds: this.state.seconds - 1
+            }))
+            setTimeout(this.update,1000)
+        }
+        else if (this.state.seconds === 0) {
+            if (this.state.minutes === 0) {
+                this.props.runAtTimesup()
+            } else {
+                this.setState(() => ({
+                    minutes: this.state.minutes - 1,
+                    seconds: 59
+                }))
             }
-        }.bind(this)
-        req.onerror = function () {
-            console.log("server is not responding")
-        }.bind(this)
-        req.open("GET", "http://127.0.0.1:8080/foodParty", true)
-        req.send()
+            setTimeout(this.update,1000)
+        }
     }
 
     componentDidMount() {
-        this.getRemainigTime()
-        this.myInterval = setInterval(() => {
-            if (this.state.seconds > 0) {
-                this.setState(() => ({
-                    seconds: this.state.seconds - 1
-                }))
-            }
-            if (this.state.seconds === 0) {
-                if (this.state.minutes === 0) {
-                    console.log("NOW ITS HERE")
-                    this.props.runAtTimesup()
-                    console.log("NOW ITS HERE1")
-                    this.getRemainigTime()
-                    console.log("NOW ITS HERE2")
-                    clearInterval(this.myInterval)
-                    console.log("NOW ITS HERE3")
-                } else {
-                    this.setState(() => ({
-                        minutes: this.state.minutes - 1,
-                        seconds: 59
-                    }))
-                }
-            } 
-        }, 1000)
+        this.mount = true
+        setTimeout(this.update, 1000)
     }
 
     componentWillUnmount() {
-        clearInterval(this.myInterval)
+        this.mount = false
     }
 
     render() {
-        const { minutes, seconds } = this.state
+        let minutes = 0
+        let seconds = 0
+        if(this.prevLength===this.props.length){
+            minutes = this.state.minutes
+            seconds = this.state.seconds
+        }
+        else {
+            this.state.minutes = this.props.minutes
+            this.state.seconds = this.props.seconds
+            minutes = this.props.minutes
+            seconds = this.props.seconds
+        }
+        this.prevLength = this.props.length
         return (
             <div className="food-party-time py-1 mx-auto" dir="rtl">زمان باقی‌مانده: {translateEnglishToPersianNumbers(minutes)}:{translateEnglishToPersianNumbers((seconds < 10) ? `0${seconds}` : seconds)}</div>
         )
@@ -150,49 +147,13 @@ class Timer extends Component {
 
 class FoodPartyFoodCard extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            count: 1
-        }
-        this.updateCount = this.updateCount.bind(this)
-    }
-
-    updateCount() {
-        let req = new XMLHttpRequest()
-        req.onreadystatechange = function () {
-            if (req.readyState === 4) {
-                if (req.status === 200 && this.mount) {
-                    let res = JSON.parse(req.response)
-                    this.setState({
-                        count: res.count
-                    })
-                } else {
-                    clearInterval(this.updateInterval)
-                }
-            }
-        }.bind(this)
-        req.open("GET", "http://127.0.0.1:8080/foodParty/" + this.props.food.name)
-        req.send()
-    }
-
-    componentDidMount() {
-        this.updateInterval = setInterval(this.updateCount, 1000)
-        this.mount = true
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.updateInterval)
-        this.mount = false
-    }
-
     openModal() {
         $("#modal-"+this.props.id).modal('show')
     }
 
     render() {
-        let buttonClasses = "mx-1 flex-fill rounded-lg count-box border-0 " + ((this.state.count === 0) ? "btn-gray disabled" : "med-torq") + " text-white"
-        let btnOnClick = ((this.state.count === 0) ? null : (e)=>this.openModal())
+        let buttonClasses = "mx-1 flex-fill rounded-lg count-box border-0 " + ((this.props.food.count === 0) ? "btn-gray disabled" : "med-torq") + " text-white"
+        let btnOnClick = ((this.props.food.count === 0) ? ()=>{} : (e)=>this.openModal())
         return (
             <div className="card d-flex flex-column mx-2 flex-wrap align-self-stretch rounded text-center food-party-card">
                 <div className="mx-0 px-2 py-2 dashed-border d-flex flex-column">
@@ -216,7 +177,7 @@ class FoodPartyFoodCard extends Component {
                             خرید
                         </button>
                         <div className="mx-1 flex-fill rounded-lg border count-box count-box-color">
-                            موجودی: {translateEnglishToPersianNumbers(this.state.count)}
+                            موجودی: {translateEnglishToPersianNumbers(this.props.food.count)}
                         </div>
                     </div>
                 </div>

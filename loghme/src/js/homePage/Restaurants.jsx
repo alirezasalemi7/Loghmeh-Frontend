@@ -32,6 +32,7 @@ export class RestaurantsContainer extends Component {
             }
         }.bind(this)
         req.onerror = function() {
+            $("#loading-modal").modal('hide')
             this.show('سرور فعلا مشکل داره:(')
         }.bind(this)
         req.open("GET", "http://127.0.0.1:8080/restaurants", true)
@@ -50,7 +51,13 @@ export class RestaurantsContainer extends Component {
                                 <div className="text-center">
                                     <p className="part-title mx-auto mb-3">رستوران‌ها</p>
                                     <div className="row mx-auto mb-5 restaurant-container" dir="rtl">
-                                        {restaurants}
+                                        {restaurants.length >0 && restaurants}
+                                        {restaurants.length == 0 &&
+                                            <div className="col-sm-12 text-center">
+                                                <p dir="rtl">سرور در دسترس نیست!</p>
+                                            </div>
+
+                                        }
                                     </div>
                                 </div>
                             )
