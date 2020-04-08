@@ -20,11 +20,6 @@ export class FoodPartyContainer extends Component {
     }
 
     getFoods() {
-        this.setState({
-            foods: [],
-            minutes: 1,
-            seconds: 0
-        })
         let req = new XMLHttpRequest()
         req.onreadystatechange = function() {
             if (req.readyState === 4) {
@@ -64,6 +59,7 @@ export class FoodPartyContainer extends Component {
                                 <div>
                                     <div className="text-center">
                                         <p className="part-title mx-auto mb-2" dir="rtl">جشن غذا!</p>
+                                        {console.log(this.state.minutes + " " + this.state.seconds)}
                                         <Timer minutes={this.state.minutes} seconds={this.state.seconds} runAtTimesup={()=>this.getFoods()}></Timer>
                                     </div>
                                     <div className="swiper-container row d-flex flex-nowrap flex-row mt-2 mb-4 py-2 border">
@@ -84,6 +80,7 @@ class Timer extends Component {
 
     constructor(props) {
         super(props)
+        console.log("HERE1" + this.props.minutes + this.props.seconds)
         this.state = {
             minutes: 3,
             seconds: 0,
@@ -91,20 +88,25 @@ class Timer extends Component {
     }
 
     componentDidMount() {
+        console.log("HERE" + this.props.minutes + this.props.seconds)
         this.setState({
             minutes: this.props.minutes,
             seconds: this.props.seconds
         })
         this.myInterval = setInterval(() => {
-            if (this.state.seconds >= 0) {
+            if (this.state.seconds > 0) {
                 this.setState(() => ({
                     seconds: this.state.seconds - 1
                 }))
             }
-            if (this.state.seconds === -1) {
+            if (this.state.seconds === 0) {
                 if (this.state.minutes === 0) {
                     this.props.runAtTimesup()
                     clearInterval(this.myInterval)
+                    this.setState({
+                        minutes: this.props.minutes,
+                        seconds: this.props.seconds
+                    })
                 } else {
                     this.setState(() => ({
                         minutes: this.state.minutes - 1,
@@ -129,13 +131,49 @@ class Timer extends Component {
 
 class FoodPartyFoodCard extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            count: 1
+        }
+        this.updateCount = this.updateCount.bind(this)
+    }
+
+    updateCount() {
+        this.interval = setInterval(()=> {
+            let req = new XMLHttpRequest()
+            req.onreadystatechange = function () {
+                if (req.readyState == 4) {
+                    if (req.status == 200) {
+                        let res = JSON.parse(req.response)
+                        console.log("res")
+                        this.setState({
+                            count: res.count
+                        })
+                    }
+                }
+            }.bind(this)
+            req.onerror = function() {}.bind(this)
+            req.open("GET", "http://127.0.0.1:8080/foodParty/" + this.props.food.name)
+            req.send()
+        }, 500)
+    }
+
+    componentDidMount() {
+        this.updateCount()
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval)
+    }
+
     openModal() {
         $("#modal-"+this.props.id).modal('show')
     }
 
     render() {
-        let buttonClasses = "mx-1 flex-fill rounded-lg count-box border-0 " + ((this.props.food.count === 0) ? "btn-gray disabled" : "med-torq") + " text-white"
-        let btnOnClick = ((this.props.food.count === 0) ? null : (e)=>this.openModal())
+        let buttonClasses = "mx-1 flex-fill rounded-lg count-box border-0 " + ((this.state.count === 0) ? "btn-gray disabled" : "med-torq") + " text-white"
+        let btnOnClick = ((this.state.count === 0) ? null : (e)=>this.openModal())
         return (
             <div className="card d-flex flex-column mx-2 flex-wrap align-self-stretch rounded text-center food-party-card">
                 <div className="mx-0 px-2 py-2 dashed-border d-flex flex-column">
@@ -159,7 +197,7 @@ class FoodPartyFoodCard extends Component {
                             خرید
                         </button>
                         <div className="mx-1 flex-fill rounded-lg border count-box count-box-color">
-                            موجودی: {translateEnglishToPersianNumbers(this.props.food.count)}
+                            موجودی: {translateEnglishToPersianNumbers(this.state.count)}
                         </div>
                     </div>
                 </div>
