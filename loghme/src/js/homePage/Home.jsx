@@ -9,8 +9,13 @@ import { RestaurantsContainer } from "./Restaurants";
 import { FoodPartyContainer } from "./FoodPartyContainer";
 import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
 import * as $ from 'jquery'
+import PropTypes from 'prop-types'
 
 export class Home extends Component {
+
+    static porpTypes = {
+        history: PropTypes.object.isRequired
+    }
 
     render() {
         return (

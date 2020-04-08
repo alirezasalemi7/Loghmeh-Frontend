@@ -5,7 +5,7 @@ import { SnackBar } from "../basics/SnackBar";
 import { translateEnglishToPersianNumbers } from "../basics/Utils";
 import * as $ from "jquery"
 import { FoodCardModal } from "../restaurant/FoodCard";
-
+import PropTypes from 'prop-types';
 
 export class FoodPartyContainer extends Component {
     
@@ -103,6 +103,12 @@ export class FoodPartyContainer extends Component {
 
 class Timer extends Component {
 
+    static propTypes = {
+        minutes: PropTypes.number.isRequired,
+        seconds: PropTypes.number.isRequired,
+        runAtTimesup: PropTypes.func.isRequired
+    }
+
     constructor(props) {
         super(props)
         this.state = {
@@ -145,7 +151,7 @@ class Timer extends Component {
     }
 
     render() {
-        if(this.state.minutes===0 && this.state.seconds==0){
+        if(this.state.minutes===0 && this.state.seconds===0){
             this.state.minutes = this.props.minutes
             this.state.seconds = this.props.seconds
         }
@@ -158,6 +164,11 @@ class Timer extends Component {
 }
 
 class FoodPartyFoodCard extends Component {
+
+    static propTypes = {
+        id: PropTypes.number.isRequired,
+        food: PropTypes.object.isRequired
+    }
 
     openModal() {
         $("#modal-"+this.props.id).modal('show')

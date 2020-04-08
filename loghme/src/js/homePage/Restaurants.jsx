@@ -2,8 +2,12 @@ import React, { Component } from "react"
 import { SnackBarContext, SnackBarGlobalContext } from "../context/SnackBarContext"
 import { SnackBar } from "../basics/SnackBar"
 import * as $ from 'jquery'
-
+import PropTypes from 'prop-types'
 export class RestaurantsContainer extends Component {
+
+    static propTypes = {
+        history: PropTypes.object.isRequired
+    }
 
     constructor(props) {
         super(props)
@@ -71,6 +75,13 @@ export class RestaurantsContainer extends Component {
 }
 
 class RestaurantCart extends Component {
+
+    static propTypes = {
+        history: PropTypes.object.isRequired,
+        name: PropTypes.string.isRequired,
+        imgSrc: PropTypes.string,
+        id: PropTypes.string.isRequired
+    }
 
     gotoRestaurantPage(id) {
         this.props.history.push('/restaurant/'+id)

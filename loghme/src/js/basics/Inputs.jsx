@@ -7,7 +7,6 @@ export class InputField extends Component {
     render(){
         let cls = ((this.props.className) ? (this.props.className + " " + ((this.props.err)? "c-input-err-color" : (this.props.empty)? "c-input-empty-color" : "c-input-color"))
                     : ("mx-auto form-control border h-100" + " " + ((this.props.err)? "c-input-err" : (this.props.empty)? "c-input-empty" : "c-input")))
-        console.log(cls)
         return(
             <input type={this.props.type} value={this.props.value} id={this.props.id} onChange={this.props.onChange} className={cls} dir={this.props.dir} placeholder={this.props.placeholder}></input>
         )

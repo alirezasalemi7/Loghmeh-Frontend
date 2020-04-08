@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 export class UserInfoHeader extends Component {
 
     static propTypes = {
-        user: PropTypes.object.isRequired
+        user: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
     }
 
     render() {
@@ -49,7 +49,7 @@ class UserInfo extends Component {
     static propTypes = {
         infoType: PropTypes.string.isRequired,
         dir: PropTypes.string.isRequired,
-        children: PropTypes.string.isRequired
+        children: PropTypes.oneOfType([PropTypes.array, PropTypes.string])
     } 
 
     render() {

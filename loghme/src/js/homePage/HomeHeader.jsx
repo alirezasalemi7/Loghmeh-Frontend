@@ -6,6 +6,7 @@ import { SnackBar } from "../basics/SnackBar";
 import { SnackBarContext, SnackBarGlobalContext } from "../context/SnackBarContext";
 
 export class HomeHeader extends Component {
+
     render() {
         return (
             <div className="backgruond-image text-center text-white mb-5">

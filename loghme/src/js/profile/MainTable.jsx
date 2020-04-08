@@ -12,7 +12,7 @@ export class MainTable extends Component {
 
     static propTypes = {
         getUserInfo: PropTypes.func.isRequired,
-        increase: PropTypes.func.isRequired
+        increase: PropTypes.func
     }
 
     constructor(props) {
