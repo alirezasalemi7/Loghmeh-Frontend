@@ -1,15 +1,15 @@
 import React,{Component} from 'react'
-import '../css/RestaurantPage.css'
-import {Cart} from './Cart'
+import '../../css/RestaurantPage.css'
+import {Cart} from '../basics/Cart'
 import {Menu} from './Menu'
 import * as $ from 'jquery'
-import { SnackBarGlobalContext,SnackBarContext } from './context/SnackBarContext'
-import {CartContext} from './context/CartContext'
-import {PageLoaderSpinner} from './PageLoadSpinner'
-import { NavBar } from './Navbar'
-import {SnackBar} from './SnackBar'
+import { SnackBarGlobalContext,SnackBarContext } from '../context/SnackBarContext'
+import {CartContext} from '../context/CartContext'
+import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
+import { NavBar } from '../basics/Navbar'
+import {SnackBar} from '../basics/SnackBar'
 
-var LoghmehLogo = require('../assets/LOGO.png')
+var LoghmehLogo = require('../../assets/LOGO.png')
 
 
 class RestaurantInfoBar extends Component{

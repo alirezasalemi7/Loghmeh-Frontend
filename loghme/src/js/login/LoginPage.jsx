@@ -1,11 +1,11 @@
 import React,{Component} from 'react'
-import '../css/login.css'
-import {NavBar} from './Navbar'
-import {InputField} from './basics/Inputs'
-import {SnackBarGlobalContext,SnackBarContext} from './context/SnackBarContext'
-import {CartContext} from './context/CartContext'
-import {SnackBar} from './SnackBar'
-import {PageLoaderSpinner} from './PageLoadSpinner'
+import '../../css/login.css'
+import {NavBar} from '../basics/Navbar'
+import {InputField} from '../basics/Inputs'
+import {SnackBarGlobalContext,SnackBarContext} from '../context/SnackBarContext'
+import {CartContext} from '../context/CartContext'
+import {SnackBar} from '../basics/SnackBar'
+import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
 import * as $ from 'jquery'
 
 class LoginPageUpperRow extends Component {
@@ -16,7 +16,7 @@ class LoginPageUpperRow extends Component {
                 <div className="col-sm-6">
                     <div className="row">
                         <div className="col-sm-12 text-center">
-                            <img alt="" src={require("../assets/LOGO.png")} id="login-data-column-logo"></img>
+                            <img alt="" src={require("../../assets/LOGO.png")} id="login-data-column-logo"></img>
                             <h2 dir="rtl" id="login-data-column-title">بزرگترین سایت سفارش غذا در دانشگاه تهران</h2>
                         </div>
                     </div>
@@ -157,7 +157,7 @@ class LoginCard extends Component {
                 <div className="card" id="login-card">
                     <div className="card-header">
                         <div className="col-sm-12 text-center">
-                            <img alt="" id="login-card-logo" src={require("../assets/LOGO.png")}></img>
+                            <img alt="" id="login-card-logo" src={require("../../assets/LOGO.png")}></img>
                             <p className="login-data-column-info-text" dir="rtl"> میخوای بیای تو؟ باشه اول وارد شو بعدش کلی خوراکی منتظرته ;)</p>
                         </div>
                     </div>

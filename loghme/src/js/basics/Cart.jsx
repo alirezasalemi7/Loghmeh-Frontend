@@ -1,9 +1,9 @@
 import React,{Component} from 'react'
 import {translateEnglishToPersianNumbers} from './Utils'
-import '../css/cart.css'
-import '../css/navbar.css'
+import '../../css/cart.css'
+import '../../css/navbar.css'
 import Loader from 'react-loader-spinner'
-import {CartGlobalContext} from './context/CartContext'
+import {CartGlobalContext} from '../context/CartContext'
 
 export class Cart extends Component {
 

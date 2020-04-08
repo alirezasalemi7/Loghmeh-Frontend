@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import '../css/RestaurantPage.css'
+import '../../css/RestaurantPage.css'
 import {FoodCardSmall} from './FoodCard'
 
 export class Menu extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { SnackBarContext, SnackBarGlobalContext } from "../context/SnackBarContext"
-import { SnackBar } from "../SnackBar"
+import { SnackBar } from "../basics/SnackBar"
 import * as $ from 'jquery'
 
 export class RestaurantsContainer extends Component {

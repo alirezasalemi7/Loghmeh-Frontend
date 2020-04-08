@@ -1,10 +1,10 @@
 import "../../css/home.css"
 import React, { Component } from "react";
 import { SnackBarContext, SnackBarGlobalContext } from "../context/SnackBarContext";
-import { SnackBar } from "../SnackBar";
-import { translateEnglishToPersianNumbers } from "../Utils";
+import { SnackBar } from "../basics/SnackBar";
+import { translateEnglishToPersianNumbers } from "../basics/Utils";
 import * as $ from "jquery"
-import { FoodCardModal } from "../FoodCard";
+import { FoodCardModal } from "../restaurant/FoodCard";
 
 
 export class FoodPartyContainer extends Component {

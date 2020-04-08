@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
-import '../css/navbar.css'
-import { CartGlobalContext } from './context/CartContext'
+import '../../css/navbar.css'
+import { CartGlobalContext } from '../context/CartContext'
 import {translateEnglishToPersianNumbers} from './Utils'
 import {CartModal} from './Cart'
 import * as $ from 'jquery'
@@ -71,7 +71,7 @@ export class NavBar extends Component {
                                     </a>}
                                 </div>
                                 <div className="nav navbar-nav navbar-right">
-                                    <img className="img-responsive" id="loghmeh-logo"  src={require("../assets/LOGO.png")} onClick={this.homePage}></img>
+                                    <img className="img-responsive" id="loghmeh-logo"  src={require("../../assets/LOGO.png")} onClick={this.homePage}></img>
                                 </div>
                             </div>
                         </nav>

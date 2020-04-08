@@ -3,11 +3,11 @@ import React, { Component } from "react";
 import { HomeHeader } from "./HomeHeader";
 import { SnackBarContext, SnackBarGlobalContext } from "../context/SnackBarContext";
 import { CartContext } from "../context/CartContext";
-import { NavBar } from "../Navbar";
-import { SnackBar } from "../SnackBar";
+import { NavBar } from "../basics/Navbar";
+import { SnackBar } from "../basics/SnackBar";
 import { RestaurantsContainer } from "./Restaurants";
 import { FoodPartyContainer } from "./FoodPartyContainer";
-import {PageLoaderSpinner} from '../PageLoadSpinner'
+import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
 import * as $ from 'jquery'
 
 export class Home extends Component {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../../css/profilePage.css"
 import "../../css/flaticon.css"
 import * as $ from "jquery"
-import { translateEnglishToPersianNumbers,isReal } from "../Utils";
+import { translateEnglishToPersianNumbers,isReal } from "../basics/Utils";
 import {SnackBarGlobalContext} from '../context/SnackBarContext'
 import Loader from 'react-loader-spinner'
 export class MainTable extends Component {

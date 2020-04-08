@@ -1,7 +1,7 @@
 import React, {Component} from "react"
 import "../../css/profilePage.css"
 import "../../css/flaticon.css"
-import { translateEnglishToPersianNumbers } from "../Utils"
+import { translateEnglishToPersianNumbers } from "../basics/Utils"
 
 
 export class UserInfoHeader extends Component {

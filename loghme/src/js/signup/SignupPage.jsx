@@ -1,12 +1,12 @@
 import React,{Component} from 'react'
-import '../css/signup.css'
-import {NavBar} from './Navbar'
-import {InputField} from './basics/Inputs'
-import {SnackBarGlobalContext,SnackBarContext} from './context/SnackBarContext'
-import {CartContext} from './context/CartContext'
-import {validateEmail,isNumeric} from './Utils'
-import {SnackBar} from './SnackBar'
-import {PageLoaderSpinner} from './PageLoadSpinner'
+import '../../css/signup.css'
+import {NavBar} from '../basics/Navbar'
+import {InputField} from '../basics/Inputs'
+import {SnackBarGlobalContext,SnackBarContext} from '../context/SnackBarContext'
+import {CartContext} from '../context/CartContext'
+import {validateEmail,isNumeric} from '../basics/Utils'
+import {SnackBar} from '../basics/SnackBar'
+import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
 import * as $ from 'jquery'
 
 export class SignupPage extends Component {
@@ -257,7 +257,7 @@ class SignupPageUpperRow extends Component {
             <div className="row" id="signup-upper-row">
                 <div className="signup-layer"></div>
                 <div className="col-sm-12 text-center">
-                    <img alt="" src={require('../assets/LOGO.png')} id="upper-row-img"></img>
+                    <img alt="" src={require('../../assets/LOGO.png')} id="upper-row-img"></img>
                     <h2 dir="rtl" id="upper-row-title">بزرگترین سایت سفارش غذا در دانشگاه تهران</h2>
                 </div>
             </div>

@@ -1,8 +1,8 @@
 import React,{Component} from 'react'
-import {translateEnglishToPersianNumbers} from './Utils'
-import {CartGlobalContext} from './context/CartContext'
-import '../css/food-card.css'
-import '../css/food-detail.css'
+import {translateEnglishToPersianNumbers} from '../basics/Utils'
+import {CartGlobalContext} from '../context/CartContext'
+import '../../css/food-card.css'
+import '../../css/food-detail.css'
 import * as $ from 'jquery'
 import Loader from 'react-loader-spinner'
 

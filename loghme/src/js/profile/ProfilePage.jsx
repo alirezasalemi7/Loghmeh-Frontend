@@ -3,13 +3,13 @@ import "../../css/profilePage.css"
 import "../../css/flaticon.css"
 import { UserInfoHeader } from "./UserInformation"
 import { MainTable } from "./MainTable"
-import { NavBar } from "../Navbar"
+import { NavBar } from "../basics/Navbar"
 import { SnackBarContext, SnackBarGlobalContext } from "../context/SnackBarContext"
 import { CartContext } from "../context/CartContext"
-import { SnackBar } from "../SnackBar"
-import { isReal } from "../Utils"
+import { SnackBar } from "../basics/SnackBar"
+import { isReal } from "../basics/Utils"
 import * as $ from 'jquery'
-import {PageLoaderSpinner} from '../PageLoadSpinner'
+import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
 
 export class ProfilePage extends Component {
 
