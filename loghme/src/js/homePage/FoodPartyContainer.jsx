@@ -17,6 +17,7 @@ export class FoodPartyContainer extends Component {
             seconds: 0
         }
         this.getFoods = this.getFoods.bind(this)
+        this.getRemainingTime = this.getRemainingTime.bind(this)
     }
 
     getFoods() {
@@ -27,12 +28,9 @@ export class FoodPartyContainer extends Component {
             }
             if (req.readyState === 4) {
                 if (req.status === 200) {
-                    console.log(JSON.parse(req.response))
-                    let completeInfo = JSON.parse(req.response)
+                    let foodInfo = JSON.parse(req.response)
                     this.setState({
-                        foods: completeInfo.foods,
-                        minutes: completeInfo.minutes,
-                        seconds: completeInfo.seconds
+                        foods: foodInfo
                     })
                 }
             }
@@ -41,8 +39,29 @@ export class FoodPartyContainer extends Component {
         req.send()
     }
 
+    getRemainingTime() {
+        let req = new XMLHttpRequest()
+        req.onreadystatechange = function() {
+            if(!this.mount){
+                return
+            }
+            if (req.readyState === 4) {
+                if (req.status === 200) {
+                    let timeInfo = JSON.parse(req.response)
+                    this.setState({
+                        minutes: timeInfo.minutes,
+                        seconds: timeInfo.seconds
+                    })
+                }
+            }
+        }.bind(this)
+        req.open("GET", "http://127.0.0.1:8080/foodParty/time")
+        req.send()
+    }
+
     componentDidMount() {
         this.getFoods()
+        this.getRemainingTime()
         this.mount = true
         this.interval = setInterval(this.getFoods,1000)
     }
@@ -64,10 +83,9 @@ export class FoodPartyContainer extends Component {
                                 <div>
                                     <div className="text-center">
                                         <p className="part-title mx-auto mb-2" dir="rtl">جشن غذا!</p>
-                                        {console.log(this.state.minutes + " " + this.state.seconds)}
                                         <Timer minutes={this.state.minutes} seconds={this.state.seconds} length={this.state.foods.length} runAtTimesup={this.getFoods}></Timer>
                                     </div>
-                                    <div className="swiper-container row d-flex flex-nowrap flex-row mt-2 mb-4 py-2 px-3 border">
+                                    <div className="swiper-container row d-flex flex-nowrap flex-row mt-2 justify-content-end mx-0 mb-4 py-2 px-3 border">
                                         {foodCards}
                                     </div>
                                 </div>
@@ -156,7 +174,7 @@ class FoodPartyFoodCard extends Component {
         let btnOnClick = ((this.props.food.count === 0) ? ()=>{} : (e)=>this.openModal())
         return (
             <div className="card d-flex flex-column mx-2 flex-wrap align-self-stretch rounded text-center food-party-card">
-                <div className="mx-0 px-2 py-2 dashed-border d-flex flex-column">
+                <div className="mx-0 px-2 py-2 dashed-border d-flex flex-grow-1 flex-column">
                     <div className="d-flex flex-row flex-grow-1">
                         <div className="px-2 flex-grow-1 flex-column mx-auto">
                             <div className="special-food-name text-right" dir="rtl">{this.props.food.name}</div>
