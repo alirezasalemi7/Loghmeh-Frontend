@@ -5,6 +5,7 @@ import * as $ from "jquery"
 import { translateEnglishToPersianNumbers,isReal } from "../basics/Utils";
 import {SnackBarGlobalContext} from '../context/SnackBarContext'
 import Loader from 'react-loader-spinner'
+import { InputField } from "../basics/Inputs";
 export class MainTable extends Component {
 
     constructor(props) {
@@ -38,25 +39,51 @@ class CreditPart extends Component {
     constructor(props){
         super(props)
         this.state = {
-            spinner:false
+            spinner:false,
+            value: "",
+            empty: false,
+            error: false,
         }
         this.increase = this.increase.bind(this)
+        this.inputChange = this.inputChange.bind(this)
+    }
+
+    inputChange(e) {
+        e.preventDefault()
+        this.setState({
+            value: e.target.value,
+            empty: false,
+            error: false
+        })
     }
 
     clickButton(e) {
         e.preventDefault()
         let amount = $("#increase-credit-input").val()
-        this.increase(amount)
+        if (amount) {
+            this.increase(amount)
+        } else {
+            this.setState({empty: true})
+            this.show('لطفا یک عدد وارد کنید')
+        }
     }
 
     increase(amount) {
         if (!isReal(amount)) {
             this.show('مقدار ورودی باید یک عدد باشد')
+            this.setState({
+                error: true,
+                value: ""
+            })
             return
         } 
         let amountValue = Number(amount) 
         if (amountValue <= 0) {
             this.show('عدد وارد شده باید مثبت باشد')
+            this.setState({
+                error: true,
+                value: ""
+            })
             return
         }
         let req = new XMLHttpRequest()
@@ -68,7 +95,10 @@ class CreditPart extends Component {
                     this.show('با موفقیت انجام شد:)')
                     this.props.getUserInfo()
                 } else if (req.status === 400) {
-                    this.show('درخواست اشتباه. دوباره تلاش کنید.')
+                    this.setState({
+                        value: ""
+                    })
+                    this.show('لطفا دوباره تلاش کنید.')
                 }
             }
         }.bind(this)
@@ -91,7 +121,7 @@ class CreditPart extends Component {
                 </SnackBarGlobalContext.Consumer>
                 <div className="container my-3 mx-auto text-center credit-box">
                     <button className="col-4 border-0 mr-2 h-100 med-torq text-white credit-button" onClick={(e)=>{this.clickButton(e)}}>افزایش</button>
-                    <input type="text" id="increase-credit-input" className="col-8 border h-100 credit-input" placeholder="میزان افزایش اعتبار"/>
+                    <InputField dir="ltr" className="col-8 border h-100 credit-input" value={this.state.value} err={this.state.error} empty={this.state.empty} type="text" onChange={this.inputChange} id="increase-credit-input" placeholder="میزان افزایش اعتبار"></InputField>
                 </div>
                 <Loader type="BallTriangle" color="#FF6B6B" visible={this.state.spinner} height={50} width={50}/>
             </div>
