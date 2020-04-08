@@ -2,9 +2,13 @@ import React, {Component} from "react"
 import "../../css/profilePage.css"
 import "../../css/flaticon.css"
 import { translateEnglishToPersianNumbers } from "../basics/Utils"
-
+import PropTypes from 'prop-types'
 
 export class UserInfoHeader extends Component {
+
+    static propTypes = {
+        user: PropTypes.object.isRequired
+    }
 
     render() {
         return (
@@ -22,6 +26,14 @@ export class UserInfoHeader extends Component {
 
 class UserName extends Component {
 
+    static propTypes = {
+        children: PropTypes.string
+    }
+
+    static defaultProps = {
+        children: "داره لود میشه"
+    }
+
     render() {
         return (
             <div className="col-6 row text-center text-white align-self-center px-0">
@@ -33,6 +45,12 @@ class UserName extends Component {
 }
 
 class UserInfo extends Component {
+
+    static propTypes = {
+        infoType: PropTypes.string.isRequired,
+        dir: PropTypes.string.isRequired,
+        children: PropTypes.string.isRequired
+    } 
 
     render() {
         let classNames = "text-white col-2 flaticon-" + this.props.infoType + " pl-0"

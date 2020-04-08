@@ -6,7 +6,14 @@ import { translateEnglishToPersianNumbers,isReal } from "../basics/Utils";
 import {SnackBarGlobalContext} from '../context/SnackBarContext'
 import Loader from 'react-loader-spinner'
 import { InputField } from "../basics/Inputs";
+import PropTypes from 'prop-types'
+
 export class MainTable extends Component {
+
+    static propTypes = {
+        getUserInfo: PropTypes.func.isRequired,
+        increase: PropTypes.func.isRequired
+    }
 
     constructor(props) {
         super(props)
@@ -35,6 +42,11 @@ export class MainTable extends Component {
 }
 
 class CreditPart extends Component {
+
+    static propTypes = {
+        getUserInfo: PropTypes.func,
+        increase: PropTypes.func
+    }
 
     constructor(props){
         super(props)
@@ -130,6 +142,15 @@ class CreditPart extends Component {
 }
 
 class SelectorButtons extends Component {
+
+    static defaultProps = {
+        activeButton: "Orders"
+    }
+
+    static propTypes = {
+        changePage: PropTypes.func
+    }
+
     render() {
         let activeButtonClasses = "border-0 col-6 h-100 pastel-red text-white text-center rounded-right header-button"
         let inactiveButtonClasses = "border col-6 h-100 text-dark bg-white text-center rounded-left header-button"
@@ -184,7 +205,6 @@ class OrderList extends Component {
     }
 
     render() {
-        // TODO: add go to restaurant page in else of orderList
         return ( 
             <div className="border mx-auto p-4 pt-5 bg-white order-container">
                 <SnackBarGlobalContext.Consumer>
@@ -202,6 +222,14 @@ class OrderList extends Component {
 }
 
 class OrderItem extends Component {
+
+    static propTypes = {
+        status: PropTypes.string.isRequired,
+        restaurantName: PropTypes.string.isRequired,
+        itemNumber: PropTypes.number.isRequired,
+        orderId: PropTypes.number.isRequired,
+        orderDetails: PropTypes.object.isRequired
+    }
 
     constructor(props) {
         super(props)
@@ -242,6 +270,13 @@ class OrderItem extends Component {
 }
 
 class OrderDetail extends Component {
+
+    static propTypes = {
+        id: PropTypes.string.isRequired,
+        datails: PropTypes.object.isRequired,
+        children: PropTypes.string.isRequired
+    }
+
     render() {
         let foodLists = this.props.details.order.map((element, i)=><tr key={i}><td className="border px-1">{translateEnglishToPersianNumbers(i + 1)}</td><td className="border px-1">{element.name}</td><td className="border px-2">{translateEnglishToPersianNumbers(element.count)}</td><td className="border px-2">{translateEnglishToPersianNumbers(element.cost)}</td></tr>)
         return (

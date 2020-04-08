@@ -10,8 +10,13 @@ import { SnackBar } from "../basics/SnackBar"
 import { isReal } from "../basics/Utils"
 import * as $ from 'jquery'
 import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
+import PropTypes from 'prop-types'
 
 export class ProfilePage extends Component {
+
+    static propTypes = {
+        history: PropTypes.object.isRequired
+    }
 
     constructor(props) {
         super(props)

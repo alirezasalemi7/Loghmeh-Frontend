@@ -24,7 +24,7 @@ export class NavBar extends Component {
         account : true,
         cart : true,
         login : false,
-        signup : false,
+        signup : false
     }
 
     static propTypes = {
