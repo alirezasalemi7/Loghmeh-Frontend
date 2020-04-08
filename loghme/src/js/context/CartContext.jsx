@@ -123,6 +123,7 @@ export class CartContext extends Component {
     }
 
     increase(item){
+        console.log("TEST" + item)
         let req = new XMLHttpRequest()
         req.responseType = 'json'
         req.onerror = function(){
@@ -146,6 +147,11 @@ export class CartContext extends Component {
                 this.show("سرورمون فعلا مشکل داره :(")
             }
             else if(req.readyState === 4 && req.status === 404 && req.response.status === 40401){
+                if(item.special) {
+                    item.special = false
+                    this.increase(item)
+                    return
+                }
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
@@ -164,6 +170,13 @@ export class CartContext extends Component {
                 this.show("این رستوران وجود نداره :(")
             }
             else if(req.readyState === 4 && req.status === 404 && req.response.status === 40401){
+                if(item.special == true) {
+                    item.special = false
+                    console.log(item)
+                    this.increase(item)
+                    return
+                }
+                console.log(item)
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
@@ -203,6 +216,7 @@ export class CartContext extends Component {
     }
 
     decrease(item){
+        console.log("TEST" + item)
         let req = new XMLHttpRequest()
         req.responseType = 'json'
         req.onerror = function(){
@@ -226,6 +240,15 @@ export class CartContext extends Component {
                 this.show("سرورمون فعلا مشکل داره :(")
             }
             else if(req.readyState === 4 && req.status === 200 && req.response.status === 40401){
+                if(item.special == true) {
+                    item.special = false
+                    console.log(item)
+                    this.decrease(item)
+                    return
+                }
+                console.log("BEFORE SHOW")
+                console.log(item)
+                console.log(req.response)
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
@@ -244,6 +267,15 @@ export class CartContext extends Component {
                 this.show("این رستوران وجود نداره :(")
             }
             else if(req.readyState === 4 && req.status === 404 && req.response.status === 40401){
+                if(item.special == true) {
+                    item.special = false
+                    console.log(item)
+                    this.decrease(item)
+                    return
+                }
+                console.log("BEFORE SHOW")
+                console.log(item)
+                console.log(req.response)
                 this.setState((state,props)=>({
                     spinner : false,
                 }))

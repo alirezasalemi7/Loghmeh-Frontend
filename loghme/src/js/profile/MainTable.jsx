@@ -205,7 +205,6 @@ class OrderItem extends Component {
                     <div className="m-2 restaurant-name" dir="rtl">{this.props.restaurantName}</div>
                 </span>
                 <span className="col-1" dir="rtl">{translateEnglishToPersianNumbers(this.props.itemNumber)}</span>
-                {console.log("HSY" + this.props.orderDetails)}
                 <OrderDetail id={"order-detail-" + this.props.orderId} details={this.props.orderDetails}>{this.props.restaurantName}</OrderDetail>
             </div>
         )
