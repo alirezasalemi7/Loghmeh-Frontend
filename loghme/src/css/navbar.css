@@ -28,7 +28,7 @@
 
 
 .exit-btn {
-    color: var(--pastel-red);
+    color: var(--pastel-red) !important;
 }
 
 
@@ -40,4 +40,8 @@
 
 nav .btn:active {
     border-color: var(--med-torq);
+}
+
+.img-responsive {
+    cursor: pointer;
 }

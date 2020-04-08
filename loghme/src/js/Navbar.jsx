@@ -14,6 +14,7 @@ export class NavBar extends Component {
         this.login = this.login.bind(this)
         this.signup = this.signup.bind(this)
         this.profile = this.profile.bind(this)
+        this.homePage = this.homePage.bind(this)
         this.history = this.props.history
     }
 
@@ -42,6 +43,10 @@ export class NavBar extends Component {
         this.props.history.push('/signup')
     }
 
+    homePage() {
+        this.props.history.push('/home')
+    }
+
     openCart(){
         $('#global-cart').modal('show')
     }
@@ -66,7 +71,7 @@ export class NavBar extends Component {
                                     </a>}
                                 </div>
                                 <div className="nav navbar-nav navbar-right">
-                                    <img className="img-responsive" id="loghmeh-logo"  src={require("../assets/LOGO.png")}></img>
+                                    <img className="img-responsive" id="loghmeh-logo"  src={require("../assets/LOGO.png")} onClick={this.homePage}></img>
                                 </div>
                             </div>
                         </nav>
