@@ -38,7 +38,7 @@ class UserName extends Component {
         return (
             <div className="col-6 row text-center text-white align-self-center px-0">
                 <div className="col-9 text-right account-name align-self-center">{this.props.children}</div>
-                <div className="col-3 flaticon-account pl-0 text-left"></div>
+                <div className="col-3 flaticon-account  pl-0 text-left"></div>
             </div>
         )
     }

@@ -273,7 +273,7 @@ class OrderDetail extends Component {
 
     static propTypes = {
         id: PropTypes.string.isRequired,
-        datails: PropTypes.object.isRequired,
+        datails: PropTypes.object,
         children: PropTypes.string.isRequired
     }
 

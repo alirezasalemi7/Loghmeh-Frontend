@@ -50,10 +50,6 @@
         margin-bottom: 3%;
     }
     
-    .food-detail-star{
-        margin-right: 5%;
-    }
-    
     .food-detail-star::before{
         color: rgb(240, 156, 0);
         font-size: 1.3em;
@@ -61,6 +57,7 @@
     
     .food-detail-star-text{
         font-size: 1.3em;
+        margin-right: 0.5em;
     }
     
     .food-detail-name {
@@ -187,10 +184,6 @@
         margin-bottom: 3%;
     }
     
-    .food-detail-star{
-        margin-right: 5%;
-    }
-    
     .food-detail-star::before{
         color: rgb(240, 156, 0);
         font-size: 1.1em;
@@ -198,6 +191,7 @@
     
     .food-detail-star-text{
         font-size: 1.1em;
+        margin-right: 0.4em;
     }
     
     .food-detail-name {

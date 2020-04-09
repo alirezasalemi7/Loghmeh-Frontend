@@ -95,8 +95,8 @@ export class FoodCardLarge extends Component {
                                 <div className="col-sm-12 text-center">
                                     <div className="row" dir="rtl">
                                         <p className="food-detail-name" dir="rtl">{this.props.food.name}</p>
-                                        <span className="flaticon-star food-detail-star"></span>
                                         <span className="food-detail-star-text">{translateEnglishToPersianNumbers(this.props.food.popularity)}</span>
+                                        <span className="flaticon-star food-detail-star"></span>
                                     </div>
                                 </div>
                             </div>
