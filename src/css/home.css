@@ -1,0 +1,153 @@
+@import url(./body.css);
+@import url(./navbar.css);
+@import url(./footer.css);
+
+.main-body {
+    background-color: #F7FFF7;
+}
+
+.header-cover {
+    background-color: var(--pastel-red-opc);
+    z-index: 1;
+}
+
+.backgruond-image {
+    background-size: 100%;
+    margin-left: -15px;
+    margin-right: -15px;
+    background-image: url("../assets/login/Cover Photo.jpg");
+    position: relative;
+    height: 12.7em;
+}
+
+.logo-image {
+    width: 5em;
+    width: 5em;
+    box-shadow:  0px 0px 3px 1px rgb(77, 77, 77);
+    border-radius: 2.5em;
+}
+
+.home-top-text {
+    text-shadow: 1px 1px 1px rgb(77, 77, 77);
+}
+
+.search-box {
+    width: 25em;
+    height: 3.4em;
+    margin-bottom: -1.7em;
+    box-shadow: 0px 1px 2px 1px rgb(167, 165, 165);
+}
+
+.search-box-input {
+    border-radius: 0.3em;
+    margin: 0em 0.2em;
+}
+
+.search-box-input::placeholder {
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.part-title {
+    color: #1A535C;
+    font-size: 1.5em;
+    border-bottom: 2px solid #1A535C;
+    width: 5em;
+}
+
+.food-party-time {
+    width: 13em;
+    height: 2em;
+    font-size: 0.8em;
+    border: 1px solid;
+    border-color: #1A535C;
+    border-radius: 0.5em;
+}
+
+.restaurant-container {
+    width: 75%;
+}
+
+.restaurant-card {
+    width: 9em;
+    box-shadow: 0px 1px 1px 2px #F1F1F1;
+    border-radius: 10px;
+    margin: 0.5em 0.8em;
+}
+
+.restaurant-name-text {
+    font-size: 1em;
+}
+
+.restaurant-image {
+    width: 4.5em;
+    height: 4.5em;
+}
+
+.menu-button {
+    font-size: 0.9em;
+    border-radius: 0.4em;
+}
+
+
+.swiper-container {
+    box-shadow: 0px 0px 3px 3px #F1F1F1;
+    overflow: auto;
+}
+
+.food-party-card {
+    box-shadow: 0px 1px 2px 1px rgb(148, 148, 148);
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 10em;
+}
+
+.special-food-card-image {
+    width: 3.5em !important;
+    height: 3.5em !important;
+    border-radius: 0.4em;
+}
+
+.special-food-name {
+    font-size: 0.9em;
+}
+
+.food-card-star{
+    font-size: 0.7em;
+}
+
+.food-card-star::before{
+    color: rgb(240, 156, 0);
+    font-size: 0.7em;
+}
+
+.cost-font {
+    font-size: 0.9em;
+}
+
+.old-cost {
+    color: gray;
+    text-decoration: line-through;
+    text-decoration-color: red;
+}
+
+.count-box {
+    font-size: 0.7em;
+}
+
+.count-box-color {
+    background-color: #F7FFF7;
+}
+
+.dashed-border {
+    border-bottom: 1px dashed rgb(179, 179, 179);
+}
+
+.footer-font-size {
+    font-size: 0.6em;
+}
+
+.btn-gray {
+    background-color: rgb(180, 180, 180);
+    cursor: not-allowed !important; 
+}
