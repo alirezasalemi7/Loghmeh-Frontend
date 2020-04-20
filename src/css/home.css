@@ -20,6 +20,18 @@
     height: 12.7em;
 }
 
+.load-more {
+    display: block;
+    font-size: 1em;
+    color: #F7FFF7;
+    cursor: pointer;
+}
+
+.load-more:hover {
+    background-color: rgb(245, 92, 92);
+    color: #F7FFF7;
+}
+
 .logo-image {
     width: 5em;
     width: 5em;

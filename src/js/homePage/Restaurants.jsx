@@ -12,24 +12,37 @@ export class RestaurantsContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            restaurants: []
+            restaurants: [],
+            visible: true,
+            pageNumber: 0
         }
         this.getRestaurants = this.getRestaurants.bind(this)
     }
 
     componentDidMount() {
-        this.getRestaurants()
+        this.getRestaurants(0, 10)
     }
 
-    getRestaurants() {
+    getRestaurants(page_number, page_size) {
         let req = new XMLHttpRequest()
         req.onreadystatechange = function() {
             if (req.readyState === 4) {
                 if (req.status === 200) {
-                    this.setState({
-                        restaurants: JSON.parse(req.response)
-                    })
-                    setTimeout(()=>{ $("#loading-modal").modal('hide')},1000)
+                    let newPage = JSON.parse(req.response)
+                    console.log(newPage)
+                    if (newPage.length < page_size) {
+                        this.setState({
+                            pageNumber: this.state.pageNumber + 1,
+                            visible: false,
+                            restaurants: this.state.restaurants.concat(newPage)
+                        })
+                    } else {
+                        this.setState({
+                            pageNumber: this.state.pageNumber + 1,
+                            restaurants: this.state.restaurants.concat(newPage)
+                        })
+                    }
+                    setTimeout(()=>{ $("#loading-modal").modal('hide')}, 1000)
                 } else {
                     console.log(req.response)
                     this.show('لطفا پس از مدتی دوباره تلاش کنید.')
@@ -40,7 +53,7 @@ export class RestaurantsContainer extends Component {
             $("#loading-modal").modal('hide')
             this.show('سرور فعلا مشکل داره:(')
         }.bind(this)
-        req.open("GET", "http://127.0.0.1:8080/restaurants?user_id=1&page_number=1&page_size=20", true)
+        req.open("GET", "http://127.0.0.1:8080/restaurants?user_id=1&page_number="+page_number+"&page_size="+page_size, true)
         req.send()
     }
 
@@ -53,17 +66,19 @@ export class RestaurantsContainer extends Component {
                         (data) => {
                             this.show = data.showSnackbar
                             return (
-                                <div className="text-center">
-                                    <p className="part-title mx-auto mb-3">رستوران‌ها</p>
-                                    <div className="row mx-auto mb-5 restaurant-container" dir="rtl">
-                                        {restaurants.length >0 && restaurants}
+                                <div className="text-center mb-5">
+                                    <p className="part-title mx-auto">رستوران‌ها</p>
+                                    <div className="row mx-auto mb-1 restaurant-container" dir="rtl">
+                                        {restaurants.length > 0 && restaurants}
                                         {restaurants.length == 0 &&
                                             <div className="col-sm-12 text-center">
                                                 <p dir="rtl">سرور در دسترس نیست!</p>
                                             </div>
-
                                         }
                                     </div>
+                                    {
+                                        (restaurants.length > 0) && this.state.visible && <button onClick={(e)=>{this.getRestaurants(this.state.pageNumber, 40)}} type="button" className="load-more btn mx-auto border-0 my-2 px-3 py-1 pastel-red">بیشتر</button>
+                                    }
                                 </div>
                             )
                         }
