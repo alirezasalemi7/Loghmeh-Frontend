@@ -185,7 +185,7 @@ class FoodPartyFoodCard extends Component {
                             <div className="special-food-name text-right" dir="rtl">{this.props.food.name}</div>
                             <div className="flaticon-star food-card-star text-right" dir="rtl"> {translateEnglishToPersianNumbers(this.props.food.popularity)}</div>
                         </div>
-                        <img className="special-food-card-image" src={this.props.food.image} alt="restaurant image"/>
+                        <img className="special-food-card-image" src={this.props.food.logo} alt="food image"/>
                     </div>
                     <div className="d-flex flex-row my-1">
                         <div className="flex-fill px-1 cost-font text-center">

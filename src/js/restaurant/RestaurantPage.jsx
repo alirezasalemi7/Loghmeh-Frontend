@@ -68,10 +68,10 @@ export class RestaurantPage extends Component {
             }
             if(req.readyState === 4 && req.status === 200) {
                 this.setState((state,props)=>({
-                    logo : req.response.logo,
+                    logo : req.response.restaurantInfo.logoAddress,
                     menu : req.response.menu,
-                    name : req.response.name,
-                    id : req.response.id,
+                    name : req.response.restaurantInfo.name,
+                    id : req.response.restaurantInfo.id,
                     valid : true
                 }))
             }
@@ -93,7 +93,7 @@ export class RestaurantPage extends Component {
             $("#loading-modal").modal('hide')
             this.show("سرورمون فعلا مشکل داره :(")
         }.bind(this)
-        req.open('GET','http://127.0.0.1:8080/restaurants/'+this.props.id,true)
+        req.open('GET','http://127.0.0.1:8080/restaurants/'+this.props.id+'?user_id=1',true)
         req.send()
     }
     

@@ -29,7 +29,7 @@ export class FoodCardSmall extends Component {
                 <div className="card-body d-flex flex-column food-card-body">
                     <div className="row text-center">
                         <div className="col-sm-12 mx-auto">
-                            <img alt="" className="food-card-pic" src={this.props.food.image} ></img>
+                            <img alt="" className="food-card-pic" src={this.props.food.logo} ></img>
                         </div>
                     </div>
                     <div className="row">
@@ -118,7 +118,7 @@ export class FoodCardLarge extends Component {
                             </div>
                         </div>
                         <div className="col-sm-4">
-                            <img alt="" className="food-detail-img" src={this.props.food.image}></img>
+                            <img alt="" className="food-detail-img" src={this.props.food.logo}></img>
                         </div>
                     </div>
                 </div>

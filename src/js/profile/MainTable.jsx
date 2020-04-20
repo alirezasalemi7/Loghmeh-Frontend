@@ -111,6 +111,11 @@ class CreditPart extends Component {
                         value: ""
                     })
                     this.show('لطفا دوباره تلاش کنید.')
+                } else if (req.status === 404) {
+                    this.setState({
+                        value: ""
+                    })
+                    this.show('کاربری با نام کاربری داده شده یافت نشد.')
                 }
             }
         }.bind(this)
@@ -194,6 +199,18 @@ class OrderList extends Component {
                         orders: JSON.parse(req.response),
                         spinner : false
                     })
+                } else if (req.status === 500) {
+                    this.setState({
+                        orders: [],
+                        spinner : false
+                    })
+                    this.show('سرور فعلا مشکل داره.')
+                } else if (req.status === 404) {
+                    this.setState({
+                        orders: [],
+                        spinner : false
+                    })
+                    this.show('کاربری با این نام کاربری وجود ندارد.')
                 }
             }
         }.bind(this)

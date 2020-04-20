@@ -65,6 +65,8 @@ export class ProfilePage extends Component {
                         user: JSON.parse(req.response)
                     })
                     setTimeout(()=>{$("#loading-modal").modal('hide')},2000)
+                } else if (req.status === 404) {
+                    this.show('کاربری با این نام کاربری پیدا نشد:(')
                 }
             }
         }.bind(this)

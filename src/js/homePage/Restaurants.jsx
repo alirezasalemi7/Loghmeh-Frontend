@@ -31,6 +31,7 @@ export class RestaurantsContainer extends Component {
                     })
                     setTimeout(()=>{ $("#loading-modal").modal('hide')},1000)
                 } else {
+                    console.log(req.response)
                     this.show('لطفا پس از مدتی دوباره تلاش کنید.')
                 }
             }
@@ -39,12 +40,12 @@ export class RestaurantsContainer extends Component {
             $("#loading-modal").modal('hide')
             this.show('سرور فعلا مشکل داره:(')
         }.bind(this)
-        req.open("GET", "http://127.0.0.1:8080/restaurants", true)
+        req.open("GET", "http://127.0.0.1:8080/restaurants?user_id=1&page_number=1&page_size=20", true)
         req.send()
     }
 
     render() {
-        let restaurants = this.state.restaurants.map((element, i)=><RestaurantCart history={this.props.history} key={i} name={element.name} imageSrc={element.img} id={element.id}></RestaurantCart>)
+        let restaurants = this.state.restaurants.map((element, i)=><RestaurantCart history={this.props.history} key={i} name={element.name} imageSrc={element.logoAddress} id={element.id}></RestaurantCart>)
         return (
             <SnackBarContext>
                 <SnackBarGlobalContext.Consumer>
