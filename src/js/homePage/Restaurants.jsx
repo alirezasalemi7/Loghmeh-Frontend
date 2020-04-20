@@ -20,7 +20,7 @@ export class RestaurantsContainer extends Component {
     }
 
     componentDidMount() {
-        this.getRestaurants(0, 10)
+        this.getRestaurants(0, 24)
     }
 
     getRestaurants(page_number, page_size) {
@@ -29,7 +29,6 @@ export class RestaurantsContainer extends Component {
             if (req.readyState === 4) {
                 if (req.status === 200) {
                     let newPage = JSON.parse(req.response)
-                    console.log(newPage)
                     if (newPage.length < page_size) {
                         this.setState({
                             pageNumber: this.state.pageNumber + 1,
@@ -44,7 +43,6 @@ export class RestaurantsContainer extends Component {
                     }
                     setTimeout(()=>{ $("#loading-modal").modal('hide')}, 1000)
                 } else {
-                    console.log(req.response)
                     this.show('لطفا پس از مدتی دوباره تلاش کنید.')
                 }
             }
@@ -77,7 +75,7 @@ export class RestaurantsContainer extends Component {
                                         }
                                     </div>
                                     {
-                                        (restaurants.length > 0) && this.state.visible && <button onClick={(e)=>{this.getRestaurants(this.state.pageNumber, 40)}} type="button" className="load-more btn mx-auto border-0 my-2 px-3 py-1 pastel-red">بیشتر</button>
+                                        (restaurants.length > 0) && this.state.visible && <button onClick={(e)=>{this.getRestaurants(this.state.pageNumber, 24)}} type="button" className="load-more btn mx-auto border-0 rounded-pill my-2 px-3 py-1 pastel-red">بیشتر</button>
                                     }
                                 </div>
                             )

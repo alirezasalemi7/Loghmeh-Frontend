@@ -244,7 +244,7 @@ class OrderItem extends Component {
         status: PropTypes.string.isRequired,
         restaurantName: PropTypes.string.isRequired,
         itemNumber: PropTypes.number.isRequired,
-        orderId: PropTypes.number.isRequired,
+        orderId: PropTypes.string.isRequired,
         orderDetails: PropTypes.object.isRequired
     }
 
