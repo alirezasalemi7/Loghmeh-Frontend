@@ -108,7 +108,7 @@ export class SearchContainer extends Component {
                                         this.state.visible && 
                                         <div className="text-center mb-5">
                                             <p className="part-title mx-auto mt-3">نتایج جست‌وجو</p>
-                                            <div className="row mx-auto mb-1 search-container" dir="rtl">
+                                            <div className="row mx-auto mb-1 search-container">
                                                 {
                                                     this.state.isFoodSearch && foodList.length > 0 && foodList
                                                 } {

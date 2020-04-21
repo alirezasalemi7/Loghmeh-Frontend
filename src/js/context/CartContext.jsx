@@ -61,6 +61,24 @@ export class CartContext extends Component {
                 }))
                 this.show("سرورمون فعلا مشکل داره :(")
             }
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 4040001){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("این یوزر تو سرور ثبت نیست")
+            }
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 4040001){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("این یوزر تو سرور ثبت نیست")
+            }
+            else if(req.readyState === 4 && req.status === 500 && req.response.status === 500){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("سرورمون فعلا مشکل داره :(")
+            }
             else {
                 this.setState({spinner:true})
             }
@@ -112,6 +130,18 @@ export class CartContext extends Component {
                     }
                     return ans
                 })
+            }
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 4040001){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("این یوزر تو سرور ثبت نیست")
+            }
+            else if(req.readyState === 4 && req.status === 500 && req.response.status === 500){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("سرورمون فعلا مشکل داره :(")
             }
             else {
                 this.setState({spinner:true})
@@ -197,6 +227,18 @@ export class CartContext extends Component {
                 }))
                 this.show("تکلیف سفارش قبلی چیه؟")
             }
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 4040001){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("این یوزر تو سرور ثبت نیست")
+            }
+            else if(req.readyState === 4 && req.status === 500 && req.response.status === 500){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("سرورمون فعلا مشکل داره :(")
+            }
             else {
                 this.setState({spinner:true})
             }
@@ -280,6 +322,18 @@ export class CartContext extends Component {
                     spinner : false,
                 }))
                 this.show("درخواستت بده :(")
+            }
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 4040001){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("این یوزر تو سرور ثبت نیست")
+            }
+            else if(req.readyState === 4 && req.status === 500 && req.response.status === 500){
+                this.setState((state,props)=>({
+                    spinner : false,
+                }))
+                this.show("سرورمون فعلا مشکل داره :(")
             }
             else {
                 this.setState({spinner:true})

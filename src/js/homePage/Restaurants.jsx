@@ -3,6 +3,9 @@ import { SnackBarContext, SnackBarGlobalContext } from "../context/SnackBarConte
 import { SnackBar } from "../basics/SnackBar"
 import * as $ from 'jquery'
 import PropTypes from 'prop-types'
+import Pagination from '@material-ui/lab/Pagination';
+import { Grid } from '@material-ui/core';
+
 export class RestaurantsContainer extends Component {
 
     static propTypes = {
@@ -14,13 +17,16 @@ export class RestaurantsContainer extends Component {
         this.state = {
             restaurants: [],
             visible: true,
-            pageNumber: 0
+            pageNumber: 0,
+            totalPageNumber: 0,
+            pageSize: 14
         }
         this.getRestaurants = this.getRestaurants.bind(this)
+        this.handlePagination = this.handlePagination.bind(this)
     }
 
     componentDidMount() {
-        this.getRestaurants(0, 24)
+        this.getRestaurants(0, 14)
     }
 
     getRestaurants(page_number, page_size) {
@@ -29,16 +35,18 @@ export class RestaurantsContainer extends Component {
             if (req.readyState === 4) {
                 if (req.status === 200) {
                     let newPage = JSON.parse(req.response)
-                    if (newPage.length < page_size) {
+                    if (newPage.restaurants.length < page_size) {
                         this.setState({
                             pageNumber: this.state.pageNumber + 1,
                             visible: false,
-                            restaurants: this.state.restaurants.concat(newPage)
+                            restaurants: newPage.restaurants,
+                            totalPageNumber: newPage.totalPages
                         })
                     } else {
                         this.setState({
                             pageNumber: this.state.pageNumber + 1,
-                            restaurants: this.state.restaurants.concat(newPage)
+                            restaurants: newPage.restaurants,
+                            totalPageNumber: newPage.totalPages
                         })
                     }
                     setTimeout(()=>{ $("#loading-modal").modal('hide')}, 1000)
@@ -55,6 +63,10 @@ export class RestaurantsContainer extends Component {
         req.send()
     }
 
+    handlePagination(event,page){
+        this.getRestaurants(page-1,this.state.pageSize)
+    }
+
     render() {
         let restaurants = this.state.restaurants.map((element, i)=><RestaurantCart history={this.props.history} key={i} name={element.name} imageSrc={element.logoAddress} id={element.id}></RestaurantCart>)
         return (
@@ -65,8 +77,10 @@ export class RestaurantsContainer extends Component {
                             this.show = data.showSnackbar
                             return (
                                 <div className="text-center mb-5">
-                                    <p className="part-title mx-auto">رستوران‌ها</p>
-                                    <div className="row mx-auto mb-1 restaurant-container" dir="rtl">
+                                    <div className="row">
+                                        <p className="part-title mx-auto">رستوران‌ها</p>
+                                    </div>
+                                    <div className="row d-flex d-flex justify-content-around mx-auto mb-1 restaurant-container" dir="rtl">
                                         {restaurants.length > 0 && restaurants}
                                         {restaurants.length == 0 &&
                                             <div className="col-sm-12 text-center">
@@ -74,8 +88,11 @@ export class RestaurantsContainer extends Component {
                                             </div>
                                         }
                                     </div>
+                                    <hr></hr>
                                     {
-                                        (restaurants.length > 0) && this.state.visible && <button onClick={(e)=>{this.getRestaurants(this.state.pageNumber, 24)}} type="button" className="load-more btn mx-auto border-0 rounded-pill my-2 px-3 py-1 pastel-red">بیشتر</button>
+                                        <Grid container justify = "center">
+                                            <Pagination count={this.state.totalPageNumber} onChange={this.handlePagination} variant="outlined" color="secondary"/>
+                                        </Grid>
                                     }
                                 </div>
                             )
