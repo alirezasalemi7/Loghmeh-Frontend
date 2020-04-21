@@ -166,8 +166,12 @@ class Timer extends Component {
 class FoodPartyFoodCard extends Component {
 
     static propTypes = {
-        id: PropTypes.number.isRequired,
+        id: PropTypes.oneOf([PropTypes.number.isRequired, PropTypes.string.isRequired]),
         food: PropTypes.object.isRequired
+    }
+
+    componentWillUnmount() {
+        $("#modal-"+this.props.id).modal('hide')
     }
 
     openModal() {

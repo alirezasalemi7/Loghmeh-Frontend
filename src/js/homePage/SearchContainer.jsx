@@ -42,7 +42,7 @@ export class SearchContainer extends Component {
                             foods: responseBody.foods,
                             visible: true,
                             isFoodSearch: (responseBody.foods.length > 0),
-                            pageNumber: 0,
+                            pageNumber: 1,
                             loadMore: ((responseBody.foods.length > 0) ? (responseBody.foods.length >= pageSize) : (responseBody.restaurants.length >= pageSize)),
                             foodName: foodName,
                             restaurantName: restaurantName
@@ -68,18 +68,19 @@ export class SearchContainer extends Component {
             this.show('امکان ارسال درخواست به سرور وجود نداره:(')
         }.bind(this)
         console.log("food name:" + foodName)
+        console.log(this.state.pageNumber)
         console.log("restaurant name:" + restaurantName)
         if (foodName) {
             if (restaurantName) {
                 console.log("BOTH")
-                req.open("GET", "http://127.0.0.1:8080/search/foods_and_restaurants?user_id=1&food_name="+foodName+"&restaurant_name="+restaurantName+"&page_number="+this.state.pageNumber+"&page_size="+pageSize)
+                req.open("GET", "http://127.0.0.1:8080/search/foods_and_restaurants?user_id=1&food_name="+foodName+"&restaurant_name="+restaurantName+"&page_number="+((isNewSearch) ? 0 : this.state.pageNumber)+"&page_size="+pageSize)
             } else {
                 console.log("JUST FOOD")
-                req.open("GET", "http://127.0.0.1:8080/search/foods?user_id=1&food_name="+foodName+"&page_number="+this.state.pageNumber+"&page_size="+pageSize)
+                req.open("GET", "http://127.0.0.1:8080/search/foods?user_id=1&food_name="+foodName+"&page_number="+((isNewSearch) ? 0 : this.state.pageNumber)+"&page_size="+pageSize)
             }
         } else if (restaurantName) {
             console.log("JUST RESTAURANT")
-            req.open("GET", "http://127.0.0.1:8080/search/restaurants?user_id=1&restaurant_name="+restaurantName+"&page_number="+this.state.pageNumber+"&page_size="+pageSize)
+            req.open("GET", "http://127.0.0.1:8080/search/restaurants?user_id=1&restaurant_name="+restaurantName+"&page_number="+((isNewSearch) ? 0 : this.state.pageNumber)+"&page_size="+pageSize)
         } else {
             this.show('برای جست‌وجو باید حداقل یکی از فیلدها پر شود.')
             return
