@@ -88,9 +88,13 @@ export class SearchContainer extends Component {
     }
 
     render() {
+        let foods = this.state.foods.map((element,i)=>{
+            element.key = i
+            return element
+        })
         let foodList = (
             <div className="row mx-auto mb-1 search-container" dir="rtl">
-                {this.state.foods.map((e,i)=><div className="mx-3 my-2" key={i}><FoodCardSmall restaurant={this.props.restaurant} food={e}></FoodCardSmall></div>)}
+                {foods.map((e,i)=><div className="mx-3 my-2" key={i} dir="ltr"><FoodCardSmall key={i} restaurant={e.restaurantName} food={e}></FoodCardSmall></div>)}
             </div>
         )
         let restaurantList = (

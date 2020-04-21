@@ -20,8 +20,8 @@ export class InputField extends Component {
         id : PropTypes.string,
         required : PropTypes.bool,
         value : PropTypes.string,
-        err : PropTypes.bool.isRequired,
-        empty : PropTypes.bool.isRequired,
+        err : PropTypes.bool,
+        empty : PropTypes.bool,
     }
 
     static defaultProps = {

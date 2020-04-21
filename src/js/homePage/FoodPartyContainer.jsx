@@ -74,7 +74,7 @@ export class FoodPartyContainer extends Component {
     }
 
     render() {
-        let foodCards = this.state.foods.map((element, i)=><FoodPartyFoodCard key={i} id={i} food={element}></FoodPartyFoodCard>)
+        let foodCards = this.state.foods.map((element, i)=><FoodPartyFoodCard key={i} id={"special"+i} food={element}></FoodPartyFoodCard>)
         return (
             <SnackBarContext>
                 <SnackBarGlobalContext.Consumer>

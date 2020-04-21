@@ -12,7 +12,6 @@ export class Menu extends Component {
 
     render(){
         let foods = this.props.allFoods.map((element,i)=>{
-            element.restaurant = this.props.restaurantId
             element.key = i
             return element
         })
