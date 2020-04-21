@@ -4,7 +4,9 @@ import { SnackBar } from "../basics/SnackBar"
 import * as $ from 'jquery'
 import PropTypes from 'prop-types'
 import Pagination from '@material-ui/lab/Pagination';
+import PaginationItem from '@material-ui/lab/PaginationItem';
 import { Grid } from '@material-ui/core';
+import {translateEnglishToPersianNumbers} from '../basics/Utils'
 
 export class RestaurantsContainer extends Component {
 
@@ -91,7 +93,7 @@ export class RestaurantsContainer extends Component {
                                     <hr></hr>
                                     {
                                         <Grid container justify = "center">
-                                            <Pagination count={this.state.totalPageNumber} onChange={this.handlePagination} variant="outlined" color="secondary"/>
+                                            <Pagination count={this.state.totalPageNumber} renderItem={(item)=><PaginationItem {...item} page={translateEnglishToPersianNumbers(item.page)}></PaginationItem>} onChange={this.handlePagination} variant="outlined" color="secondary"/>
                                         </Grid>
                                     }
                                 </div>
