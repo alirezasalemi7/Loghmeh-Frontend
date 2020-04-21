@@ -7,7 +7,6 @@ import { NavBar } from "../basics/Navbar"
 import { SnackBarContext, SnackBarGlobalContext } from "../context/SnackBarContext"
 import { CartContext } from "../context/CartContext"
 import { SnackBar } from "../basics/SnackBar"
-import { isReal } from "../basics/Utils"
 import * as $ from 'jquery'
 import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
 import PropTypes from 'prop-types'

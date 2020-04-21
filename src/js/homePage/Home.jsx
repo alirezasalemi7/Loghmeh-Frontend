@@ -10,10 +10,11 @@ import { FoodPartyContainer } from "./FoodPartyContainer";
 import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
 import * as $ from 'jquery'
 import PropTypes from 'prop-types'
+import { SearchContainer } from "./SearchContainer";
 
 export class Home extends Component {
 
-    static porpTypes = {
+    static propTypes = {
         history: PropTypes.object.isRequired
     }
 
@@ -29,6 +30,7 @@ export class Home extends Component {
                                     <div className="container-fluid" id="body-container">
                                         <NavBar history={this.props.history}></NavBar>
                                         <HomeHeader></HomeHeader>
+                                        <SearchContainer history={this.props.history}></SearchContainer>
                                         <FoodPartyContainer></FoodPartyContainer>
                                         <RestaurantsContainer history={this.props.history}></RestaurantsContainer>
                                     </div>

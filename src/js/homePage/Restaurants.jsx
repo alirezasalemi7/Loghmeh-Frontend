@@ -88,7 +88,7 @@ export class RestaurantsContainer extends Component {
     }
 }
 
-class RestaurantCart extends Component {
+export class RestaurantCart extends Component {
 
     static propTypes = {
         history: PropTypes.object.isRequired,
