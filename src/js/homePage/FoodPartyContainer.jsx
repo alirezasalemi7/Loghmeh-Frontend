@@ -166,7 +166,7 @@ class Timer extends Component {
 class FoodPartyFoodCard extends Component {
 
     static propTypes = {
-        id: PropTypes.oneOf([PropTypes.number.isRequired, PropTypes.string.isRequired]),
+        id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         food: PropTypes.object.isRequired
     }
 
