@@ -50,7 +50,7 @@ export class FoodCardSmall extends Component {
                         </div>
                     </div>
                 </div>
-                <FoodCardModal id={"modal-"+this.props.food.key} food={this.props.food} restaurant={this.props.restaurant} restaurantId={this.props.food.restaurant} special={this.state.special}></FoodCardModal>
+                <FoodCardModal id={"modal-"+this.props.food.key} food={this.props.food} restaurant={this.props.restaurant} restaurantId={this.props.food.restaurantId} special={this.state.special}></FoodCardModal>
             </div>
         )
     }

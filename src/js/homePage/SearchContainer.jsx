@@ -22,51 +22,41 @@ export class SearchContainer extends Component {
             visible: false,
             isFoodSearch: true,
             pageNumber: 0,
-            pageCount: 0
+            loadMore: true,
+            foodName: "",
+            restaurantName: ""
         }
         this.getSearchResult = this.getSearchResult.bind(this)
-        this.getPageCount = this.getPageCount.bind(this)
-        this.updatePageNumber = this.updatePageNumber.bind(this)
     }
 
-    getPageCount(foodName, restaurantName, pageSize) {
-        let req = new XMLHttpRequest()
-        req.onreadystatechange = function () {
-            if (req.readyState === 4) {
-                if (req.status === 200) {
-                    let count = JSON.parse(req.response).count
-                    return Math.floor(count / pageSize)
-                } else return 0
-            }
-        }.bind(this)
-        req.onerror = function() {
-            this.show('امکان ارسال درخواست به سرور وجود نداره:(')
-        }.bind(this)
-        req.open("GET", "http://127.0.0.1:8080/search/count?food_name=" + foodName + "&restaurant_name=" + restaurantName)
-        req.send()
-    }
-
-    updatePageNumber(number) {
-        this.setState({
-            pageNumber: number
-        })
-    }
-
-    getSearchResult(foodName, restaurantName) {
+    getSearchResult(foodName, restaurantName, isNewSearch) {
         let pageSize = 24
         let req = new XMLHttpRequest()
         req.onreadystatechange = function () {
             if (req.readyState === 4) {
                 if (req.status === 200) {
                     let responseBody = JSON.parse(req.response)
-                    let count = this.getPageCount(foodName, restaurantName, pageSize)
-                    this.setState({
-                        restaurants: responseBody.restaurants,
-                        foods: responseBody.foods,
-                        visible: true,
-                        isFoodSearch: (responseBody.foods.length > 0),
-                        pageCount: count
-                    })
+                    if (isNewSearch) {
+                        this.setState({
+                            restaurants: responseBody.restaurants,
+                            foods: responseBody.foods,
+                            visible: true,
+                            isFoodSearch: (responseBody.foods.length > 0),
+                            pageNumber: 0,
+                            loadMore: ((responseBody.foods.length > 0) ? (responseBody.foods.length >= pageSize) : (responseBody.restaurants.length >= pageSize)),
+                            foodName: foodName,
+                            restaurantName: restaurantName
+                        })
+                    } else {
+                        this.setState({
+                            restaurants: this.state.restaurants.concat(responseBody.restaurants),
+                            foods: this.state.foods.concat(responseBody.foods),
+                            visible: true,
+                            isFoodSearch: (responseBody.foods.length > 0),
+                            pageNumber: this.state.pageNumber + 1,
+                            loadMore: ((responseBody.foods.length > 0) ? (responseBody.foods.length >= pageSize) : (responseBody.restaurants.length >= pageSize)),
+                        })
+                    }
                 } else if (req.status === 500) {
                     this.show('سرور مشکل داره:(')
                 } else if (req.status === 404) {
@@ -77,14 +67,19 @@ export class SearchContainer extends Component {
         req.onerror = function() {
             this.show('امکان ارسال درخواست به سرور وجود نداره:(')
         }.bind(this)
+        console.log("food name:" + foodName)
+        console.log("restaurant name:" + restaurantName)
         if (foodName) {
             if (restaurantName) {
-                req.open("GET", "http://127.0.0.1:8080/search/restaurants?user_id=1&restaurant_name="+restaurantName+"&page_number="+this.state.pageNumber+"&page_size="+pageSize)
+                console.log("BOTH")
+                req.open("GET", "http://127.0.0.1:8080/search/foods_and_restaurants?user_id=1&food_name="+foodName+"&restaurant_name="+restaurantName+"&page_number="+this.state.pageNumber+"&page_size="+pageSize)
             } else {
+                console.log("JUST FOOD")
                 req.open("GET", "http://127.0.0.1:8080/search/foods?user_id=1&food_name="+foodName+"&page_number="+this.state.pageNumber+"&page_size="+pageSize)
             }
         } else if (restaurantName) {
-            req.open("GET", "http://127.0.0.1:8080/search/foods_and_restaurants?user_id=1&food_name="+foodName+"&restaurant_name="+restaurantName+"&page_number="+this.state.pageNumber+"&page_size="+pageSize)
+            console.log("JUST RESTAURANT")
+            req.open("GET", "http://127.0.0.1:8080/search/restaurants?user_id=1&restaurant_name="+restaurantName+"&page_number="+this.state.pageNumber+"&page_size="+pageSize)
         } else {
             this.show('برای جست‌وجو باید حداقل یکی از فیلدها پر شود.')
             return
@@ -93,8 +88,16 @@ export class SearchContainer extends Component {
     }
 
     render() {
-        let foodList = this.state.foods.map((e, i)=><div className="col-sm-4 col-lg-3" key={i}><FoodCardSmall restaurant={e.restaurantName} food={e}></FoodCardSmall></div>)
-        let restaurantList = this.state.restaurants.map((element, i)=><RestaurantCart history={this.props.history} key={i} name={element.name} imageSrc={element.logoAddress} id={element.id}></RestaurantCart>)
+        let foodList = (
+            <div className="row mx-auto mb-1 search-container" dir="rtl">
+                {this.state.foods.map((e,i)=><div className="mx-3 my-2" key={i}><FoodCardSmall restaurant={this.props.restaurant} food={e}></FoodCardSmall></div>)}
+            </div>
+        )
+        let restaurantList = (
+            <div className="row mx-auto mb-1 search-container" dir="rtl">
+                {this.state.restaurants.map((element, i)=><RestaurantCart history={this.props.history} key={i} name={element.name} imageSrc={element.logoAddress} id={element.id}></RestaurantCart>)}
+            </div>
+        )
         return (
             <SnackBarContext>
                 <SnackBarGlobalContext.Consumer>
@@ -108,20 +111,17 @@ export class SearchContainer extends Component {
                                         this.state.visible && 
                                         <div className="text-center mb-5">
                                             <p className="part-title mx-auto mt-3">نتایج جست‌وجو</p>
-                                            <div className="row mx-auto mb-1 search-container">
-                                                {
-                                                    this.state.isFoodSearch && foodList.length > 0 && foodList
-                                                } {
-                                                    this.state.isFoodSearch && foodList.length === 0 && <div className="col-sm-12 text-center"><p dir="rtl">موردی یافت نشد:(</p></div>
-                                                } {
-                                                    !this.state.isFoodSearch && restaurantList.length > 0 && restaurantList
-                                                } {
-                                                    !this.state.isFoodSearch && restaurantList.length === 0 && <div className="col-sm-12 text-center"><p dir="rtl">موردی یافت نشد:(</p></div>
-                                                }
-                                            </div>
-                                            {/* Pagination part */}
-                                            {/* NOTE: 1. pass a function that changes pageNumber in state of SearchContainer(pass updatePageNumber)
-                                                      2. pageNumbers are zero based in server but one based for user. */}
+                                            {
+                                                this.state.isFoodSearch && this.state.foods.length > 0 && foodList
+                                            } {
+                                                this.state.isFoodSearch && this.state.foods.length === 0 && <div className="col-sm-12 text-center"><p dir="rtl">موردی یافت نشد:(</p></div>
+                                            } {
+                                                !this.state.isFoodSearch && this.state.restaurants.length > 0 && restaurantList
+                                            } {
+                                                !this.state.isFoodSearch && this.state.restaurants.length === 0 && <div className="col-sm-12 text-center"><p dir="rtl">موردی یافت نشد:(</p></div>
+                                            } {
+                                                this.state.loadMore && <button onClick={(e)=>{this.getSearchResult(this.state.foodName, this.state.restaurantName, false)}} type="button" className="load-more btn mx-auto border-0 rounded-pill my-2 px-3 py-1 pastel-red">بیشتر</button>
+                                            }
                                         </div>
                                     }
                                 </div>
@@ -173,11 +173,11 @@ class SearchBox extends Component {
                 return;
             }
         }
-        this.props.search(foodName, restaurantName)
         this.setState({
             rNameValue: "",
             fNameValue: ""
         })
+        this.props.search(foodName, restaurantName, true)
     }
 
     render() {

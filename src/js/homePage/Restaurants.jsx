@@ -80,7 +80,7 @@ export class RestaurantsContainer extends Component {
                                     <div className="row">
                                         <p className="part-title mx-auto">رستوران‌ها</p>
                                     </div>
-                                    <div className="row d-flex d-flex justify-content-around mx-auto mb-1 restaurant-container" dir="rtl">
+                                    <div className="row d-flex justify-content-around mx-auto mb-1 restaurant-container" dir="rtl">
                                         {restaurants.length > 0 && restaurants}
                                         {restaurants.length == 0 &&
                                             <div className="col-sm-12 text-center">
