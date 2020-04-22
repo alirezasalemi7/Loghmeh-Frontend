@@ -7,6 +7,7 @@ import { SnackBar } from "../basics/SnackBar";
 import { SnackBarContext, SnackBarGlobalContext } from "../context/SnackBarContext";
 import PropTypes from 'prop-types';
 import { FoodCardSmall } from "../restaurant/FoodCard";
+import {Loader} from 'react-loader-spinner'
 
 export class SearchContainer extends Component {
 
@@ -24,13 +25,14 @@ export class SearchContainer extends Component {
             pageNumber: 0,
             loadMore: true,
             foodName: "",
-            restaurantName: ""
+            restaurantName: "",
+            spinner: false
         }
         this.getSearchResult = this.getSearchResult.bind(this)
     }
 
     getSearchResult(foodName, restaurantName, isNewSearch) {
-        let pageSize = 24
+        let pageSize = 14
         let req = new XMLHttpRequest()
         req.onreadystatechange = function () {
             if (req.readyState === 4) {
@@ -104,38 +106,35 @@ export class SearchContainer extends Component {
             </div>
         )
         return (
-            <SnackBarContext>
-                <SnackBarGlobalContext.Consumer>
-                    {
-                        (data) => {
-                            this.show = data.showSnackbar
-                            return (
-                                <div className="text-center mb-5">
-                                    <SearchBox search={this.getSearchResult}></SearchBox>
-                                    {
-                                        this.state.visible && 
-                                        <div className="text-center mb-5">
-                                            <p className="part-title mx-auto mt-3">نتایج جست‌وجو</p>
-                                            {
-                                                this.state.isFoodSearch && this.state.foods.length > 0 && foodList
-                                            } {
-                                                this.state.isFoodSearch && this.state.foods.length === 0 && <div className="col-sm-12 text-center"><p dir="rtl">موردی یافت نشد:(</p></div>
-                                            } {
-                                                !this.state.isFoodSearch && this.state.restaurants.length > 0 && restaurantList
-                                            } {
-                                                !this.state.isFoodSearch && this.state.restaurants.length === 0 && <div className="col-sm-12 text-center"><p dir="rtl">موردی یافت نشد:(</p></div>
-                                            } {
-                                                this.state.loadMore && <button onClick={(e)=>{this.getSearchResult(this.state.foodName, this.state.restaurantName, false)}} type="button" className="load-more btn mx-auto border-0 rounded-pill my-2 px-3 py-1 pastel-red">بیشتر</button>
-                                            }
-                                        </div>
-                                    }
-                                </div>
-                            )
-                        }
+            <SnackBarGlobalContext.Consumer>
+                {
+                    (data) => {
+                        this.show = data.showSnackbar
+                        return (
+                            <div className="text-center mb-5">
+                                <SearchBox search={this.getSearchResult}></SearchBox>
+                                {
+                                    this.state.visible && 
+                                    <div className="text-center mb-5">
+                                        <p className="part-title mx-auto mt-3">نتایج جست‌وجو</p>
+                                        {
+                                            this.state.isFoodSearch && this.state.foods.length > 0 && foodList
+                                        } {
+                                            this.state.isFoodSearch && this.state.foods.length === 0 && <div className="col-sm-12 text-center"><p dir="rtl">موردی یافت نشد:(</p></div>
+                                        } {
+                                            !this.state.isFoodSearch && this.state.restaurants.length > 0 && restaurantList
+                                        } {
+                                            !this.state.isFoodSearch && this.state.restaurants.length === 0 && <div className="col-sm-12 text-center"><p dir="rtl">موردی یافت نشد:(</p></div>
+                                        } {
+                                            this.state.loadMore && <button onClick={(e)=>{this.getSearchResult(this.state.foodName, this.state.restaurantName, false)}} type="button" className="load-more btn mx-auto border-0 rounded-pill my-2 px-3 py-1 pastel-red">بیشتر</button>
+                                        } 
+                                    </div>
+                                }
+                            </div>
+                        )
                     }
-                </SnackBarGlobalContext.Consumer>
-                <SnackBar></SnackBar>
-            </SnackBarContext>
+                }
+            </SnackBarGlobalContext.Consumer>
         )
     }
 }
@@ -155,12 +154,16 @@ class SearchBox extends Component {
 
     rChange(e) {
         this.setState({
+            rNameEmpty:false,
+            fNameEmpty:false,
             rNameValue: e.target.value
         })
     }
 
     fChange(e) {
         this.setState({
+            rNameEmpty:false,
+            fNameEmpty:false,
             fNameValue: e.target.value
         })
     }
@@ -173,7 +176,9 @@ class SearchBox extends Component {
                 this.show(' برای جست‌وجو باید یکی از فیلدها رو پر کنی')
                 this.setState({
                     rNameValue: "",
-                    fNameValue: ""
+                    fNameValue: "",
+                    rNameEmpty:true,
+                    fNameEmpty:true
                 })
                 return;
             }
@@ -187,23 +192,20 @@ class SearchBox extends Component {
 
     render() {
         return (
-            <SnackBarContext>
-                <SnackBarGlobalContext.Consumer>
-                    {
-                        (data) => {
-                            this.show = data.showSnackbar
-                            return (
-                                <div className="row justify-content-center bg-white border-0 search-box py-2 px-1 mx-auto rounded">
-                                    <button type="submit" className="col-3 search-box-margin text-center border maize rounded" onClick={this.submit}>جست‌و‌جو</button>
-                                    <InputField dir="rtl" className="col-4 border search-box-input" value={this.state.rNameValue} err={this.state.rNameError} empty={this.state.rNameEmpty} type="text" onChange={this.rChange} id="r-input" placeholder="نام رستوران"></InputField>
-                                    <InputField dir="rtl" className="col-4 border search-box-input" value={this.state.fNameValue} err={this.state.fNameError} empty={this.state.fNameEmpty} type="text" onChange={this.fChange} id="f-input" placeholder="نام غذا"></InputField>
-                                </div>
-                            )
-                        }
+            <SnackBarGlobalContext.Consumer>
+                {
+                    (data) => {
+                        this.show = data.showSnackbar
+                        return (
+                            <div className="row justify-content-center bg-white border-0 search-box py-2 px-1 mx-auto rounded">
+                                <button type="submit" className="col-3 search-box-margin text-center border maize rounded" onClick={this.submit}>جست‌و‌جو</button>
+                                <InputField dir="rtl" className="col-4 border search-box-input" value={this.state.rNameValue} err={this.state.rNameError} empty={this.state.rNameEmpty} type="text" onChange={this.rChange} id="r-input" placeholder="نام رستوران"></InputField>
+                                <InputField dir="rtl" className="col-4 border search-box-input" value={this.state.fNameValue} err={this.state.fNameError} empty={this.state.fNameEmpty} type="text" onChange={this.fChange} id="f-input" placeholder="نام غذا"></InputField>
+                            </div>
+                        )
                     }
-                </SnackBarGlobalContext.Consumer>
-                <SnackBar></SnackBar>
-            </SnackBarContext>
+                }
+            </SnackBarGlobalContext.Consumer>
         )
     }
 }

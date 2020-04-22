@@ -8,6 +8,9 @@ import PaginationItem from '@material-ui/lab/PaginationItem';
 import { Grid } from '@material-ui/core';
 import {translateEnglishToPersianNumbers} from '../basics/Utils'
 
+PaginationItem.prototype = {page:PropTypes.string}
+Pagination.prototype = {page:PropTypes.string}
+
 export class RestaurantsContainer extends Component {
 
     static propTypes = {
@@ -21,7 +24,8 @@ export class RestaurantsContainer extends Component {
             visible: true,
             pageNumber: 0,
             totalPageNumber: 0,
-            pageSize: 14
+            pageSize: 14,
+            spinner: false
         }
         this.getRestaurants = this.getRestaurants.bind(this)
         this.handlePagination = this.handlePagination.bind(this)
@@ -42,22 +46,26 @@ export class RestaurantsContainer extends Component {
                             pageNumber: this.state.pageNumber + 1,
                             visible: false,
                             restaurants: newPage.restaurants,
-                            totalPageNumber: newPage.totalPages
+                            totalPageNumber: newPage.totalPages,
+                            spinner:false
                         })
                     } else {
                         this.setState({
                             pageNumber: this.state.pageNumber + 1,
                             restaurants: newPage.restaurants,
-                            totalPageNumber: newPage.totalPages
+                            totalPageNumber: newPage.totalPages,
+                            spinner:false
                         })
                     }
                     setTimeout(()=>{ $("#loading-modal").modal('hide')}, 1000)
                 } else {
+                    this.setState({spinner:false})
                     this.show('لطفا پس از مدتی دوباره تلاش کنید.')
                 }
             }
         }.bind(this)
         req.onerror = function() {
+            this.setState({spinner:false})
             $("#loading-modal").modal('hide')
             this.show('سرور فعلا مشکل داره:(')
         }.bind(this)
@@ -72,37 +80,36 @@ export class RestaurantsContainer extends Component {
     render() {
         let restaurants = this.state.restaurants.map((element, i)=><RestaurantCart history={this.props.history} key={i} name={element.name} imageSrc={element.logoAddress} id={element.id}></RestaurantCart>)
         return (
-            <SnackBarContext>
-                <SnackBarGlobalContext.Consumer>
-                    {
-                        (data) => {
-                            this.show = data.showSnackbar
-                            return (
-                                <div className="text-center mb-5">
-                                    <div className="row">
-                                        <p className="part-title mx-auto">رستوران‌ها</p>
-                                    </div>
-                                    <div className="row d-flex justify-content-around mx-auto mb-1 restaurant-container" dir="rtl">
-                                        {restaurants.length > 0 && restaurants}
-                                        {restaurants.length == 0 &&
-                                            <div className="col-sm-12 text-center">
-                                                <p dir="rtl">سرور در دسترس نیست!</p>
-                                            </div>
-                                        }
-                                    </div>
-                                    <hr></hr>
-                                    {
-                                        <Grid container justify = "center">
-                                            <Pagination count={this.state.totalPageNumber} renderItem={(item)=><PaginationItem {...item} page={translateEnglishToPersianNumbers(item.page)}></PaginationItem>} onChange={this.handlePagination} variant="outlined" color="secondary"/>
-                                        </Grid>
+            <SnackBarGlobalContext.Consumer>
+                {
+                    (data) => {
+                        this.show = data.showSnackbar
+                        return (
+                            <div className="text-center mb-5">
+                                <div className="row">
+                                    <p className="part-title mx-auto">رستوران‌ها</p>
+                                </div>
+                                <div className="row d-flex justify-content-around mx-auto mb-1 restaurant-container" dir="rtl">
+                                    {restaurants.length > 0 && 
+                                        restaurants
+                                    }
+                                    {restaurants.length == 0 &&
+                                        <div className="col-sm-12 text-center">
+                                            <p dir="rtl">سرور در دسترس نیست!</p>
+                                        </div>
                                     }
                                 </div>
-                            )
-                        }
+                                <hr></hr>
+                                {
+                                    <Grid container justify = "center">
+                                        <Pagination count={this.state.totalPageNumber} renderItem={(item)=><PaginationItem {...item} page={translateEnglishToPersianNumbers(item.page)} variant="outlined"></PaginationItem>} onChange={this.handlePagination} variant="outlined" color="secondary"/>
+                                    </Grid>
+                                }
+                            </div>
+                        )
                     }
-                </SnackBarGlobalContext.Consumer>
-                <SnackBar></SnackBar>
-            </SnackBarContext>
+                }
+            </SnackBarGlobalContext.Consumer>
         )
     }
 }
