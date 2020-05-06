@@ -35,7 +35,9 @@ export class FoodPartyContainer extends Component {
                 }
             }
         }.bind(this)
-        req.open("GET", "http://127.0.0.1:8080/foodParty")
+        req.open("GET", "http://127.0.0.1:8080/foodParty", true)
+        console.log(localStorage.getItem('id_token'))
+        req.setRequestHeader("Authorization", localStorage.getItem('id_token'))
         req.send()
     }
 
@@ -56,6 +58,8 @@ export class FoodPartyContainer extends Component {
             }
         }.bind(this)
         req.open("GET", "http://127.0.0.1:8080/foodParty/time")
+        console.log(localStorage.getItem('id_token'))
+        req.setRequestHeader("Authorization", localStorage.getItem('id_token'))
         req.send()
     }
 

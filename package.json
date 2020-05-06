@@ -11,6 +11,7 @@
     "bootstrap": "^4.4.1",
     "history": "^4.10.1",
     "jquery": "^3.4.1",
+    "jsonwebtoken": "^8.5.1",
     "popper": "^1.0.1",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",

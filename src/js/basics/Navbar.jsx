@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import '../../css/navbar.css'
 import { CartGlobalContext } from '../context/CartContext'
-import {translateEnglishToPersianNumbers} from './Utils'
+import {translateEnglishToPersianNumbers, isExpired} from './Utils'
 import {CartModal} from './Cart'
 import * as $ from 'jquery'
 import PropTypes from 'prop-types'
@@ -46,7 +46,12 @@ export class NavBar extends Component {
     }
 
     profile() {
-        this.props.history.push('/profile')
+        let auth = !isExpired(localStorage.getItem('id_token'))
+        localStorage.setItem('auth', auth)
+        if (auth)
+            this.props.history.push('/profile')
+        else
+            this.props.history.push('/login')
     }
 
     signup(){
@@ -54,7 +59,12 @@ export class NavBar extends Component {
     }
 
     homePage() {
-        this.props.history.push('/home')
+        let auth = !isExpired(localStorage.getItem('id_token'))
+        localStorage.setItem('auth', auth)
+        if (auth)
+            this.props.history.push('/home')
+        else
+            this.props.history.push('/login')
     }
 
     openCart(){

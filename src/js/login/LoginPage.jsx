@@ -7,7 +7,8 @@ import {CartContext} from '../context/CartContext'
 import {SnackBar} from '../basics/SnackBar'
 import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
 import * as $ from 'jquery'
-import PropTypes from 'prop-types'
+import PropTypes, { func } from 'prop-types'
+import { isExpired } from '../basics/Utils'
 
 class LoginPageUpperRow extends Component {
 
@@ -137,15 +138,43 @@ class LoginCard extends Component {
         }
         else{
             //connect server
-            if(true){ //login ok
-                localStorage.setItem('auth','true')
-                this.props.history.push('/home')
-            }
+            let req = new XMLHttpRequest()
+            req.onreadystatechange = function() {
+                if (req.readyState === 4) {
+                    if (req.status === 200) {
+                        console.log("HERE")
+                        let res = JSON.parse(req.response)
+                        localStorage.setItem('auth','true')
+                        localStorage.setItem('id_token', res.jwt)
+                        this.props.history.push('/home')
+                    } else if (req.status === 403) {
+                        this.show('نام کاربری یا رمز عبور رو اشتباه وارد کردی')
+                        return
+                    } else if (req.status === 400) {
+                        this.show('لطفا دوباره تلاش کنید.')
+                        return
+                    } else {
+                        this.show('سرور فعلا مشکل داره:(')
+                        return
+                    }
+                }
+            }.bind(this)
+            req.onerror = function() {
+                this.show('سرور فعلا مشکل داره:(')
+            }.bind(this)
+            req.open("POST", "http://127.0.0.1:8080/login", true)
+            req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            req.send(JSON.stringify({"email": this.state.username, "password":this.state.password}))
         }
     }
 
     gotoHomePage() {
-        this.props.history.push('/home')
+        let auth = !isExpired(localStorage.getItem('id_token'))
+        localStorage.setItem('auth', auth)
+        if (auth)
+            this.props.history.push('/home')
+        else
+            this.props.history.push('/login')
     }
 
     gotoSignupPage(){
@@ -183,8 +212,8 @@ class LoginCard extends Component {
                                     </div>
                                     <button dir="rtl" className="btn" onClick={this.onSubmit} id="login-card-btn">بریم تو!</button>
                                     <p dir="rtl" className="login-data-column-info-text">
-                                        هنوز لقمه‌ای نیستی؟ عیب نداره!
-                                        <a onClick={this.gotoSignupPage}>بیا لقمه‌ای شو!</a>
+                                        هنوز لقمه‌ای نیستی؟!
+                                        <a className="signup-link-color" onClick={this.gotoSignupPage}>بیا لقمه‌ای شو!</a>
                                     </p>
                                 </div>
                             </div>

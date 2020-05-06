@@ -21,6 +21,10 @@
     background-color: var(--mint-cream);
 }
 
+.signup-link-color {
+    color: aqua;
+}
+
 input {
     text-align: center;
 }

@@ -37,3 +37,12 @@ export function isNumeric(value) {
 export function isReal(value) {
     return /^(-)?[0-9]+(\.[0-9]+)?$/.test(value)
 }
+
+export function isExpired(id_token) {
+    if (id_token === null)
+        return true
+    let jwt = require('jsonwebtoken')
+    let decoded = jwt.decode(id_token, {complete: true})
+    let currentDate = new Date()
+    return decoded.exp < currentDate.getTime()
+}

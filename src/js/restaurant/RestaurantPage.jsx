@@ -93,7 +93,9 @@ export class RestaurantPage extends Component {
             $("#loading-modal").modal('hide')
             this.show("سرورمون فعلا مشکل داره :(")
         }.bind(this)
-        req.open('GET','http://127.0.0.1:8080/restaurants/'+this.props.id+'?user_id=1',true)
+        req.open('GET','http://127.0.0.1:8080/restaurants/'+this.props.id,true)
+        console.log(localStorage.getItem('id_token'))
+        req.setRequestHeader("Authorization", localStorage.getItem('id_token'))
         req.send()
     }
     

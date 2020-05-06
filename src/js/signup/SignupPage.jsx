@@ -170,15 +170,38 @@ class SignupCard extends Component{
         }
         else{
             //connect server
-            if(true){ // signup ok
-                this.show('ثبت‌نام موفق بود! برو وارد شو',2000)
-                setTimeout(
-                    ()=>{
-                        this.props.history.push('/')
-                    },
-                    2000
-                )
-            }
+            let req = new XMLHttpRequest()
+            req.onreadystatechange = function() {
+                if (req.readyState === 4) {
+                    let res = JSON.parse(req.response)
+                    console.log(res)
+                    if (req.status === 200) {
+                        localStorage.setItem('id_token', res.jwt)
+                        localStorage.setItem('auth', true)
+                        this.show(2000, 'ثبت نام موفق بود! امیدوارم از لقمت لذت ببری:)')
+                        setTimeout(
+                            ()=>{
+                                this.props.history.push('/home')
+                            },
+                            2000
+                        )
+                    } else if (req.status === 400) {
+                        if (res.status === 4001)
+                            this.show('لطفا پس از مدتی دوباره تلاش کنید')
+                        else
+                            this.show('کاربری با این ایمیل در سیستم ثبت شده است')
+                    } else {
+                        this.show('سرور فعلا مشکل داره:(')
+                        return
+                    }
+                }
+            }.bind(this)
+            req.onerror = function() {
+                this.show('ارتباط با سرور قطع شده:(')
+            }.bind(this)
+            req.open('POST', 'http://127.0.0.1:8080/signup', true)
+            req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            req.send(JSON.stringify({"name":this.state.firstname, "family":this.state.lastname, "email": this.state.email, "password": this.state.password, "phone": this.state.phone}))
         }
     }
 

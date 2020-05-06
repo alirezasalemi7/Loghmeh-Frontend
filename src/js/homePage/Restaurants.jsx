@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import Pagination from '@material-ui/lab/Pagination';
 import PaginationItem from '@material-ui/lab/PaginationItem';
 import { Grid } from '@material-ui/core';
-import {translateEnglishToPersianNumbers} from '../basics/Utils'
+import {translateEnglishToPersianNumbers, isExpired} from '../basics/Utils'
 
 PaginationItem.prototype = {page:PropTypes.string}
 Pagination.prototype = {page:PropTypes.string}
@@ -69,7 +69,9 @@ export class RestaurantsContainer extends Component {
             $("#loading-modal").modal('hide')
             this.show('سرور فعلا مشکل داره:(')
         }.bind(this)
-        req.open("GET", "http://127.0.0.1:8080/restaurants?user_id=1&page_number="+page_number+"&page_size="+page_size, true)
+        req.open("GET", "http://127.0.0.1:8080/restaurants?page_number="+page_number+"&page_size="+page_size, true)
+        console.log(localStorage.getItem('id_token'))
+        req.setRequestHeader("Authorization", localStorage.getItem('id_token'))
         req.send()
     }
 
@@ -100,7 +102,7 @@ export class RestaurantsContainer extends Component {
                                     }
                                 </div>
                                 <hr></hr>
-                                {
+                                {this.state.totalPageNumber !== 0 &&
                                     <Grid container justify = "center">
                                         <Pagination count={this.state.totalPageNumber} renderItem={(item)=><PaginationItem {...item} page={translateEnglishToPersianNumbers(item.page)} variant="outlined"></PaginationItem>} onChange={this.handlePagination} variant="outlined" color="secondary"/>
                                     </Grid>
@@ -124,7 +126,12 @@ export class RestaurantCart extends Component {
     }
 
     gotoRestaurantPage(id) {
-        this.props.history.push('/restaurant/'+id)
+        let auth = !isExpired(localStorage.getItem('id_token'))
+        localStorage.setItem('auth', auth)
+        if (auth)
+            this.props.history.push('/restaurant/'+id)
+        else
+            this.props.history.push('/login')
     }
 
     render() {
