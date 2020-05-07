@@ -8,6 +8,7 @@ import {validateEmail,isNumeric} from '../basics/Utils'
 import {SnackBar} from '../basics/SnackBar'
 import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
 import PropTypes from 'prop-types'
+import Loader from 'react-loader-spinner'
 import * as $ from 'jquery'
 
 export class SignupPage extends Component {
@@ -53,6 +54,7 @@ class SignupCard extends Component{
     constructor(props){
         super(props)
         this.state = {
+            spinner : false,
             firstname : "",
             firstname_empty:false,
             firstname_err:false,
@@ -170,6 +172,7 @@ class SignupCard extends Component{
         }
         else{
             //connect server
+            this.setState({spinner:true})
             let req = new XMLHttpRequest()
             req.onreadystatechange = function() {
                 if (req.readyState === 4) {
@@ -178,7 +181,8 @@ class SignupCard extends Component{
                     if (req.status === 200) {
                         localStorage.setItem('id_token', res.jwt)
                         localStorage.setItem('auth', true)
-                        this.show(2000, 'ثبت نام موفق بود! امیدوارم از لقمت لذت ببری:)')
+                        this.setState({spinner:false})
+                        this.show(' امیدوارم از لقمت لذت ببری:)')
                         setTimeout(
                             ()=>{
                                 this.props.history.push('/home')
@@ -186,17 +190,20 @@ class SignupCard extends Component{
                             2000
                         )
                     } else if (req.status === 400) {
+                        this.setState({spinner:false})
                         if (res.status === 4001)
                             this.show('لطفا پس از مدتی دوباره تلاش کنید')
                         else
                             this.show('کاربری با این ایمیل در سیستم ثبت شده است')
                     } else {
+                        this.setState({spinner:false})
                         this.show('سرور فعلا مشکل داره:(')
                         return
                     }
                 }
             }.bind(this)
             req.onerror = function() {
+                this.setState({spinner:false})
                 this.show('ارتباط با سرور قطع شده:(')
             }.bind(this)
             req.open('POST', 'http://127.0.0.1:8080/signup', true)
@@ -270,6 +277,11 @@ class SignupCard extends Component{
                                             تو لقمه‌ای بودی؟ بزم بریم
                                             <a dir="rtl" onClick={this.gotoLoginPage}>وارد شیم!</a>
                                         </p>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-sm-12">
+                                        <Loader type="BallTriangle" color="#FF6B6B" visible={this.state.spinner} height={50} width={50}/>
                                     </div>
                                 </div>
                             </div>

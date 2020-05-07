@@ -104,6 +104,9 @@ class CreditPart extends Component {
             if (req.readyState === 4) {
                 this.setState({spinner:false})
                 if (req.status === 200) {
+                    this.setState({
+                        value: ""
+                    })
                     this.show('با موفقیت انجام شد:)')
                     this.props.getUserInfo()
                 } else if (req.status === 400) {

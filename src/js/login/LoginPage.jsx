@@ -8,6 +8,7 @@ import {SnackBar} from '../basics/SnackBar'
 import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
 import * as $ from 'jquery'
 import PropTypes, { func } from 'prop-types'
+import Loader from 'react-loader-spinner'
 import { isExpired } from '../basics/Utils'
 
 class LoginPageUpperRow extends Component {
@@ -87,6 +88,7 @@ class LoginCard extends Component {
     constructor(props){
         super(props)
         this.state = {
+            spinner:false,
             username : "",
             username_err : false,
             username_empty : false,
@@ -138,28 +140,33 @@ class LoginCard extends Component {
         }
         else{
             //connect server
+            this.setState({spinner:true})
             let req = new XMLHttpRequest()
             req.onreadystatechange = function() {
                 if (req.readyState === 4) {
                     if (req.status === 200) {
-                        console.log("HERE")
+                        this.setState({spinner:false})
                         let res = JSON.parse(req.response)
                         localStorage.setItem('auth','true')
                         localStorage.setItem('id_token', res.jwt)
                         this.props.history.push('/home')
                     } else if (req.status === 403) {
+                        this.setState({spinner:false})
                         this.show('نام کاربری یا رمز عبور رو اشتباه وارد کردی')
                         return
                     } else if (req.status === 400) {
+                        this.setState({spinner:false})
                         this.show('لطفا دوباره تلاش کنید.')
                         return
                     } else {
+                        this.setState({spinner:false})
                         this.show('سرور فعلا مشکل داره:(')
                         return
                     }
                 }
             }.bind(this)
             req.onerror = function() {
+                this.setState({spinner:false})
                 this.show('سرور فعلا مشکل داره:(')
             }.bind(this)
             req.open("POST", "http://127.0.0.1:8080/login", true)
@@ -216,8 +223,13 @@ class LoginCard extends Component {
                                         <a className="signup-link-color" onClick={this.gotoSignupPage}>بیا لقمه‌ای شو!</a>
                                     </p>
                                 </div>
+                                <div className="col-sm-12">
+                                    <Loader type="BallTriangle" color="#FF6B6B" visible={this.state.spinner} height={50} width={50}/>
+                                </div>
                             </div>
                             <div className="col-sm-3"></div>
+                            <div className="row">
+                        </div>
                         </div>
                     </div>
                 </div>
