@@ -84,8 +84,8 @@ export class SearchContainer extends Component {
             this.show('برای جست‌وجو باید حداقل یکی از فیلدها پر شود.')
             return
         }
-        console.log(localStorage.getItem('id_token'))
-        req.setRequestHeader("Authorization", localStorage.getItem('id_token'))
+        
+        req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()
     }
 

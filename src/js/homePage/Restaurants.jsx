@@ -36,6 +36,7 @@ export class RestaurantsContainer extends Component {
     }
 
     getRestaurants(page_number, page_size) {
+        console.log(page_size)
         let req = new XMLHttpRequest()
         req.onreadystatechange = function() {
             if (req.readyState === 4) {
@@ -70,8 +71,8 @@ export class RestaurantsContainer extends Component {
             this.show('سرور فعلا مشکل داره:(')
         }.bind(this)
         req.open("GET", "http://127.0.0.1:8080/restaurants?page_number="+page_number+"&page_size="+page_size, true)
-        console.log(localStorage.getItem('id_token'))
-        req.setRequestHeader("Authorization", localStorage.getItem('id_token'))
+        
+        req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()
     }
 
@@ -92,10 +93,10 @@ export class RestaurantsContainer extends Component {
                                     <p className="part-title mx-auto">رستوران‌ها</p>
                                 </div>
                                 <div className="row d-flex justify-content-around mx-auto mb-1 restaurant-container" dir="rtl">
-                                    {restaurants.length > 0 && 
+                                    {this.state.totalPageNumber > 0 && 
                                         restaurants
                                     }
-                                    {restaurants.length == 0 &&
+                                    {this.state.totalPageNumber === 0 &&
                                         <div className="col-sm-12 text-center">
                                             <p dir="rtl">سرور در دسترس نیست!</p>
                                         </div>

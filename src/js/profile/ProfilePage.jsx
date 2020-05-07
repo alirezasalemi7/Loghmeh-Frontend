@@ -75,8 +75,8 @@ export class ProfilePage extends Component {
             this.show('سرورمون فعلا مشکل داره:(')
         }.bind(this)
         req.open("GET", "http://127.0.0.1:8080/users/profile", true)
-        console.log(localStorage.getItem('id_token'))
-        req.setRequestHeader("Authorization", localStorage.getItem('id_token'))
+        
+        req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()
     }
 

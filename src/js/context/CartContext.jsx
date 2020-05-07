@@ -47,6 +47,7 @@ export class CartContext extends Component {
         let req = new XMLHttpRequest()
         req.responseType = 'json'
         req.onreadystatechange = function() {
+            console.log(req.response)
             if(req.readyState === 4 && req.status === 200) {
                 this.state.orders = []
                 this.setState((state,props)=>({
@@ -90,8 +91,8 @@ export class CartContext extends Component {
             this.show("سرورمون فعلا مشکل داره :(")
         }.bind(this)
         req.open('GET','http://127.0.0.1:8080/users/cart',true)
-        console.log(localStorage.getItem('id_token'))
-        req.setRequestHeader("Authorization", localStorage.getItem('id_token'))
+        
+        req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()
     }
 
@@ -151,8 +152,8 @@ export class CartContext extends Component {
         }.bind(this)
         req.responseType = 'json'
         req.open('POST','http://127.0.0.1:8080/users/cart',true)
-        console.log(localStorage.getItem('id_token'))
-        req.setRequestHeader("Authorization", localStorage.getItem('id_token'))
+        
+        req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()
     }
 
@@ -254,8 +255,8 @@ export class CartContext extends Component {
             this.show("سرورمون فعلا مشکل داره :(")
         }.bind(this)
         req.open('PUT','http://127.0.0.1:8080/users/cart',true)
-        console.log(localStorage.getItem('id_token'))
-        req.setRequestHeader("Authorization", localStorage.getItem('id_token'))
+        
+        req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.setRequestHeader("Content-Type", "application/json")
         req.send(JSON.stringify(item))
     }
@@ -347,8 +348,8 @@ export class CartContext extends Component {
         }.bind(this)
         req.open('DELETE','http://127.0.0.1:8080/users/cart',true)
         req.setRequestHeader("Content-Type", "application/json")
-        console.log(localStorage.getItem('id_token'))
-        req.setRequestHeader("Authorization", localStorage.getItem('id_token'))
+        
+        req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send(JSON.stringify(item))
     }
 }

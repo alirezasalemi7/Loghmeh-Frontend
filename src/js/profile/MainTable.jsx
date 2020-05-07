@@ -124,8 +124,8 @@ class CreditPart extends Component {
             this.setState({spinner:false})
         }.bind(this)
         req.open("PUT", "http://127.0.0.1:8080/users/profile", true);
-        console.log(localStorage.getItem('id_token'))
-        req.setRequestHeader("Authorization", localStorage.getItem('id_token'))
+        
+        req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         req.send(JSON.stringify({ "credit": amountValue}));
     }
@@ -220,8 +220,8 @@ class OrderList extends Component {
             this.setState({spinner : false})
         }.bind(this)
         req.open("GET", "http://127.0.0.1:8080/users/orders", true)
-        console.log(localStorage.getItem('id_token'))
-        req.setRequestHeader("Authorization", localStorage.getItem('id_token'))
+        
+        req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()
     }
 
