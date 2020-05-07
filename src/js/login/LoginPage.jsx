@@ -7,9 +7,10 @@ import {CartContext} from '../context/CartContext'
 import {SnackBar} from '../basics/SnackBar'
 import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
 import * as $ from 'jquery'
-import PropTypes, { func } from 'prop-types'
+import PropTypes, { func, string } from 'prop-types'
 import Loader from 'react-loader-spinner'
 import { isExpired } from '../basics/Utils'
+
 
 
 class LoginPageUpperRow extends Component {
@@ -85,6 +86,18 @@ export class LoginPage extends Component {
 }
 
 class LoginCard extends Component {
+
+    componentDidMount(){
+        window.gapi.signin2.render('g-signin2', {
+            'scope': 'https://www.googleapis.com/auth/plus.login',
+            'width': 50,
+            'height': 50,
+            'longtitle': true,
+            'theme': 'dark',
+            'onsuccess': this.googleSignUp,
+            'onfailure':()=>{}
+        });
+    }
 
     constructor(props){
         super(props)
@@ -190,9 +203,9 @@ class LoginCard extends Component {
         this.props.history.push('/signup')
     }
 
-    googleSignUp(googleUser) {
-        console.log(googleUser);
-        let id_token = googleUser.getAuthResponse().id_token;
+    async googleSignUp(googleUser) {
+        let id_token = googleUser.getAuthResponse().id_token
+        console.log((id_token))
         let req = new XMLHttpRequest();
         req.onreadystatechange = function () {
             if (req.readyState === 4) {
@@ -203,7 +216,7 @@ class LoginCard extends Component {
                     this.show('شما در لقمه ثبت‌نام نکرده‌اید.')
                     this.gotoSignupPage()
                 } else if (req.status === 200) {
-                    let res = JSON.parse(req.response)
+                    let res = req.response
                     localStorage.setItem('auth', true)
                     localStorage.setItem('id_token', res.jwt)
                     this.gotoHomePage()
@@ -219,7 +232,7 @@ class LoginCard extends Component {
         req.open("POST", "http://127.0.0.1:8080/login/google");
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         req.onload = function() {
-        console.log('Signed in as: ' + req.responseText);
+            console.log('Signed in as: ' + req.response.jwt);
         };
         req.send('idtoken=' + id_token);
     }
@@ -259,7 +272,7 @@ class LoginCard extends Component {
                                         <p className="google-login-text ml-2 my-auto">ورود با </p>
                                     </div> */}
                                     <div className="row justify-content-center py-1 mx-auto mt-2">
-                                        <div className="g-signin2" data-onsuccess="googleSignUp" data-onfailure={(e)=>console.log(e)}></div>
+                                        <div id="g-signin2"></div>
                                     </div>
                                     <p dir="rtl" className="login-data-column-info-text">
                                         هنوز لقمه‌ای نیستی؟!
