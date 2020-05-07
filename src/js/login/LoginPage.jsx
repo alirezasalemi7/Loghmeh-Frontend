@@ -11,6 +11,7 @@ import PropTypes, { func } from 'prop-types'
 import Loader from 'react-loader-spinner'
 import { isExpired } from '../basics/Utils'
 
+
 class LoginPageUpperRow extends Component {
 
     render(){
@@ -100,7 +101,8 @@ class LoginCard extends Component {
         this.onPasswordChange = this.onPasswordChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
         this.gotoSignupPage = this.gotoSignupPage.bind(this)
-        this.gotoHomePage = this.gotoHomePage.bind(this) 
+        this.gotoHomePage = this.gotoHomePage.bind(this)
+        this.googleSignUp = this.googleSignUp.bind(this)
     }
 
     static propTypes = {
@@ -188,6 +190,40 @@ class LoginCard extends Component {
         this.props.history.push('/signup')
     }
 
+    googleSignUp(googleUser) {
+        console.log(googleUser);
+        let id_token = googleUser.getAuthResponse().id_token;
+        let req = new XMLHttpRequest();
+        req.onreadystatechange = function () {
+            if (req.readyState === 4) {
+                if (req.status === 400) {
+                    this.show('لطفا پس از مدتی دوباره تلاش کنید.')
+                    return
+                } else if (req.status === 403) {
+                    this.show('شما در لقمه ثبت‌نام نکرده‌اید.')
+                    this.gotoSignupPage()
+                } else if (req.status === 200) {
+                    let res = JSON.parse(req.response)
+                    localStorage.setItem('auth', true)
+                    localStorage.setItem('id_token', res.jwt)
+                    this.gotoHomePage()
+                } else {
+                    this.show('سرور فعلا مشکل داره:(')
+                    return
+                }
+            }
+        }.bind(this)
+        req.onerror = function () {
+            this.show('سرور فعلا مشکل داره:(')
+        }.bind(this)
+        req.open("POST", "http://127.0.0.1:8080/login/google");
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        req.onload = function() {
+        console.log('Signed in as: ' + req.responseText);
+        };
+        req.send('idtoken=' + id_token);
+    }
+
     render(){
         return(
             <div>
@@ -218,6 +254,13 @@ class LoginCard extends Component {
                                         <InputField dir="ltr" value={this.state.password} err={this.state.password_err} onChange={this.onPasswordChange} empty={this.state.password_empty} type="password" id="pass-inp" placeholder="گذر واژه"></InputField>
                                     </div>
                                     <button dir="rtl" className="btn" onClick={this.onSubmit} id="login-card-btn">بریم تو!</button>
+                                    {/* <div className="row google-login-button justify-content-center py-1 mx-auto mt-2" onClick={(e)=>googleSignUp(e)}>
+                                        <img className="google-logo" src={require("../../assets/login/Google Logo.png")} alt="گوگل"/>
+                                        <p className="google-login-text ml-2 my-auto">ورود با </p>
+                                    </div> */}
+                                    <div className="row justify-content-center py-1 mx-auto mt-2">
+                                        <div className="g-signin2" data-onsuccess="googleSignUp" data-onfailure={(e)=>console.log(e)}></div>
+                                    </div>
                                     <p dir="rtl" className="login-data-column-info-text">
                                         هنوز لقمه‌ای نیستی؟!
                                         <a className="signup-link-color" onClick={this.gotoSignupPage}>بیا لقمه‌ای شو!</a>
@@ -227,6 +270,7 @@ class LoginCard extends Component {
                                     <Loader type="BallTriangle" color="#FF6B6B" visible={this.state.spinner} height={50} width={50}/>
                                 </div>
                             </div>
+                            
                             <div className="col-sm-3"></div>
                             <div className="row">
                         </div>

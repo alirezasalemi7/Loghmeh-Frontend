@@ -25,6 +25,23 @@
     color: aqua;
 }
 
+.google-login-button {
+    width: 40%;
+    color: white;
+    border-radius: 15px;
+    background-color: var(--pastel-red);
+    margin-bottom: 1%;
+}
+
+.google-login-text {
+    font-size: 1.3em;
+}
+
+.google-logo {
+    height: 2rem !important;
+    width: 2rem !important;
+}
+
 input {
     text-align: center;
 }
