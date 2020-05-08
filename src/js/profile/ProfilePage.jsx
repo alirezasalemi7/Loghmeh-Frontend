@@ -19,6 +19,8 @@ export class ProfilePage extends Component {
 
     constructor(props) {
         super(props)
+        this.mount = false
+        this.rendered = false
         this.state = {
             user : [],
         }
@@ -52,10 +54,16 @@ export class ProfilePage extends Component {
 
     componentDidMount() {
         this.getUserInfo()
+        this.mount = true
+        this.interval = setInterval(()=>{this.getUserInfo()},5000)
         $("#loading-modal").modal('show')
     }
 
     getUserInfo() {
+        if(!this.mount){
+            clearInterval(this.interval)
+            return
+        }
         let req = new XMLHttpRequest()
         req.onreadystatechange = function() {
             if (req.readyState === 4) {
@@ -63,7 +71,10 @@ export class ProfilePage extends Component {
                     this.setState({
                         user: JSON.parse(req.response)
                     })
-                    setTimeout(()=>{$("#loading-modal").modal('hide')},2000)
+                    if(!this.rendered){
+                        setTimeout(()=>{$("#loading-modal").modal('hide')},1000)
+                        this.rendered = true
+                    }
                 } else if (req.status === 404) {
                     this.show('کاربری با این نام کاربری پیدا نشد:(')
                 }
@@ -78,6 +89,11 @@ export class ProfilePage extends Component {
         
         req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()
+    }
+
+    componentWillUnmount(){
+        this.mount = false
+        clearInterval(this.interval)
     }
 
 }
