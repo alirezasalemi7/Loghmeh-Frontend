@@ -24,6 +24,10 @@
     padding-bottom: 0px;
 }
 
+.link-color {
+    color: rgb(0, 153, 255) !important;
+}
+
 
 input {
     text-align: center;

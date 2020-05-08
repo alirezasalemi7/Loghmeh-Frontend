@@ -274,8 +274,8 @@ class SignupCard extends Component{
                                 <div className="row">
                                     <div className="col-sm-12">
                                         <p dir="rtl" className="signup-data-column-text">
-                                            تو لقمه‌ای بودی؟ بزم بریم
-                                            <a dir="rtl" onClick={this.gotoLoginPage}>وارد شیم!</a>
+                                            تو لقمه‌ای بودی؟ بزم بریم 
+                                            <a dir="rtl" className="link-color" onClick={this.gotoLoginPage}> وارد شیم!</a>
                                         </p>
                                     </div>
                                 </div>

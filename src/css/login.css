@@ -21,16 +21,16 @@
     background-color: var(--mint-cream);
 }
 
-.signup-link-color {
-    color: aqua;
+.link-color {
+    color: rgb(0, 153, 255) !important;
 }
 
 .google-login-button {
     width: 40%;
-    color: white;
     border-radius: 15px;
-    background-color: var(--pastel-red);
+    background-color: #EFF5EF;
     margin-bottom: 1%;
+    cursor: pointer;
 }
 
 .google-login-text {

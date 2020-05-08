@@ -47,7 +47,6 @@ function SignupRender(props){
     return(<Redirect to="/home"></Redirect>)
   }
   else{
-    console.log(props.location.state)
     return (<SignupPage googleDetails={props.location.state} history={history}></SignupPage>)
   }
 }

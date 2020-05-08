@@ -87,18 +87,6 @@ export class LoginPage extends Component {
 
 class LoginCard extends Component {
 
-    componentDidMount(){
-        window.gapi.signin2.render('g-signin2', {
-            'scope': 'https://www.googleapis.com/auth/plus.login',
-            'width': 50,
-            'height': 50,
-            'longtitle': true,
-            'theme': 'dark',
-            'onsuccess': this.googleSignUp,
-            'onfailure':()=>{}
-        });
-    }
-
     constructor(props){
         super(props)
         this.state = {
@@ -120,6 +108,29 @@ class LoginCard extends Component {
 
     static propTypes = {
         history : PropTypes.object.isRequired
+    }
+
+    componentDidMount(){
+        // window.gapi.signin2.render('g-signin2', {
+        //     'scope': 'https://www.googleapis.com/auth/plus.login',
+        //     'width': 240,
+        //     'height': 50,
+        //     'longtitle': true,
+        //     'theme': 'light',
+        //     'color': 'red',
+        //     'onsuccess': this.googleSignUp,
+        //     'onfailure':()=>{this.show('اتصال با گوگل دچار مشکلی شده:( لطفا دوباره تلاش کنید.')}
+        // });
+        let googleSignUp = this.googleSignUp
+        window.gapi.load('auth2', function(){
+            let auth2 = window.gapi.auth2.init({
+                client_id: '374722365724-35cvu2uu7paad1851169lc1ni134drl3.apps.googleusercontent.com',
+            });
+            let element = document.getElementById('googleBtn')
+            auth2.attachClickHandler(element, {},
+                (e)=>googleSignUp(e), ()=>{this.show('an error occured')}
+            );
+        });
     }
 
     onUsernameChange(event){
@@ -199,7 +210,11 @@ class LoginCard extends Component {
             this.props.history.push('/login')
     }
 
-    gotoSignupPage(state){
+    gotoSignupPage(){
+        this.props.history.push('/signup')
+    }
+
+    gotoFullSignupPage(state){
         this.props.history.push({
             pathname:"/signup",
             state:state
@@ -208,7 +223,9 @@ class LoginCard extends Component {
 
     async googleSignUp(googleUser) {
         let id_token = googleUser.getAuthResponse().id_token
+        console.log("S")
         console.log(googleUser.getAuthResponse())
+        console.log("E")
         let req = new XMLHttpRequest();
         req.onreadystatechange = function () {
             if (req.readyState === 4) {
@@ -217,7 +234,7 @@ class LoginCard extends Component {
                     return
                 } else if (req.status === 403) {
                     this.show('اطلاعاتتو وارد کن تا ثبت نام کنیم اولش')
-                    setTimeout(()=>{this.gotoSignupPage(req.response)},3000)
+                    setTimeout(()=>{this.gotoFullSignupPage(req.response)},3000)
                 } else if (req.status === 200) {
                     let res = req.response
                     localStorage.setItem('auth', true)
@@ -235,9 +252,6 @@ class LoginCard extends Component {
         req.responseType = 'json'
         req.open("POST", "http://127.0.0.1:8080/login/google");
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        req.onload = function() {
-            console.log('Signed in as: ' + req.response.jwt);
-        };
         req.send('token=' + id_token);
     }
 
@@ -271,16 +285,16 @@ class LoginCard extends Component {
                                         <InputField dir="ltr" value={this.state.password} err={this.state.password_err} onChange={this.onPasswordChange} empty={this.state.password_empty} type="password" id="pass-inp" placeholder="گذر واژه"></InputField>
                                     </div>
                                     <button dir="rtl" className="btn" onClick={this.onSubmit} id="login-card-btn">بریم تو!</button>
-                                    {/* <div className="row google-login-button justify-content-center py-1 mx-auto mt-2" onClick={(e)=>googleSignUp(e)}>
+                                    <div id="googleBtn" className="row google-login-button justify-content-center py-1 mx-auto mt-2 border">
                                         <img className="google-logo" src={require("../../assets/login/Google Logo.png")} alt="گوگل"/>
                                         <p className="google-login-text ml-2 my-auto">ورود با </p>
-                                    </div> */}
-                                    <div className="row justify-content-center py-1 mx-auto mt-2">
-                                        <div id="g-signin2"></div>
                                     </div>
+                                    {/* <div className="row justify-content-center py-1 mx-auto mt-2">
+                                        <div id="g-signin2"></div>
+                                    </div> */}
                                     <p dir="rtl" className="login-data-column-info-text">
                                         هنوز لقمه‌ای نیستی؟!
-                                        <a className="signup-link-color" onClick={this.gotoSignupPage}>بیا لقمه‌ای شو!</a>
+                                        <a className="link-color" onClick={this.gotoSignupPage}>بیا لقمه‌ای شو!</a>
                                     </p>
                                 </div>
                                 <div className="col-sm-12">
@@ -298,3 +312,47 @@ class LoginCard extends Component {
         )
     }
 }
+
+
+
+
+
+{/* <html>
+<head>
+  <script src="https://apis.google.com/js/api:client.js"></script>
+  <script>
+  var googleUser = {};
+  var startApp = function() {
+    gapi.load('auth2', function(){
+      // Retrieve the singleton for the GoogleAuth library and set up the client.
+      auth2 = gapi.auth2.init({
+        client_id: 'YOUR_CLIENT_ID.apps.googleusercontent.com',
+      });
+      attachSignin(document.getElementById('customBtn'));
+    });
+  };
+
+  function attachSignin(element) {
+    console.log(element.id);
+    auth2.attachClickHandler(element, {},
+        function(googleUser) {
+          document.getElementById('name').innerText = "Signed in: " +
+              googleUser.getBasicProfile().getName();
+        }, function(error) {
+          alert(JSON.stringify(error, undefined, 2));
+        });
+  }
+  </script> */}
+  {/* </head>
+  <body>
+  <!-- In the callback, you would hide the gSignInWrapper element on a
+  successful sign in -->
+  <div id="gSignInWrapper">
+    <div id="customBtn">
+        Google
+    </div>
+  </div>
+  <div id="name"></div>
+  <script>startApp();</script>
+</body>
+</html> */}
