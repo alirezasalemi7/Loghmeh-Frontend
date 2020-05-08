@@ -9,7 +9,6 @@ import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
 import * as $ from 'jquery'
 import PropTypes, { func, string } from 'prop-types'
 import Loader from 'react-loader-spinner'
-import { isExpired } from '../basics/Utils'
 
 
 
@@ -202,12 +201,7 @@ class LoginCard extends Component {
     }
 
     gotoHomePage() {
-        let auth = !isExpired(localStorage.getItem('id_token'))
-        localStorage.setItem('auth', auth)
-        if (auth)
-            this.props.history.push('/home')
-        else
-            this.props.history.push('/login')
+        this.props.history.push('/home')
     }
 
     gotoSignupPage(){

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import Pagination from '@material-ui/lab/Pagination';
 import PaginationItem from '@material-ui/lab/PaginationItem';
 import { Grid } from '@material-ui/core';
-import {translateEnglishToPersianNumbers, isExpired} from '../basics/Utils'
+import {translateEnglishToPersianNumbers} from '../basics/Utils'
 
 PaginationItem.prototype = {page:PropTypes.string}
 Pagination.prototype = {page:PropTypes.string}
@@ -127,12 +127,7 @@ export class RestaurantCart extends Component {
     }
 
     gotoRestaurantPage(id) {
-        let auth = !isExpired(localStorage.getItem('id_token'))
-        localStorage.setItem('auth', auth)
-        if (auth)
-            this.props.history.push('/restaurant/'+id)
-        else
-            this.props.history.push('/login')
+        this.props.history.push('/restaurant/'+id)
     }
 
     render() {

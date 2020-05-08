@@ -38,11 +38,20 @@ export function isReal(value) {
     return /^(-)?[0-9]+(\.[0-9]+)?$/.test(value)
 }
 
-export function isExpired(id_token) {
-    if (id_token === null)
-        return true
-    let jwt = require('jsonwebtoken')
-    let decoded = jwt.decode(id_token, {complete: true})
-    let currentDate = new Date()
-    return decoded.exp < currentDate.getTime()
+// export function isExpired(id_token) {
+//     console.log("HERE IN TEST:" + id_token)
+//     if (id_token === null)
+//         return true
+//     let jwt = require('jsonwebtoken')
+//     let decoded = jwt.decode(id_token, {complete: true})
+//     let currentDate = new Date()
+//     console.log(decoded)
+//     console.log(decoded.payload.exp + " " + (currentDate.getTime() / 1000))
+//     console.log(decoded.payload.exp < (currentDate.getTime() / 1000))
+//     return decoded.payload.exp < (currentDate.getTime() / 1000)
+// }
+
+export function clearLocalStorage() {
+    localStorage.removeItem('auth')
+    localStorage.removeItem('id_token')
 }
