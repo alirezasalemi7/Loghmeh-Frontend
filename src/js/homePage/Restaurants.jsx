@@ -32,6 +32,7 @@ export class RestaurantsContainer extends Component {
     }
 
     componentDidMount() {
+        this.mount = true
         this.getRestaurants(0, 14)
     }
 
@@ -40,7 +41,7 @@ export class RestaurantsContainer extends Component {
         let req = new XMLHttpRequest()
         req.onreadystatechange = function() {
             if (req.readyState === 4) {
-                if (req.status === 200) {
+                if (req.status === 200 && this.mount) {
                     let newPage = JSON.parse(req.response)
                     if (newPage.restaurants.length < page_size) {
                         this.setState({
@@ -59,16 +60,24 @@ export class RestaurantsContainer extends Component {
                         })
                     }
                     setTimeout(()=>{ $("#loading-modal").modal('hide')}, 1000)
-                } else {
+                } 
+                else if(req.status === 403){
+                    $("#loading-modal").modal('hide')
+                    localStorage.removeItem("auth")
+                    window.myHistory.push('/login')
+                }
+                else {
                     this.setState({spinner:false})
                     this.show('لطفا پس از مدتی دوباره تلاش کنید.')
                 }
             }
         }.bind(this)
         req.onerror = function() {
-            this.setState({spinner:false})
-            $("#loading-modal").modal('hide')
-            this.show('سرور فعلا مشکل داره:(')
+            if(this.mount){
+                this.setState({spinner:false})
+                $("#loading-modal").modal('hide')
+                this.show('سرور فعلا مشکل داره:(')
+            }
         }.bind(this)
         req.open("GET", "http://127.0.0.1:8080/restaurants?page_number="+page_number+"&page_size="+page_size, true)
         

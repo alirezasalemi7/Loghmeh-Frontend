@@ -13,12 +13,14 @@ import { RestaurantPage } from './js/restaurant/RestaurantPage'
 import {Route,Switch,Redirect,Router} from 'react-router-dom'
 import {createBrowserHistory} from 'history'
 
-var history = createBrowserHistory()
+var myHistory = createBrowserHistory()
+
+window.myHistory = myHistory
 
 function App() {
   return (
     <div className="App container-fluid">
-      <Router history={history}>
+      <Router history={myHistory}>
         <Switch>
           <Route exact path="/" component={LoginRender}></Route>
           <Route exact path='/login' component={LoginRender}></Route>
@@ -38,7 +40,7 @@ function LoginRender(){
     return(<Redirect to="/home"></Redirect>)
   }
   else{
-    return (<LoginPage history={history}></LoginPage>)
+    return (<LoginPage history={myHistory}></LoginPage>)
   }
 }
 
@@ -47,7 +49,7 @@ function SignupRender(props){
     return(<Redirect to="/home"></Redirect>)
   }
   else{
-    return (<SignupPage googleDetails={props.location.state} history={history}></SignupPage>)
+    return (<SignupPage googleDetails={props.location.state} history={myHistory}></SignupPage>)
   }
 }
 
@@ -56,7 +58,7 @@ function ProfileRender(){
     return(<Redirect to="/login"></Redirect>)
   }
   else{
-    return (<ProfilePage history={history}></ProfilePage>)
+    return (<ProfilePage history={myHistory}></ProfilePage>)
   }
 }
 
@@ -65,7 +67,7 @@ function HomeRender(){
     return(<Redirect to="/login"></Redirect>)
   }
   else{
-    return (<Home history={history}></Home>)
+    return (<Home history={myHistory}></Home>)
   }
 }
 
@@ -74,7 +76,7 @@ function RestaurantRender(id){
     return(<Redirect to="/login"></Redirect>)
   }
   else{ 
-    return (<RestaurantPage history={history} id={id}></RestaurantPage>)
+    return (<RestaurantPage history={myHistory} id={id}></RestaurantPage>)
   }
 }
 

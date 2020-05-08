@@ -27,16 +27,20 @@ export class FoodPartyContainer extends Component {
                 return
             }
             if (req.readyState === 4) {
-                if (req.status === 200) {
+                if (req.status === 200 && this.mount) {
                     let foodInfo = JSON.parse(req.response)
                     this.setState({
                         foods: foodInfo
                     })
                 }
+                else if(req.status==403){
+                    $("#loading-modal").modal('hide')
+                    localStorage.removeItem("auth")
+                    window.myHistory.push('/login')
+                }
             }
         }.bind(this)
         req.open("GET", "http://127.0.0.1:8080/foodParty", true)
-        
         req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()
     }
@@ -48,17 +52,21 @@ export class FoodPartyContainer extends Component {
                 return
             }
             if (req.readyState === 4) {
-                if (req.status === 200) {
+                if (req.status === 200 && this.mount) {
                     let timeInfo = JSON.parse(req.response)
                     this.setState({
                         minutes: timeInfo.minutes,
                         seconds: timeInfo.seconds
                     })
                 }
+                else if(req.status==403){
+                    $("#loading-modal").modal('hide')
+                    localStorage.removeItem("auth")
+                    window.myHistory.push('/login')
+                }
             }
         }.bind(this)
         req.open("GET", "http://127.0.0.1:8080/foodParty/time")
-        
         req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()
     }
