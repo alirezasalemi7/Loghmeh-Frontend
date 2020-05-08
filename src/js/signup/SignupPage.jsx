@@ -27,7 +27,7 @@ export class SignupPage extends Component {
                         <div className="row">
                             <div className="col-sm-12" id="signup-card-col">
                                 <div className="card" id="signup-card">
-                                    <SignupCard history={this.props.history}></SignupCard>
+                                    <SignupCard googleDetails={this.props.googleDetails} history={this.props.history}></SignupCard>
                                 </div>
                             </div>
                         </div>    
@@ -55,16 +55,16 @@ class SignupCard extends Component{
         super(props)
         this.state = {
             spinner : false,
-            firstname : "",
+            firstname : (this.googleDetails)?this.googleDetails.name:"",
             firstname_empty:false,
             firstname_err:false,
-            lastname : "",
+            lastname : (this.googleDetails)?this.googleDetails.family:"",
             lastname_empty:false,
             lastname_err:false,
             phone : "",
             phone_err:false,
             phone_empty:false,
-            email : "",
+            email : (this.googleDetails)?this.googleDetails.email:"",
             email_err:false,
             email_empty:false,
             password : "",

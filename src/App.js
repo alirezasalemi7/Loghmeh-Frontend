@@ -42,12 +42,13 @@ function LoginRender(){
   }
 }
 
-function SignupRender(){
+function SignupRender(props){
   if(localStorage.getItem('auth')){
     return(<Redirect to="/home"></Redirect>)
   }
   else{
-    return (<SignupPage history={history}></SignupPage>)
+    console.log(props.location.state)
+    return (<SignupPage googleDetails={props.location.state} history={history}></SignupPage>)
   }
 }
 

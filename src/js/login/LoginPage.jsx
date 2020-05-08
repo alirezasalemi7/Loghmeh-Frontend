@@ -199,13 +199,16 @@ class LoginCard extends Component {
             this.props.history.push('/login')
     }
 
-    gotoSignupPage(){
-        this.props.history.push('/signup')
+    gotoSignupPage(state){
+        this.props.history.push({
+            pathname:"/signup",
+            state:state
+        })
     }
 
     async googleSignUp(googleUser) {
         let id_token = googleUser.getAuthResponse().id_token
-        console.log((id_token))
+        console.log(googleUser.getAuthResponse())
         let req = new XMLHttpRequest();
         req.onreadystatechange = function () {
             if (req.readyState === 4) {
@@ -213,8 +216,8 @@ class LoginCard extends Component {
                     this.show('لطفا پس از مدتی دوباره تلاش کنید.')
                     return
                 } else if (req.status === 403) {
-                    this.show('شما در لقمه ثبت‌نام نکرده‌اید.')
-                    this.gotoSignupPage()
+                    this.show('اطلاعاتتو وارد کن تا ثبت نام کنیم اولش')
+                    setTimeout(()=>{this.gotoSignupPage(req.response)},3000)
                 } else if (req.status === 200) {
                     let res = req.response
                     localStorage.setItem('auth', true)
@@ -229,12 +232,13 @@ class LoginCard extends Component {
         req.onerror = function () {
             this.show('سرور فعلا مشکل داره:(')
         }.bind(this)
+        req.responseType = 'json'
         req.open("POST", "http://127.0.0.1:8080/login/google");
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         req.onload = function() {
             console.log('Signed in as: ' + req.response.jwt);
         };
-        req.send('idtoken=' + id_token);
+        req.send('token=' + id_token);
     }
 
     render(){
