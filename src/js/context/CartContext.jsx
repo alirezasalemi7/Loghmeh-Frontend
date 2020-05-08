@@ -50,6 +50,9 @@ export class CartContext extends Component {
     }
 
     updateState(){
+        if(localStorage.getItem("auth")==null){
+            return
+        }
         let req = new XMLHttpRequest()
         req.responseType = 'json'
         req.onreadystatechange = function() {

@@ -50,5 +50,5 @@ export function exitFromApp() {
             auth2.signOut().then(auth2.disconnect())
         }
     }
-    this.props.history.push('/login')
+    window.myHistory.push('/login')
 }
