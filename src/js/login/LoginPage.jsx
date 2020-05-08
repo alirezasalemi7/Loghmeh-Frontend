@@ -291,9 +291,6 @@ class LoginCard extends Component {
                                             <p className="google-login-text ml-2 my-auto">ورود با </p>
                                         </div>
                                     </div>
-                                    {/* <div className="row justify-content-center py-1 mx-auto mt-2">
-                                        <div id="g-signin2"></div>
-                                    </div> */}
                                     <p dir="rtl" className="login-data-column-info-text">
                                         هنوز لقمه‌ای نیستی؟!
                                         <a className="link-color" onClick={this.gotoSignupPage}>بیا لقمه‌ای شو!</a>
