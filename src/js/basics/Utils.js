@@ -1,3 +1,5 @@
+import * as $ from 'jquery'
+
 /* eslint-disable no-unused-expressions */
 
 String.prototype.allReplace = function(obj) {
@@ -38,20 +40,15 @@ export function isReal(value) {
     return /^(-)?[0-9]+(\.[0-9]+)?$/.test(value)
 }
 
-// export function isExpired(id_token) {
-//     console.log("HERE IN TEST:" + id_token)
-//     if (id_token === null)
-//         return true
-//     let jwt = require('jsonwebtoken')
-//     let decoded = jwt.decode(id_token, {complete: true})
-//     let currentDate = new Date()
-//     console.log(decoded)
-//     console.log(decoded.payload.exp + " " + (currentDate.getTime() / 1000))
-//     console.log(decoded.payload.exp < (currentDate.getTime() / 1000))
-//     return decoded.payload.exp < (currentDate.getTime() / 1000)
-// }
-
-export function clearLocalStorage() {
+export function exitFromApp() {
     localStorage.removeItem('auth')
     localStorage.removeItem('id_token')
+    $(".modal").modal('hide')
+    if(window.gapi){
+        const auth2 = window.gapi.auth2.getAuthInstance()
+        if(auth2!=null){
+            auth2.signOut().then(auth2.disconnect())
+        }
+    }
+    this.props.history.push('/login')
 }

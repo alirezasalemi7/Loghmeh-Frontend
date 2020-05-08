@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import {SnackBarGlobalContext} from './SnackBarContext'
 import * as $ from 'jquery'
+import { exitFromApp } from '../basics/Utils'
 export const CartGlobalContext = React.createContext()
 
 export class CartContext extends Component {
@@ -87,9 +88,7 @@ export class CartContext extends Component {
             }
             else if(req.status===403){
                 if(localStorage.getItem("auth")){
-                    $("#loading-modal").modal('hide')
-                    localStorage.removeItem("auth")
-                    window.myHistory.push('/login')
+                    exitFromApp()
                 }
             }
             else if(this.mount) {
@@ -163,9 +162,7 @@ export class CartContext extends Component {
             }
             else if(req.status===403){
                 if(localStorage.getItem("auth")){
-                    $("#loading-modal").modal('hide')
-                    localStorage.removeItem("auth")
-                    window.myHistory.push('/login')
+                    exitFromApp()
                 }
             }
             else if(this.mount){
@@ -215,9 +212,7 @@ export class CartContext extends Component {
             }
             else if(req.status===403 && req.response.status===null){
                 if(localStorage.getItem("auth")){
-                    $("#loading-modal").modal('hide')
-                    localStorage.removeItem("auth")
-                    window.myHistory.push('/login')
+                    exitFromApp()
                 }
             }
             else if(req.readyState === 4 && req.status === 403 && this.mount){
@@ -328,9 +323,7 @@ export class CartContext extends Component {
             }
             else if(req.status===403 && req.response.status===null){
                 if(localStorage.getItem("auth")){
-                    $("#loading-modal").modal('hide')
-                    localStorage.removeItem("auth")
-                    window.myHistory.push('/login')
+                    exitFromApp()
                 }
             }
             else if(req.readyState === 4 && req.status === 403 && this.mount){

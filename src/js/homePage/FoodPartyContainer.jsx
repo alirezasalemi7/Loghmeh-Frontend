@@ -2,7 +2,7 @@ import "../../css/home.css"
 import React, { Component } from "react";
 import { SnackBarContext, SnackBarGlobalContext } from "../context/SnackBarContext";
 import { SnackBar } from "../basics/SnackBar";
-import { translateEnglishToPersianNumbers } from "../basics/Utils";
+import { translateEnglishToPersianNumbers, exitFromApp } from "../basics/Utils";
 import * as $ from "jquery"
 import { FoodCardModal } from "../restaurant/FoodCard";
 import PropTypes from 'prop-types';
@@ -35,9 +35,7 @@ export class FoodPartyContainer extends Component {
                 }
                 else if(req.status==403){
                     if(localStorage.getItem("auth")){
-                        $("#loading-modal").modal('hide')
-                        localStorage.removeItem("auth")
-                        window.myHistory.push('/login')
+                        exitFromApp()
                     }
                 }
             }
@@ -63,9 +61,7 @@ export class FoodPartyContainer extends Component {
                 }
                 else if(req.status==403){
                     if(localStorage.getItem("auth")){
-                        $("#loading-modal").modal('hide')
-                        localStorage.removeItem("auth")
-                        window.myHistory.push('/login')
+                        exitFromApp()
                     }
                 }
             }

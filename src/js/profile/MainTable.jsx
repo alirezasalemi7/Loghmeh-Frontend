@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../../css/profilePage.css"
 import "../../css/flaticon.css"
 import * as $ from "jquery"
-import { translateEnglishToPersianNumbers,isReal } from "../basics/Utils";
+import { translateEnglishToPersianNumbers,isReal, exitFromApp } from "../basics/Utils";
 import {SnackBarGlobalContext} from '../context/SnackBarContext'
 import Loader from 'react-loader-spinner'
 import { InputField } from "../basics/Inputs";
@@ -216,6 +216,10 @@ class OrderList extends Component {
                         spinner : false
                     })
                     this.show('کاربری با این نام کاربری وجود ندارد.')
+                } else if (req.status === 403) {
+                    if(localStorage.getItem("auth")){
+                        exitFromApp()
+                    }
                 }
             }
         }.bind(this)

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import Pagination from '@material-ui/lab/Pagination';
 import PaginationItem from '@material-ui/lab/PaginationItem';
 import { Grid } from '@material-ui/core';
-import {translateEnglishToPersianNumbers} from '../basics/Utils'
+import {translateEnglishToPersianNumbers, exitFromApp} from '../basics/Utils'
 
 PaginationItem.prototype = {page:PropTypes.string}
 Pagination.prototype = {page:PropTypes.string}
@@ -67,9 +67,7 @@ export class RestaurantsContainer extends Component {
                 } 
                 else if(req.status === 403){
                     if(localStorage.getItem("auth")){
-                        $("#loading-modal").modal('hide')
-                        localStorage.removeItem("auth")
-                        window.myHistory.push('/login')
+                        exitFromApp()
                     }
                 }
                 else if(this.mount) {

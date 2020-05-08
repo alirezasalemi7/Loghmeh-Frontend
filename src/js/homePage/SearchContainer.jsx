@@ -8,6 +8,7 @@ import { SnackBarContext, SnackBarGlobalContext } from "../context/SnackBarConte
 import PropTypes from 'prop-types';
 import { FoodCardSmall } from "../restaurant/FoodCard";
 import {Loader} from 'react-loader-spinner'
+import { exitFromApp } from "../basics/Utils";
 
 export class SearchContainer extends Component {
 
@@ -74,9 +75,7 @@ export class SearchContainer extends Component {
                 }
                 else if(req.status === 403){
                     if(localStorage.getItem("auth")){
-                        $("#loading-modal").modal('hide')
-                        localStorage.removeItem("auth")
-                        window.myHistory.push('/login')
+                        exitFromApp()
                     }
                 }
             }

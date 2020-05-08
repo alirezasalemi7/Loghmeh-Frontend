@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import '../../css/navbar.css'
 import { CartGlobalContext } from '../context/CartContext'
-import {translateEnglishToPersianNumbers, clearLocalStorage} from './Utils'
+import {translateEnglishToPersianNumbers, exitFromApp} from './Utils'
 import {CartModal} from './Cart'
 import * as $ from 'jquery'
 import PropTypes from 'prop-types'
@@ -37,14 +37,14 @@ export class NavBar extends Component {
     }
 
     exit(){
-        clearLocalStorage()
-        if(window.gapi){
-            const auth2 = window.gapi.auth2.getAuthInstance()
-            if(auth2!=null){
-                auth2.signOut().then(auth2.disconnect())
-            }
-        }
-        this.props.history.push('/')
+        exitFromApp()
+        // if(window.gapi){
+        //     const auth2 = window.gapi.auth2.getAuthInstance()
+        //     if(auth2!=null){
+        //         auth2.signOut().then(auth2.disconnect())
+        //     }
+        // }
+        // this.props.history.push('/')
     }
 
     login(){

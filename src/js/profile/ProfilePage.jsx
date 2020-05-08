@@ -10,6 +10,7 @@ import { SnackBar } from "../basics/SnackBar"
 import * as $ from 'jquery'
 import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
 import PropTypes from 'prop-types'
+import { exitFromApp } from "../basics/Utils"
 
 export class ProfilePage extends Component {
 
@@ -80,9 +81,7 @@ export class ProfilePage extends Component {
                 }
                 else if(req.status==403){
                     if(localStorage.getItem("auth")){
-                        $("#loading-modal").modal('hide')
-                        localStorage.removeItem("auth")
-                        window.myHistory.push('/login')
+                        exitFromApp()
                     }
                 }
             }
@@ -93,7 +92,7 @@ export class ProfilePage extends Component {
             this.show('سرورمون فعلا مشکل داره:(')
         }.bind(this)
         req.open("GET", "http://127.0.0.1:8080/users/profile", true)
-        
+
         req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()
     }

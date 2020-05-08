@@ -9,6 +9,7 @@ import {PageLoaderSpinner} from '../basics/PageLoadSpinner'
 import { NavBar } from '../basics/Navbar'
 import {SnackBar} from '../basics/SnackBar'
 import PropTypes from 'prop-types'
+import { exitFromApp } from '../basics/Utils'
 
 
 var LoghmehLogo = require('../../assets/LOGO.png')
@@ -85,9 +86,7 @@ export class RestaurantPage extends Component {
             }
             else if(req.status===403 && req.response.status===null){
                 if(localStorage.getItem("auth")){
-                    $("#loading-modal").modal('hide')
-                    localStorage.removeItem("auth")
-                    window.myHistory.push('/login')
+                    exitFromApp()
                 }
             }
             else if(req.readyState === 4 && req.status === 403 && this.mount){
