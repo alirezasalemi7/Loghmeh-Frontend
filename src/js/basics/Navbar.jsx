@@ -38,6 +38,12 @@ export class NavBar extends Component {
 
     exit(){
         localStorage.removeItem('auth')
+        if(window.gapi){
+            const auth2 = window.gapi.auth2.getAuthInstance()
+            if(auth2!=null){
+                auth2.signOut().then(auth2.disconnect())
+            }
+        }
         this.props.history.push('/')
     }
 
