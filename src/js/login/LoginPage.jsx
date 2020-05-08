@@ -284,10 +284,12 @@ class LoginCard extends Component {
                                     <div className="form-group">
                                         <InputField dir="ltr" value={this.state.password} err={this.state.password_err} onChange={this.onPasswordChange} empty={this.state.password_empty} type="password" id="pass-inp" placeholder="گذر واژه"></InputField>
                                     </div>
-                                    <button dir="rtl" className="btn" onClick={this.onSubmit} id="login-card-btn">بریم تو!</button>
-                                    <div id="googleBtn" className="row google-login-button justify-content-center py-1 mx-auto mt-2 border">
-                                        <img className="google-logo" src={require("../../assets/login/Google Logo.png")} alt="گوگل"/>
-                                        <p className="google-login-text ml-2 my-auto">ورود با </p>
+                                    <div className="row justify-content-center mx-auto">
+                                        <button dir="rtl" className="btn" onClick={this.onSubmit} id="login-card-btn">بریم تو!</button>
+                                        <div id="googleBtn" className="row google-login-button justify-content-center py-1 mx-1 my-0 border">
+                                            <img className="google-logo" src={require("../../assets/login/Google Logo.png")} alt="گوگل"/>
+                                            <p className="google-login-text ml-2 my-auto">ورود با </p>
+                                        </div>
                                     </div>
                                     {/* <div className="row justify-content-center py-1 mx-auto mt-2">
                                         <div id="g-signin2"></div>

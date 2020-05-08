@@ -26,7 +26,7 @@
 }
 
 .google-login-button {
-    width: 40%;
+    width: 20%;
     border-radius: 15px;
     background-color: #EFF5EF;
     margin-bottom: 1%;
@@ -90,11 +90,10 @@ input {
     }
     
     #login-card-btn {
-        width: 40%;
+        width: 20%;
         font-size: 0.8em;
         border-radius: 15px;
         background-color: var(--maize);
-        margin-bottom: 1%;
     }
 }
 
@@ -145,10 +144,9 @@ input {
     }
     
     #login-card-btn {
-        width: 40%;
+        width: 20%;
         border-radius: 15px;
         background-color: var(--maize);
-        margin-bottom: 2%;
         height: 2.8em;
     }
 }
