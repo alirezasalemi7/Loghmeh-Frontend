@@ -66,7 +66,7 @@ export class RestaurantPage extends Component {
             if(req.readyState === 4){
                 $("#loading-modal").modal('hide')
             }
-            if(req.readyState === 4 && req.status === 200) {
+            if(req.readyState === 4 && req.status === 200 && this.mount) {
                 this.setState((state,props)=>({
                     logo : req.response.restaurantInfo.logoAddress,
                     menu : req.response.menu,
@@ -75,23 +75,32 @@ export class RestaurantPage extends Component {
                     valid : true
                 }))
             }
-            else if(req.readyState === 4 && req.status === 500){
+            else if(req.readyState === 4 && req.status === 500 && this.mount){
                 this.setState({name:"سرور قطعه",logo:LoghmehLogo})
                 this.show("سرورمون فعلا مشکل داره :(")
             }
-            else if(req.readyState === 4 && req.status === 404){
+            else if(req.readyState === 4 && req.status === 404 && this.mount){
                 this.setState({name:"رستوران وجود نداره",logo:LoghmehLogo})
                 this.show("این رستوران وجود نداره :(")
             }
-            else if(req.readyState === 4 && req.status === 403){
+            else if(req.status===403 && req.response.status===null){
+                if(localStorage.getItem("auth")){
+                    $("#loading-modal").modal('hide')
+                    localStorage.removeItem("auth")
+                    window.myHistory.push('/login')
+                }
+            }
+            else if(req.readyState === 4 && req.status === 403 && this.mount){
                 this.setState({name:"درسترسی غیر مجاز",logo:LoghmehLogo})
                 this.show("اجازه دسترسی به این رستورانو نداری :(")
             }
         }.bind(this)
         req.onerror = function(){
-            this.setState({name:"سرور قطعه",logo:LoghmehLogo})
-            $("#loading-modal").modal('hide')
-            this.show("سرورمون فعلا مشکل داره :(")
+            if(this.mount){
+                this.setState({name:"سرور قطعه",logo:LoghmehLogo})
+                $("#loading-modal").modal('hide')
+                this.show("سرورمون فعلا مشکل داره :(")
+            }
         }.bind(this)
         req.open('GET','http://127.0.0.1:8080/restaurants/'+this.props.id,true)
         
@@ -135,5 +144,10 @@ export class RestaurantPage extends Component {
 
     componentDidMount(){
         this.getRestaurantData()
+        this.mount = true
+    }
+
+    componentWillUnmount(){
+        this.mount = false
     }
 }

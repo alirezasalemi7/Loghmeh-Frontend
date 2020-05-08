@@ -31,12 +31,20 @@ export class SearchContainer extends Component {
         this.getSearchResult = this.getSearchResult.bind(this)
     }
 
+    componentDidMount(){
+        this.mount = true
+    }
+
+    componentWillUnmount(){
+        this.mount = false
+    }
+
     getSearchResult(foodName, restaurantName, isNewSearch) {
         let pageSize = 14
         let req = new XMLHttpRequest()
         req.onreadystatechange = function () {
             if (req.readyState === 4) {
-                if (req.status === 200) {
+                if (req.status === 200 && this.mount) {
                     let responseBody = JSON.parse(req.response)
                     if (isNewSearch) {
                         this.setState({
@@ -59,15 +67,24 @@ export class SearchContainer extends Component {
                             loadMore: ((responseBody.foods.length > 0) ? (responseBody.foods.length >= pageSize) : (responseBody.restaurants.length >= pageSize)),
                         })
                     }
-                } else if (req.status === 500) {
+                } else if (req.status === 500 && this.mount) {
                     this.show('سرور مشکل داره:(')
-                } else if (req.status === 404) {
+                } else if (req.status === 404 && this.mount) {
                     this.show('کاربر در سامانه ثبت نشده است')
+                }
+                else if(req.status === 403){
+                    if(localStorage.getItem("auth")){
+                        $("#loading-modal").modal('hide')
+                        localStorage.removeItem("auth")
+                        window.myHistory.push('/login')
+                    }
                 }
             }
         }.bind(this)
         req.onerror = function() {
-            this.show('امکان ارسال درخواست به سرور وجود نداره:(')
+            if(this.mount){
+                this.show('امکان ارسال درخواست به سرور وجود نداره:(')
+            }
         }.bind(this)
         console.log("food name:" + foodName)
         console.log(this.state.pageNumber)

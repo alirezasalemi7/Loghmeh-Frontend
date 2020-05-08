@@ -36,6 +36,10 @@ export class RestaurantsContainer extends Component {
         this.getRestaurants(0, 14)
     }
 
+    componentWillUnmount(){
+        this.mount = false
+    }
+
     getRestaurants(page_number, page_size) {
         console.log(page_size)
         let req = new XMLHttpRequest()
@@ -62,11 +66,13 @@ export class RestaurantsContainer extends Component {
                     setTimeout(()=>{ $("#loading-modal").modal('hide')}, 1000)
                 } 
                 else if(req.status === 403){
-                    $("#loading-modal").modal('hide')
-                    localStorage.removeItem("auth")
-                    window.myHistory.push('/login')
+                    if(localStorage.getItem("auth")){
+                        $("#loading-modal").modal('hide')
+                        localStorage.removeItem("auth")
+                        window.myHistory.push('/login')
+                    }
                 }
-                else {
+                else if(this.mount) {
                     this.setState({spinner:false})
                     this.show('لطفا پس از مدتی دوباره تلاش کنید.')
                 }

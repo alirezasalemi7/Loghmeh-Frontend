@@ -14,6 +14,17 @@ export class SnackBarContext extends Component {
         this.show = this.show.bind(this)
     }
 
+    componentDidMount(){
+        this.mount = true
+    }
+
+    componentWillUnmount(){
+        this.mount = false
+        if(this.timeout){
+            clearTimeout(this.timeout)
+        }
+    }
+
     render(){
         return(
             <SnackBarGlobalContext.Provider value = {this.state}>
@@ -23,7 +34,9 @@ export class SnackBarContext extends Component {
     }
 
     show(message,duration=1500){
-        this.setState((state,props)=>({message:message,show:true}))
-        setTimeout(()=>{this.setState({show:false})},duration)
+        if(this.mount){
+            this.setState((state,props)=>({message:message,show:true}))
+            this.timeout = setTimeout(()=>{this.setState({show:false})},duration)
+        }
     }
 }

@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import {SnackBarGlobalContext} from './SnackBarContext'
-
+import * as $ from 'jquery'
 export const CartGlobalContext = React.createContext()
 
 export class CartContext extends Component {
@@ -41,6 +41,11 @@ export class CartContext extends Component {
 
     componentDidMount(){
         this.updateState()
+        this.mount = true
+    }
+
+    componentWillUnmount(){
+        this.mount = false
     }
 
     updateState(){
@@ -48,7 +53,7 @@ export class CartContext extends Component {
         req.responseType = 'json'
         req.onreadystatechange = function() {
             console.log(req.response)
-            if(req.readyState === 4 && req.status === 200) {
+            if(req.readyState === 4 && req.status === 200 && this.mount) {
                 this.state.orders = []
                 this.setState((state,props)=>({
                     orders : req.response.orders,
@@ -56,39 +61,49 @@ export class CartContext extends Component {
                     spinner : false
                 }))
             }
-            else if(req.readyState === 4 && req.status === 500){
+            else if(req.readyState === 4 && req.status === 500 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("سرورمون فعلا مشکل داره :(")
             }
-            else if(req.readyState === 4 && req.status === 404 && req.response.status === 4040001){
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 4040001 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("این یوزر تو سرور ثبت نیست")
             }
-            else if(req.readyState === 4 && req.status === 404 && req.response.status === 4040001){
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 4040001 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("این یوزر تو سرور ثبت نیست")
             }
-            else if(req.readyState === 4 && req.status === 500 && req.response.status === 500){
+            else if(req.readyState === 4 && req.status === 500 && req.response.status === 500 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("سرورمون فعلا مشکل داره :(")
             }
-            else {
+            else if(req.status===403){
+                if(localStorage.getItem("auth")){
+                    $("#loading-modal").modal('hide')
+                    localStorage.removeItem("auth")
+                    window.myHistory.push('/login')
+                }
+            }
+            else if(this.mount) {
                 this.setState({spinner:true})
             }
+            
         }.bind(this)
         req.onerror = function(){
-            this.setState((state,props)=>({
-                spinner : false
-            }))
-            this.show("سرورمون فعلا مشکل داره :(")
+            if(this.mount){
+                this.setState((state,props)=>({
+                    spinner : false
+                }))
+                this.show("سرورمون فعلا مشکل داره :(")
+            }
         }.bind(this)
         req.open('GET','http://127.0.0.1:8080/users/cart',true)
         
@@ -105,7 +120,7 @@ export class CartContext extends Component {
             this.show("سرورمون فعلا مشکل داره :(")
         }.bind(this)
         req.onreadystatechange = function() {
-            if(req.readyState === 4 && req.status === 200) {
+            if(req.readyState === 4 && req.status === 200 && this.mount) {
                 this.setState((state,props)=>({
                     orders : [],
                     total : 0,
@@ -114,18 +129,18 @@ export class CartContext extends Component {
                 this.show("ثبتش کردم :)")
                 this.updateState()
             }
-            else if(req.readyState === 4 && req.status === 500){
+            else if(req.readyState === 4 && req.status === 500 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false
                 }))
                 this.show("سرورمون فعلا مشکل داره :(")
             }
-            else if(req.readyState === 4 && req.status === 400){
+            else if(req.readyState === 4 && req.status === 400 && this.mount){
                 this.setState((state,props)=>{
                     let ans = {
                         spinner : false
                     }
-                    if(req.response.status === 40001){
+                    if(req.response.status === 40001 && this.mount){
                         this.show("نمیتونی با سبد خالی سفارش بدی!")
                     }
                     else{
@@ -134,19 +149,26 @@ export class CartContext extends Component {
                     return ans
                 })
             }
-            else if(req.readyState === 4 && req.status === 404 && req.response.status === 4040001){
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 4040001 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("این یوزر تو سرور ثبت نیست")
             }
-            else if(req.readyState === 4 && req.status === 500 && req.response.status === 500){
+            else if(req.readyState === 4 && req.status === 500 && req.response.status === 500 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("سرورمون فعلا مشکل داره :(")
             }
-            else {
+            else if(req.status===403){
+                if(localStorage.getItem("auth")){
+                    $("#loading-modal").modal('hide')
+                    localStorage.removeItem("auth")
+                    window.myHistory.push('/login')
+                }
+            }
+            else if(this.mount){
                 this.setState({spinner:true})
             }
         }.bind(this)
@@ -168,19 +190,19 @@ export class CartContext extends Component {
         }.bind(this)
         // onreadystatechanges
         req.onreadystatechange = function() {
-            if(req.readyState === 4 && req.status === 200) {
+            if(req.readyState === 4 && req.status === 200  && this.mount) {
                 this.setState((state,props)=>({
                     spinner : false
                 }))
                 this.updateState()
             }
-            else if(req.readyState === 4 && req.status === 500){
+            else if(req.readyState === 4 && req.status === 500  && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("سرورمون فعلا مشکل داره :(")
             }
-            else if(req.readyState === 4 && req.status === 404 && req.response.status === 40401){
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 40401 && this.mount){
                 if(item.special) {
                     item.special = false
                     this.increase(item)
@@ -191,19 +213,26 @@ export class CartContext extends Component {
                 }))
                 this.show("این غذا وجود نداره :(")
             }
-            else if(req.readyState === 4 && req.status === 403){
+            else if(req.status===403 && req.response.status===null){
+                if(localStorage.getItem("auth")){
+                    $("#loading-modal").modal('hide')
+                    localStorage.removeItem("auth")
+                    window.myHistory.push('/login')
+                }
+            }
+            else if(req.readyState === 4 && req.status === 403 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("اجازه دسترسی به این رستورانو نداری :(")
             }
-            else if(req.readyState === 4 && req.status === 404 && req.response.status === 40402){
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 40402 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("این رستوران وجود نداره :(")
             }
-            else if(req.readyState === 4 && req.status === 404 && req.response.status === 40401){
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 40401 && this.mount){
                 if(item.special == true) {
                     item.special = false
                     this.increase(item)
@@ -214,45 +243,47 @@ export class CartContext extends Component {
                 }))
                 this.show("این غذا وجود نداره :(")
             }
-            else if(req.readyState === 4 && req.status === 400 && req.response.status === 40001){
+            else if(req.readyState === 4 && req.status === 400 && req.response.status === 40001 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("غذا اینقدر موجودی نداره :(")
             }
-            else if(req.readyState === 4 && req.status === 400 && req.response.status === 40002){
+            else if(req.readyState === 4 && req.status === 400 && req.response.status === 40002 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("درخواستت بده :(")
             }
-            else if(req.readyState === 4 && req.status === 400 && req.response.status === 40004){
+            else if(req.readyState === 4 && req.status === 400 && req.response.status === 40004 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("تکلیف سفارش قبلی چیه؟")
             }
-            else if(req.readyState === 4 && req.status === 404 && req.response.status === 4040001){
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 4040001 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("این یوزر تو سرور ثبت نیست")
             }
-            else if(req.readyState === 4 && req.status === 500 && req.response.status === 500){
+            else if(req.readyState === 4 && req.status === 500 && req.response.status === 500 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("سرورمون فعلا مشکل داره :(")
             }
-            else {
+            else if(this.mount) {
                 this.setState({spinner:true})
             }
         }.bind(this)
         req.onerror = function(){
-            this.setState((state,props)=>({
-                spinner : false
-            }))
-            this.show("سرورمون فعلا مشکل داره :(")
+            if(this.mount){
+                this.setState((state,props)=>({
+                    spinner : false
+                }))
+                this.show("سرورمون فعلا مشکل داره :(")
+            }
         }.bind(this)
         req.open('PUT','http://127.0.0.1:8080/users/cart',true)
         
@@ -272,19 +303,19 @@ export class CartContext extends Component {
         }.bind(this)
         // onreadystatechanges
         req.onreadystatechange = function() {
-            if(req.readyState === 4 && req.status === 200) {
+            if(req.readyState === 4 && req.status === 200 && this.mount) {
                 this.setState((state,props)=>({
                     spinner : false
                 }))
                 this.updateState()
             }
-            else if(req.readyState === 4 && req.status === 500){
+            else if(req.readyState === 4 && req.status === 500 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("سرورمون فعلا مشکل داره :(")
             }
-            else if(req.readyState === 4 && req.status === 200 && req.response.status === 40401){
+            else if(req.readyState === 4 && req.status === 200 && req.response.status === 40401 && this.mount){
                 if(item.special == true) {
                     item.special = false
                     this.decrease(item)
@@ -295,19 +326,26 @@ export class CartContext extends Component {
                 }))
                 this.show("این غذا وجود نداره :(")
             }
-            else if(req.readyState === 4 && req.status === 403){
+            else if(req.status===403 && req.response.status===null){
+                if(localStorage.getItem("auth")){
+                    $("#loading-modal").modal('hide')
+                    localStorage.removeItem("auth")
+                    window.myHistory.push('/login')
+                }
+            }
+            else if(req.readyState === 4 && req.status === 403 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("اجازه دسترسی به این رستورانو نداری :(")
             }
-            else if(req.readyState === 4 && req.status === 404 && req.response.status === 40402){
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 40402 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("این رستوران وجود نداره :(")
             }
-            else if(req.readyState === 4 && req.status === 404 && req.response.status === 40401){
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 40401 && this.mount){
                 if(item.special == true) {
                     item.special = false
                     this.decrease(item)
@@ -318,31 +356,31 @@ export class CartContext extends Component {
                 }))
                 this.show("این غذا وجود نداره :(")
             }
-            else if(req.readyState === 4 && req.status === 400 && req.response.status === 40001){
+            else if(req.readyState === 4 && req.status === 400 && req.response.status === 40001 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("غذا تموم شده :(")
             }
-            else if(req.readyState === 4 && req.status === 400 && req.response.status === 40002){
+            else if(req.readyState === 4 && req.status === 400 && req.response.status === 40002 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("درخواستت بده :(")
             }
-            else if(req.readyState === 4 && req.status === 404 && req.response.status === 4040001){
+            else if(req.readyState === 4 && req.status === 404 && req.response.status === 4040001 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("این یوزر تو سرور ثبت نیست")
             }
-            else if(req.readyState === 4 && req.status === 500 && req.response.status === 500){
+            else if(req.readyState === 4 && req.status === 500 && req.response.status === 500 && this.mount){
                 this.setState((state,props)=>({
                     spinner : false,
                 }))
                 this.show("سرورمون فعلا مشکل داره :(")
             }
-            else {
+            else if(this.mount){
                 this.setState({spinner:true})
             }
         }.bind(this)

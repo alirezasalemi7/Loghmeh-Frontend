@@ -67,7 +67,7 @@ export class ProfilePage extends Component {
         let req = new XMLHttpRequest()
         req.onreadystatechange = function() {
             if (req.readyState === 4) {
-                if (req.status === 200) {
+                if (req.status === 200 && this.mount) {
                     this.setState({
                         user: JSON.parse(req.response)
                     })
@@ -75,8 +75,15 @@ export class ProfilePage extends Component {
                         setTimeout(()=>{$("#loading-modal").modal('hide')},1000)
                         this.rendered = true
                     }
-                } else if (req.status === 404) {
+                } else if (req.status === 404  && this.mount) {
                     this.show('کاربری با این نام کاربری پیدا نشد:(')
+                }
+                else if(req.status==403){
+                    if(localStorage.getItem("auth")){
+                        $("#loading-modal").modal('hide')
+                        localStorage.removeItem("auth")
+                        window.myHistory.push('/login')
+                    }
                 }
             }
         }.bind(this)

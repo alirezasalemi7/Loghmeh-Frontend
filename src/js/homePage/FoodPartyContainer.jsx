@@ -34,9 +34,11 @@ export class FoodPartyContainer extends Component {
                     })
                 }
                 else if(req.status==403){
-                    $("#loading-modal").modal('hide')
-                    localStorage.removeItem("auth")
-                    window.myHistory.push('/login')
+                    if(localStorage.getItem("auth")){
+                        $("#loading-modal").modal('hide')
+                        localStorage.removeItem("auth")
+                        window.myHistory.push('/login')
+                    }
                 }
             }
         }.bind(this)
@@ -60,9 +62,11 @@ export class FoodPartyContainer extends Component {
                     })
                 }
                 else if(req.status==403){
-                    $("#loading-modal").modal('hide')
-                    localStorage.removeItem("auth")
-                    window.myHistory.push('/login')
+                    if(localStorage.getItem("auth")){
+                        $("#loading-modal").modal('hide')
+                        localStorage.removeItem("auth")
+                        window.myHistory.push('/login')
+                    }
                 }
             }
         }.bind(this)
