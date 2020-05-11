@@ -127,8 +127,8 @@ class LoginCard extends Component {
             });
             let element = document.getElementById('googleBtn')
             auth2.attachClickHandler(element, {},
-                (e)=>googleSignUp(e), ()=>{this.show('an error occured')}
-            );
+                (e)=>googleSignUp(e), ()=>{}
+            )
         });
     }
 
@@ -278,7 +278,7 @@ class LoginCard extends Component {
                                     <div className="form-group">
                                         <InputField dir="ltr" value={this.state.password} err={this.state.password_err} onChange={this.onPasswordChange} empty={this.state.password_empty} type="password" id="pass-inp" placeholder="گذر واژه"></InputField>
                                     </div>
-                                    <div className="row justify-content-center mx-auto">
+                                    <div className="row justify-content-center mx-auto my-2">
                                         <button dir="rtl" className="btn" onClick={this.onSubmit} id="login-card-btn">بریم تو!</button>
                                         <div id="googleBtn" className="row google-login-button justify-content-center py-1 mx-1 my-0 border">
                                             <img className="google-logo" src={require("../../assets/login/Google Logo.png")} alt="گوگل"/>
