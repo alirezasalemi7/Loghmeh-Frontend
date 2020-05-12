@@ -29,6 +29,5 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /react-ui/build /usr/share/nginx/html
 
 EXPOSE 3000 80
-EXPOSE 8080 8080
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
