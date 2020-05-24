@@ -1,13 +1,13 @@
 stages:
-    - build
+ - build
    
-   docker_build:
-    stage: build
-    before_script: 
-     - docker login --username alirezasalemi --password-stdin 7c429978-fa6b-4ca4-8815-b705a47a81fb
-    script:
-     - docker build -t loghmeh-gui
-     - docker push alirezasalemi/loghmeh-gui:$CI_COMMIT_TAG
+docker_build:
+ stage: build
+ before_script: 
+  - docker login --username alirezasalemi --password-stdin 7c429978-fa6b-4ca4-8815-b705a47a81fb
+ script:
+  - docker build -t loghmeh-gui
+  - docker push alirezasalemi/loghmeh-gui:$CI_COMMIT_TAG
    
    
    
