@@ -9,7 +9,10 @@ services:
 
 stages:
  - build
-   
+
+only:
+ - master
+
 docker_build:
  stage: build
  before_script: 
