@@ -1,4 +1,4 @@
-FROM node:latest as builder
+FROM node:latest AS builder
 
 # copy the package.json to install dependencies
 COPY package.json package-lock.json ./
