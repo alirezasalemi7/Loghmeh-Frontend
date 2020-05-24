@@ -1,5 +1,4 @@
-# stage1 as builder
-FROM tarampampam/node:13-alpine as builder
+FROM node:latest as builder
 
 # copy the package.json to install dependencies
 COPY package.json package-lock.json ./
