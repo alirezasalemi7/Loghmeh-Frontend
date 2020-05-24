@@ -1,4 +1,4 @@
-image: gitlab/dind
+image: docker:19.03.6
 
 stages:
  - build
