@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loghmeh-gui-deployment
+  labels:
+    app: loghmeh-gui
+spec:
+  selector:
+    matchLabels:
+      app: loghmeh-gui
+  template:
+    metadata:
+      labels:
+        app: loghmeh-gui
+    spec:
+      containers:
+      - name: loghmeh-gui
+        image: alirezasalemi/loghmeh-gui
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "300m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
