@@ -40,7 +40,7 @@ export class FoodPartyContainer extends Component {
                 }
             }
         }.bind(this)
-        req.open("GET", "http://10.104.200.201:8080/foodParty", true)
+        req.open("GET", "http://185.166.105.6:31037/foodParty", true)
         req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()
     }
@@ -66,7 +66,7 @@ export class FoodPartyContainer extends Component {
                 }
             }
         }.bind(this)
-        req.open("GET", "http://10.104.200.201:8080/foodParty/time")
+        req.open("GET", "http://185.166.105.6:31037/foodParty/time")
         req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()
     }

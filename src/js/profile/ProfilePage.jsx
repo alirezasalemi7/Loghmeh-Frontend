@@ -91,7 +91,7 @@ export class ProfilePage extends Component {
             this.setState({user:{name:"سرور",family:"مشکل داره",phoneNumber:"سرور مشکل داره",email:"سرور مشکل داره",credit:"0"}})
             this.show('سرورمون فعلا مشکل داره:(')
         }.bind(this)
-        req.open("GET", "http://10.104.200.201:8080/users/profile", true)
+        req.open("GET", "http://185.166.105.6:31037/users/profile", true)
 
         req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()

@@ -194,7 +194,7 @@ class LoginCard extends Component {
                 this.setState({spinner:false})
                 this.show('سرور فعلا مشکل داره:(')
             }.bind(this)
-            req.open("POST", "http://10.104.200.201:8080/login", true)
+            req.open("POST", "http://185.166.105.6:31037/login", true)
             req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             req.send(JSON.stringify({"email": this.state.username, "password":this.state.password}))
         }
@@ -244,7 +244,7 @@ class LoginCard extends Component {
             this.show('سرور فعلا مشکل داره:(')
         }.bind(this)
         req.responseType = 'json'
-        req.open("POST", "http://10.104.200.201:8080/login/google");
+        req.open("POST", "http://185.166.105.6:31037/login/google");
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         req.send('token=' + id_token);
     }
