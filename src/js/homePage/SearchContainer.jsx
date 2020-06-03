@@ -90,12 +90,12 @@ export class SearchContainer extends Component {
         console.log("restaurant name:" + restaurantName)
         if (foodName) {
             if (restaurantName) {
-                req.open("GET", "http://127.0.0.1:8080/search/foods_and_restaurants?food_name="+foodName+"&restaurant_name="+restaurantName+"&page_number="+((isNewSearch) ? 0 : this.state.pageNumber)+"&page_size="+pageSize)
+                req.open("GET", "http://10.104.200.201:8080/search/foods_and_restaurants?food_name="+foodName+"&restaurant_name="+restaurantName+"&page_number="+((isNewSearch) ? 0 : this.state.pageNumber)+"&page_size="+pageSize)
             } else {
-                req.open("GET", "http://127.0.0.1:8080/search/foods?food_name="+foodName+"&page_number="+((isNewSearch) ? 0 : this.state.pageNumber)+"&page_size="+pageSize)
+                req.open("GET", "http://10.104.200.201:8080/search/foods?food_name="+foodName+"&page_number="+((isNewSearch) ? 0 : this.state.pageNumber)+"&page_size="+pageSize)
             }
         } else if (restaurantName) {
-            req.open("GET", "http://127.0.0.1:8080/search/restaurants?restaurant_name="+restaurantName+"&page_number="+((isNewSearch) ? 0 : this.state.pageNumber)+"&page_size="+pageSize)
+            req.open("GET", "http://10.104.200.201:8080/search/restaurants?restaurant_name="+restaurantName+"&page_number="+((isNewSearch) ? 0 : this.state.pageNumber)+"&page_size="+pageSize)
         } else {
             this.show('برای جست‌وجو باید حداقل یکی از فیلدها پر شود.')
             return

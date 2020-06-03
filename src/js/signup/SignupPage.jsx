@@ -206,7 +206,7 @@ class SignupCard extends Component{
                 this.setState({spinner:false})
                 this.show('ارتباط با سرور قطع شده:(')
             }.bind(this)
-            req.open('POST', 'http://127.0.0.1:8080/signup', true)
+            req.open('POST', 'http://10.104.200.201:8080/signup', true)
             req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             req.send(JSON.stringify({"name":this.state.firstname, "family":this.state.lastname, "email": this.state.email, "password": this.state.password, "phone": this.state.phone}))
         }

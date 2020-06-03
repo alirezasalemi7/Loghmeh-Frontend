@@ -126,7 +126,7 @@ class CreditPart extends Component {
             this.show('سرورمون فعلا مشکل داره:(')
             this.setState({spinner:false})
         }.bind(this)
-        req.open("PUT", "http://127.0.0.1:8080/users/profile", true);
+        req.open("PUT", "http://10.104.200.201:8080/users/profile", true);
         
         req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -226,7 +226,7 @@ class OrderList extends Component {
         req.onerror = function() {
             this.setState({spinner : false})
         }.bind(this)
-        req.open("GET", "http://127.0.0.1:8080/users/orders", true)
+        req.open("GET", "http://10.104.200.201:8080/users/orders", true)
         
         req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()

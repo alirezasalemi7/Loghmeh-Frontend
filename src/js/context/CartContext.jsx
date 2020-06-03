@@ -107,7 +107,7 @@ export class CartContext extends Component {
                 this.show("سرورمون فعلا مشکل داره :(")
             }
         }.bind(this)
-        req.open('GET','http://127.0.0.1:8080/users/cart',true)
+        req.open('GET','http://10.104.200.201:8080/users/cart',true)
         
         req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()
@@ -173,7 +173,7 @@ export class CartContext extends Component {
             }
         }.bind(this)
         req.responseType = 'json'
-        req.open('POST','http://127.0.0.1:8080/users/cart',true)
+        req.open('POST','http://10.104.200.201:8080/users/cart',true)
         
         req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()
@@ -283,7 +283,7 @@ export class CartContext extends Component {
                 this.show("سرورمون فعلا مشکل داره :(")
             }
         }.bind(this)
-        req.open('PUT','http://127.0.0.1:8080/users/cart',true)
+        req.open('PUT','http://10.104.200.201:8080/users/cart',true)
         
         req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.setRequestHeader("Content-Type", "application/json")
@@ -380,7 +380,7 @@ export class CartContext extends Component {
                 this.setState({spinner:true})
             }
         }.bind(this)
-        req.open('DELETE','http://127.0.0.1:8080/users/cart',true)
+        req.open('DELETE','http://10.104.200.201:8080/users/cart',true)
         req.setRequestHeader("Content-Type", "application/json")
         
         req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))

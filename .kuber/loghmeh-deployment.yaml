@@ -17,11 +17,8 @@ spec:
       - name: loghmeh-gui
         image: alirezasalemi/loghmeh-gui
         resources:
-          requests:
-            memory: "256Mi"
-            cpu: "300m"
           limits:
-            memory: "512Mi"
-            cpu: "500m"
+            memory: "100Mi"
+            cpu: "200m"
         ports:
         - containerPort: 80

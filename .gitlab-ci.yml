@@ -11,8 +11,8 @@ stages:
  - build
 
 docker_build:
- only:
-  - master      
+#  only:
+#   - master      
  stage: build
  before_script: 
   - docker login --username alirezasalemi --password 7c429978-fa6b-4ca4-8815-b705a47a81fb

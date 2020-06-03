@@ -83,7 +83,7 @@ export class RestaurantsContainer extends Component {
                 this.show('سرور فعلا مشکل داره:(')
             }
         }.bind(this)
-        req.open("GET", "http://127.0.0.1:8080/restaurants?page_number="+page_number+"&page_size="+page_size, true)
+        req.open("GET", "http://10.104.200.201:8080/restaurants?page_number="+page_number+"&page_size="+page_size, true)
         
         req.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('id_token'))
         req.send()
