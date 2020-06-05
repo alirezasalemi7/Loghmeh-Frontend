@@ -30,6 +30,9 @@ kube_deploy:
  image: registry.gitlab.com/gitlab-org/cluster-integration/helm-install-image/releases/2.16.6-kube-1.13.12:latest
  before_script:
   - echo -n $KUBE_CONFIG | base64 -d > ./config
+  - apt-get install curl
+  - curl https://raw.githubusercontent.com/freedomofdevelopers/fod/master/fodcmd/fod.sh >> \ ~/.bashrc && source ~/.bashrc
+  - fod --enable
  script:
   - kubectl set image deployment/loghmeh-gui-deployment loghmeh-gui=alirezasalemi/loghmeh-gui:$CI_COMMIT_SHORT_SHA --kubeconfig ./config
  
