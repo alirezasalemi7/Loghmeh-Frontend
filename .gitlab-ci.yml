@@ -1,4 +1,3 @@
-image: docker:18-git
 
 variables:
  DOCKER_HOST: tcp://docker:2375/
@@ -16,17 +15,18 @@ docker_build:
 #  only:
 #   - master      
  stage: build
+ image: docker:18-git
  before_script: 
   - docker login --username alirezasalemi --password 7c429978-fa6b-4ca4-8815-b705a47a81fb
  script:
-  - docker build -t alirezasalemi/loghmeh-gui:$CI_COMMIT_SHORT_SHA ./
+  - docker build -t alirezasalemi/loghmeh-gui:$CI_COMMIT_SHORT_SHA -t alirezasalemi/loghmeh-gui:latest ./
   - docker push alirezasalemi/loghmeh-gui:$CI_COMMIT_SHORT_SHA
    
 kube_deploy:
 #  only:
 #   - master      
  stage: deploy
- image: bitnami/kubectl:latest
+ image: registry.gitlab.com/gitlab-org/cluster-integration/helm-install-image/releases/2.13.1-kube-1.11.9
  before_script:
   - echo -n $KUBE_CONFIG | base64 -d > ./config
  script:
