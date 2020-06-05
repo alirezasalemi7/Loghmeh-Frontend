@@ -31,7 +31,7 @@ kube_deploy:
  before_script:
   - echo -n $KUBE_CONFIG | base64 -d > ./config
  script:
-  - kubectl set image deployment/loghmeh-gui-deployment loghmeh-gui=alirezasalemi/loghmeh-gui:$CI_COMMIT_SHORT_SHA
+  - kubectl set image deployment/loghmeh-gui-deployment loghmeh-gui=alirezasalemi/loghmeh-gui:$CI_COMMIT_SHORT_SHA --kubeconfig ./config
  
 
    
