@@ -30,7 +30,7 @@ kube_deploy:
  before_script:
   - echo -n $KUBE_CONFIG | base64 -d > ./config
  script:
-  - kubectl kubectl rollout restart deployment loghmeh-gui-deployment
+  - kubectl rollout restart deployment loghmeh-gui-deployment
  
 
    
