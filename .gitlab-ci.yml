@@ -21,12 +21,13 @@ docker_build:
  script:
   - docker build -t alirezasalemi/loghmeh-gui:$CI_COMMIT_SHORT_SHA -t alirezasalemi/loghmeh-gui:latest ./
   - docker push alirezasalemi/loghmeh-gui:$CI_COMMIT_SHORT_SHA
+  - docker push alirezasalemi/loghmeh-gui:$latest
    
 kube_deploy:
 #  only:
 #   - master      
  stage: deploy
- image: registry.gitlab.com/gitlab-org/cluster-integration/helm-install-image/releases/2.13.1-kube-1.11.9
+ image: registry.gitlab.com/gitlab-org/cluster-integration/helm-install-image/releases/2.16.6-kube-1.13.12:latest
  before_script:
   - echo -n $KUBE_CONFIG | base64 -d > ./config
  script:
