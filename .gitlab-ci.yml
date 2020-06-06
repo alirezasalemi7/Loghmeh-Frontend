@@ -41,7 +41,7 @@ kube_deploy:
   - which kubectl || (apt-get update -y -qq && apt-get install -y -qq kubectl)
   - openvpn --config ./vpn.ovpn --daemon
  script:
-  - kubectl set image deployment/loghmeh-gui-deployment loghmeh-gui=alirezasalemi/loghmeh-gui:$CI_COMMIT_SHORT_SHA --kubeconfig ./config
+  - kubectl rollout restart deployment/loghmeh-gui-deployment --kubeconfig ./config
  
 
    
