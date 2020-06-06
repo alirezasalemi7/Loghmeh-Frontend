@@ -36,6 +36,7 @@ kube_deploy:
   - which curl || (apt-get update -y -qq && apt-get install -y -qq curl)
   - apt-get update && apt-get install -y gnupg2
   - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
+  - apt-get install software-properties-common
   - apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
   - which kubectl || (apt-get update -y -qq && apt-get install -y -qq kubectl)
   - openvpn --config ./vpn.ovpn --daemon
