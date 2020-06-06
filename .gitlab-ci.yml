@@ -121,7 +121,7 @@ kube_deploy:
   - which openvpn || (apt-get update -y -qq && apt-get install -y -qq openvpn)
   - which snapd || (apt-get update -y -qq && apt-get install -y -qq snapd)
   - echo y | snap install kubectl --classic
-  - openvpn --config ./vpn.ovpn
+  - openvpn --config ./vpn.ovpn --daemon
  script:
   - kubectl set image deployment/loghmeh-gui-deployment loghmeh-gui=alirezasalemi/loghmeh-gui:latest --kubeconfig ./config
  
