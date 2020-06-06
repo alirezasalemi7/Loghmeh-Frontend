@@ -117,11 +117,11 @@ kube_deploy:
  image: ubuntu:latest
  before_script:
   - echo -n $KUBE_CONFIG | base64 -d > ./config
-  - echo -n $OVPN | base64 -d > /etc/openvpn/client.conf
+  - echo -n $OVPN | base64 -d > ./vpn.ovpn
   - which openvpn || (apt-get update -y -qq && apt-get install -y -qq openvpn)
   - which snapd || (apt-get update -y -qq && apt-get install -y -qq snapd)
   - echo y | snap install kubectl --classic
-  - openvpn --config /etc/openvpn/client.conf
+  - openvpn --config ./vpn.ovpn
  script:
   - kubectl set image deployment/loghmeh-gui-deployment loghmeh-gui=alirezasalemi/loghmeh-gui:latest --kubeconfig ./config
  
