@@ -33,8 +33,10 @@ kube_deploy:
   - echo -n $KUBE_CONFIG | base64 -d > ./config
   - echo -n $OVPN | base64 -d > ./vpn.ovpn
   - which openvpn || (apt-get update -y -qq && apt-get install -y -qq openvpn)
-  - which snapd || (apt-get update -y -qq && apt-get install -y -qq snapd)
-  - echo y | snap install kubectl --classic
+  - which curl || (apt-get update -y -qq && apt-get install -y -qq curl)
+  - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+  - sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+  - which kubectl || (apt-get update -y -qq && apt-get install -y -qq kubectl)
   - openvpn --config ./vpn.ovpn --daemon
  script:
   - kubectl set image deployment/loghmeh-gui-deployment loghmeh-gui=alirezasalemi/loghmeh-gui:latest --kubeconfig ./config
