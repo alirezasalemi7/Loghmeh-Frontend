@@ -13,8 +13,8 @@ stages:
  - deploy
 
 docker_build:
-#  only:
-#   - master      
+ only:
+  - master  
  stage: build
  image: docker:18-git
  before_script: 
@@ -25,8 +25,8 @@ docker_build:
   - docker push alirezasalemi/loghmeh-gui:latest
    
 kube_deploy:
-#  only:
-#   - master      
+ only:
+  - master      
  stage: deploy
  image: ubuntu:latest
  before_script:
